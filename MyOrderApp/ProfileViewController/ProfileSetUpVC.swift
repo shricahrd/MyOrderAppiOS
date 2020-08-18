@@ -298,6 +298,19 @@ extension ProfileSetUpVC: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         self.stateTextFiled.text = self.stateArraya[row].name
     }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//
+//            if pickerView == cityPickerpickerView{
+//                
+//                self.cityTextFiled.text = self.cityArrayaData[row].name
+//            } else if pickerView == areaPickerpickerView {
+//
+//                self.cityTextFiled.text = self.areaArryaList[row].name
+//
+//            }
+//            self.stateTextFiled.text = self.stateArraya[row].name
+//        }
+//    }
 }
 
 extension ProfileSetUpVC: ToolbarPickerViewDelegate,cityToolbarPickerViewDelegate,areaToolbarPickerViewDelegate{
