@@ -47,41 +47,16 @@ struct ProductionServer {
         static let fld_sort_by = "fld_sort_by"
         static let fld_state_id = "fld_state_id"
         static let fld_city_id = "fld_city_id"
-
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-        
-        
-
-
-
-        
-        
-        
-        
-
-        
-        
-        
-
-        
-        
-        
-        
-        
+        static let fld_product_id = "fld_product_id"
+        static let fld_color_id = "fld_color_id"
+        static let fld_size_id = "fld_size_id"
+        static let fld_action_type = "fld_action_type"
+        static let fld_filters_type = "fld_filters_type"
+        static let fld_max_price = "fld_max_price"
+        static let fld_min_price = "fld_min_price"
+        static let fld_material_id = "fld_material_id"
+        static let fld_other_id = "fld_other_id"
+        static let fld_scat_id = "fld_scat_id"
     }
     
     

@@ -1,10 +1,7 @@
-//
 //  MyCartProductCell.swift
 //  MyOrderApp
-//
 //  Created by RAKESH KUSHWAHA on 15/07/20.
 //  Copyright © 2020 rakesh. All rights reserved.
-//
 
 import UIKit
 

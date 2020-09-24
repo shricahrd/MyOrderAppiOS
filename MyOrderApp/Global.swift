@@ -17,7 +17,17 @@ enum AppNotifications {
     static let showCalendar = "showCalendar"
 }
 
+extension UIViewController {
 
+    /**
+     *  Height of status bar + navigation bar (if navigation bar exist)
+     */
+
+    var topbarHeight: CGFloat {
+        return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
+    }
+}
 extension UIView {
     func roundCorners(cornerRadius: Double) {
         self.layer.cornerRadius = CGFloat(cornerRadius)
@@ -26,6 +36,12 @@ extension UIView {
     
 }
 
+func getUserID() -> String {
+    if let fldUserId = UserDefaults.standard.value(forKey: "fld_user_id") as? String {
+        return fldUserId
+    }
+    return "0"
+}
 func getImageFromWeb(_ urlString: String, closure: @escaping (UIImage?) -> ()) {
     guard let url = URL(string: urlString) else {
         return closure(nil)

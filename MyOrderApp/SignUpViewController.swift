@@ -14,30 +14,23 @@ let prefs = UserDefaults.standard
 
 //static var assetArray = AssetList()
 
-@objc static func showAlert(withMessage : String, onController : UIViewController) {
+ @objc static func showAlert(withMessage : String, onController : UIViewController) {
     let alertController = UIAlertController(title: "MyOrder", message: withMessage, preferredStyle: .alert)
     let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
     alertController.addAction(okAction)
     onController.present(alertController, animated: true, completion: nil)
-}
-    
-    
+ }
 }
 
 enum TypesOfRegistation {
-    
     case ManuFactursReg
     case Distributor
     case Retailer
     case Stocker
     case RalesAgent
-    
 }
 
 class SignUpViewController: UIViewController {
-    
-    
-    
     @IBOutlet var viewBg: UIView!
     @IBOutlet var userName: UITextField!
     @IBOutlet var email: UITextField!
@@ -46,13 +39,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet var unshow: UIButton!
     @IBOutlet var signup: UIButton!
     @IBOutlet var btnSignin: UIButton!
-    
-    
-    
-    
     var typesOfRegistation = TypesOfRegistation.ManuFactursReg
     var registatorViewModels: RegistationViewModels?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

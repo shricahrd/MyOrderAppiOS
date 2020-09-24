@@ -178,15 +178,14 @@ extension HomeController:UITableViewDataSource,UITableViewDelegate {
             
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "HomeHedderCell") as! HomeHedderCell
 
-                headerCell.haderLabel.text = "New Collection"
+            headerCell.haderLabel.text = "New Collection"
             
             headerCell.viewMoreButton.addTarget(self, action: #selector(delateAdress(_:)), for: .touchUpInside)
-
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "NewCollecationTableviewCell") as! NewCollecationTableviewCell
-//
-//            // mostPopularItems
+//          let cell = tableView.dequeueReusableCell(withIdentifier: "NewCollecationTableviewCell") as! NewCollecationTableviewCell
+//          // mostPopularItems
             return headerCell
-        }else {
+            
+        } else {
             
            let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell") as! HomeCell
             
@@ -198,10 +197,7 @@ extension HomeController:UITableViewDataSource,UITableViewDelegate {
     
     
     @objc func delateAdress(_ sender:UIButton){
-        
-        
-        
-        
+
       //  SearchProductController
         
         let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
@@ -257,13 +253,10 @@ extension HomeController:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 250
-        }else if indexPath.row == 1{
+        } else if indexPath.row == 1{
             return 50
-            
-        }else {
+        } else {
             return 250
-
-            
         }
     }
     
@@ -272,7 +265,6 @@ extension HomeController:UITableViewDataSource,UITableViewDelegate {
 extension HomeController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bannerAddData.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

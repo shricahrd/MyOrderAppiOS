@@ -7,11 +7,11 @@
 
 import UIKit
 
-class SearchProductController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchProductController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet var textFieldSearch: UITextField!
     @IBOutlet var tableViewList: UITableView!
     @IBOutlet var searchbutton: UIButton!
-    
+    @IBOutlet weak var cartCountLabel: UILabel!
     var arrayData = ["Brand", "Price: Low to High", "Price: High to Low"]
     var screenSize:CGRect = UIScreen.main.bounds
     var screenWidth:CGFloat = 0.0
@@ -19,11 +19,14 @@ class SearchProductController: UIViewController, UITableViewDelegate, UITableVie
     var customPopUp: UIView!
     var tableviewPopUp: UITableView!
     var arraySelecteditems = NSMutableArray()
-    
-    
+    var productName = ""
     var productArraya:[ProductDatum] = []
-    
-    
+    var ary_UserList : [ProductDatum]?
+    var ary_Search : [ProductDatum]?
+    var arrayAfterSearch: [ProductSearchDatum]?
+    var lbl_Msg:UILabel!
+    var isSearch:Bool = false
+    var strcartTotalCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.screenWidth = screenSize.width
@@ -31,49 +34,187 @@ class SearchProductController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.isNavigationBarHidden = true
         self.registerNib()
         
+        let btnBack = UIButton()
+        print("screenHeight:",screenHeight)
+        if screenHeight == 896.0 || screenHeight == 812.0{
+           btnBack.frame = CGRect(x:16, y: 45, width: 20, height: 20)
+        } else {
+           btnBack.frame = CGRect(x:16, y: 30, width: 20, height: 20)
+        }
+        btnBack.backgroundColor = .clear
+        btnBack.setImage(UIImage(named: "backArrow"), for: .normal)
+        btnBack.addTarget(self,action:#selector(self.clickOnBack(_:)),for: UIControl.Event.touchUpInside)
+        btnBack.isUserInteractionEnabled = true
+        self.view.addSubview(btnBack)
+        
+        
         textFieldSearch.layer.borderColor = UIColor.gray.cgColor
         textFieldSearch.layer.borderWidth = 1
         textFieldSearch.layer.cornerRadius = 25
         textFieldSearch.clipsToBounds = true
+       
+        let paddingView_CurrentPwd:UIView=UIView()
+        paddingView_CurrentPwd.frame=CGRect(x: 0,y: 0,width: 45,height: 20)
+        let paddingRightView_CurrentPwd:UIView=UIView()
+        paddingRightView_CurrentPwd.frame=CGRect(x: 0,y: 0,width: 20,height: 20)
+        textFieldSearch.delegate = self
+        textFieldSearch.textColor = UIColor.black
+        textFieldSearch.leftView = paddingView_CurrentPwd
+        textFieldSearch.rightView = paddingRightView_CurrentPwd
+        textFieldSearch.placeholder = "Search"
+        textFieldSearch.tintColor = UIColor.black;
+        textFieldSearch.font = UIFont(name:"Arial",size:16.0)
+        textFieldSearch.backgroundColor = UIColor.white
+        textFieldSearch.layer.cornerRadius = 22.0
+        textFieldSearch.isSecureTextEntry = false
+        textFieldSearch.leftViewMode = .always
+        textFieldSearch.rightViewMode = .always
+        textFieldSearch.tag = 100
+        textFieldSearch.returnKeyType = .next
+        textFieldSearch.keyboardType = UIKeyboardType.asciiCapable
+
+        self.lbl_Msg = UILabel()
+        self.lbl_Msg.frame = CGRect(x: 10,y: 176,width: self.tableViewList.frame.size.width-20,height: 45);
+        self.lbl_Msg.text = " Product is not Available."
+        self.lbl_Msg.textAlignment = NSTextAlignment.center
+        self.lbl_Msg.textColor = UIColor.lightGray
+        self.view.addSubview(self.lbl_Msg)
         
+        self.cartCountLabel.layer.cornerRadius = self.cartCountLabel.frame.width/2
+        self.cartCountLabel.clipsToBounds = true
+        self.cartCountLabel.layer.borderColor = UIColor.white.cgColor
+        self.cartCountLabel.layer.borderWidth = 2
+        self.cartCountLabel.isHidden = true
+        self.cartCountLabel.text = ""
+        self.lbl_Msg.isHidden = true
+
         popUp()
-        
-        profuct(fldBrandId: "", fldCatId: "2", fldUserId: "1", fldSearchTxt: "", fldPageNo: 0, fldSortBy: "1")
-        
+        print("productName: ",  "\(productName)")
+        profuct(fldBrandId: "", fldCatId: "2", fldUserId: "1", fldSearchTxt: "\(productName)", fldPageNo: 0, fldSortBy: "1")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController!.setNavigationBarHidden(true,animated: false)
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    @objc func clickOnBack(_ sender: AnyObject!) {
+        self.navigationController!.setNavigationBarHidden(true,animated: false)
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.popViewController(animated: true)
+    }
     
     func profuct(fldBrandId:String,fldCatId:String,fldUserId:String,fldSearchTxt:String,fldPageNo:Int,fldSortBy:String){
-        
-        
         ApiClient.loder(roughter: APIRouter.produNmae(fldBrandId: fldBrandId, fldCatCid: fldCatId, fldUserId: fldUserId, fldSearchTxt: fldSearchTxt, fldPageNo: fldPageNo, fldSortBy: fldSortBy)) { (product:ProductDetailesResponce) in
-            
             print("\(product)")
-            
-            if product.status  == true{
+//          var searchDoctorObject:ProductDetailesResponce?
+            if product.status  == true {
                 
-                self.productArraya.append(contentsOf: product.productData ?? [])
+                self.strcartTotalCount  =  product.cartTotalCount ?? 0
+               //  self.strcartTotalCount = 2
+                if self.strcartTotalCount > 0 {
+                   self.cartCountLabel.isHidden = false
+                   self.cartCountLabel.text = "\(self.strcartTotalCount)"
+                } else {
+                     self.cartCountLabel.isHidden = true
+                }
                 
-                self.tableViewList.reloadData()
-                
+                if product is Dictionary<String, Any> {
+//                 searchDoctorObject = ProductDetailesResponce(from: dataDict as! Decoder)
+                }
+                self.ary_UserList = product.productData ?? []
+                self.ary_Search = product.productData ?? []
+//              self.productArraya.append(contentsOf: product.productData ?? [])
+//              self.tableViewList.reloadData()
+                if (self.ary_UserList ?? []).count > 0 {
+                    DispatchQueue.main.async {
+                       self.tableViewList.isHidden=false
+                       self.lbl_Msg.isHidden=true
+                    }
+                     // self.setupSearchableContent()
+                   } else {
+                      DispatchQueue.main.async {
+                        self.tableViewList.isHidden=true
+                        self.lbl_Msg.frame=CGRect(x: 10,y: 176,width: self.tableViewList.frame.size.width-20,height: 45);
+                        self.lbl_Msg.isHidden=false
+                      }
+                    }
+                  DispatchQueue.main.async {
+                    self.tableViewList .reloadData();
+                  }
             }else {
-                
-                Utility.showAlert(withMessage: product.message ?? "", onController: self)
-
+                if (self.ary_UserList ?? []).count > 0 {
+                                   DispatchQueue.main.async {
+                                      self.tableViewList.isHidden=false
+                                      self.lbl_Msg.isHidden=true
+                                   }
+                                   // self.setupSearchableContent()
+                                  } else {
+                                     DispatchQueue.main.async {
+                                       self.tableViewList.isHidden=true
+                                       self.lbl_Msg.frame=CGRect(x: 10,y: 176,width: self.tableViewList.frame.size.width-20,height: 45);
+                                       self.lbl_Msg.isHidden=false
+                                     }
+                                   }
+                                 DispatchQueue.main.async {
+                                   self.tableViewList .reloadData();
+                  }
+//                Utility.showAlert(withMessage: product.message ?? "", onController: self)
             }
-            
-            
-            
-            
         }
     }
     
     
+    func searchproduct(userId:String, SearchTxt:String) {
+        ApiClient.loder(roughter: APIRouter.productsearch(userId: userId, SearchTxt: SearchTxt)) { (productSearch: ProductSearchResponce) in
+            print("productSearch:", productSearch)
+            var searchDoctorObject:ProductSearchResponce?
+            if productSearch.status  == true {
+              if let dataDict = productSearch as? Dictionary<String, Any> {
+            //   searchDoctorObject = ProductDetailesResponce(from: dataDict as! Decoder)
+              }
+              self.arrayAfterSearch = productSearch.productSearchData ?? []
+              print("self.arrayAfterSearch: ", self.arrayAfterSearch)
+              self.isSearch = true
+              if (self.arrayAfterSearch ?? []).count > 0 {
+                  DispatchQueue.main.async {
+                                   self.tableViewList.isHidden=false
+                                   self.lbl_Msg.isHidden=true
+                                }
+                                // self.setupSearchableContent()
+                               } else {
+                                  DispatchQueue.main.async {
+                                    self.tableViewList.isHidden=true
+                                    self.lbl_Msg.frame=CGRect(x: 10,y: 176,width: self.tableViewList.frame.size.width-20,height: 45);
+                                    self.lbl_Msg.isHidden=false
+                                  }
+                                }
+                              DispatchQueue.main.async {
+                                self.tableViewList .reloadData();
+                              }
+                        } else {
+                            Utility.showAlert(withMessage: productSearch.message ?? "", onController: self)
+                        }
+        }
+    }
     
-    
+    func wishlist_add_update(userId:String, productId:String, actionType:String) {
+        ApiClient.loder(roughter: APIRouter.wishlistAddUpdate(userId: userId, productId: productId, actionType: actionType)) { (product:WishListAddUpdateResponce) in
+            if product.status  == true {
+                self.profuct(fldBrandId:"", fldCatId: "2", fldUserId: "1", fldSearchTxt: "", fldPageNo: 0, fldSortBy: "1")
+            } else {
+                 Utility.showAlert(withMessage: product.message ?? "", onController: self)
+            }
+        }
+    }
     
     @IBAction func cartAction(_ sender: Any) {
-        callPopUp()
+        let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "MyCartController") as? MyCartController {
+           self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func registerNib() {
@@ -115,21 +256,24 @@ class SearchProductController: UIViewController, UITableViewDelegate, UITableVie
         tableviewPopUp.separatorStyle = .none
         tableviewPopUp.register(UINib(nibName: "popCell", bundle: nil), forCellReuseIdentifier: "popCell")
         viewBg.addSubview(tableviewPopUp)
-  
+        
+        
     }
     
     func callPopUp() {
          UIView.animate(withDuration: Double(0.5),
                                   delay: 0.0,
                                   options: .beginFromCurrentState, animations: { () -> Void in
-                                   self.customPopUp.isHidden = false
+            self.customPopUp.isHidden = false
          }, completion: { (Bool) -> Void in
-                   })
+                 
+         })
     }
     
     
     
     @IBAction func searchAction(_ sender: Any) {
+        
     }
     
       // MARK: - TableView Delegate Methods
@@ -138,11 +282,20 @@ class SearchProductController: UIViewController, UITableViewDelegate, UITableVie
        }
        
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         // if tableviewPopUp == tableView {
-            return productArraya.count
-         // } else {
-           //  return 15
-         // }
+
+        if tableviewPopUp == tableView {
+           return arrayData.count
+        } else {
+            var resultRow = 0
+            if self.isSearch == false {
+                resultRow = ary_UserList?.count ?? 0
+                return resultRow
+            } else {
+                resultRow = arrayAfterSearch?.count ?? 0
+                 return resultRow
+            }
+         
+         }
        }
     
        func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -164,40 +317,74 @@ class SearchProductController: UIViewController, UITableViewDelegate, UITableVie
                 cell.selectionStyle = .none
                 cell.contentView.backgroundColor = UIColor(red:250.0 / 255.0, green:250.0 / 255.0, blue:250.0 / 255.0, alpha: 1.0)
                 cell.viewBG.backgroundColor = UIColor(red:255.0 / 255.0, green:255.0 / 255.0, blue:255.0 / 255.0, alpha: 1.0)
-                           cell.viewBG.layer.masksToBounds = false
-                           cell.viewBG.layer.shadowRadius = 8.0
-                           cell.viewBG.layer.shadowColor = UIColor.white.cgColor
-                           cell.viewBG.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-                           cell.viewBG.layer.shadowOpacity = 0.6
+                cell.viewBG.layer.masksToBounds = false
+                cell.viewBG.layer.shadowRadius = 8.0
+                cell.viewBG.layer.shadowColor = UIColor.white.cgColor
+                cell.viewBG.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+                cell.viewBG.layer.shadowOpacity = 0.6
+                cell.likeButton.addTarget(self, action: #selector(self.likeAction), for: UIControl.Event.touchUpInside)
+                cell.likeButton.tag = indexPath.row
+                cell.viewBG.layer.cornerRadius = 16
+                cell.viewBG.clipsToBounds = true
+
+                cell.likeButton.layer.shadowRadius = 12.0
+                cell.likeButton.layer.shadowColor = UIColor.black.cgColor
+                cell.likeButton.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+                cell.likeButton.layer.shadowOpacity = 0.7
+                cell.likeButton.layer.cornerRadius = 18
+                cell.likeButton.clipsToBounds = true
+                //likeButton.frame = CGRect(x: self.imgViewSplash.frame.width-80, y: 18, width: 50, height: 50)
+                               
+                cell.likeButton.layer.shadowRadius = 18.0
+                cell.likeButton.clipsToBounds = true
+                cell.likeButton.backgroundColor = .white
+                cell.likeButton.layer.shadowColor = UIColor.black.cgColor
+                cell.likeButton.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+                cell.likeButton.layer.masksToBounds = false
+                cell.likeButton.layer.shadowRadius = 1.5
+                cell.likeButton.layer.shadowOpacity = 0.5
+                cell.likeButton.layer.cornerRadius = cell.likeButton.frame.width / 2
                 
+                cell.imageProduct.cornerRadius = 4
+                cell.imageProduct.clipsToBounds = true
+                if self.isSearch == false {
+                   let priductData =  ary_UserList?[indexPath.row]
+//                 let fldBrandName = dict["fld_brand_name"] as? String ?? ""
+//                 let fldBrandName = priductData?.fldBrandName
+//                 print("fldBrandName:", fldBrandName)
+                   cell.productName.text = priductData?.name?.capitalized
+                   cell.productType.text = priductData?.fldBrandName?.capitalized
+                   cell.productName.textColor = .black
+                   cell.productType.textColor = .gray
+                   cell.price.text = "\u{20B9}\(priductData?.spclPrice ?? 0)"   // "\u{20B9}850"
+                   cell.discountPrice.text = "\u{20B9}\(priductData?.price ?? 0)" //"\u{20B9}1150"
+                   cell.productName.font = UIFont(name:"Arial",size:14.0)
+                   cell.productType.font = UIFont(name:"Arial",size:14.0)
+                   cell.price.font = UIFont(name:"Arial",size:12.0)
+                   cell.discountPrice.font = UIFont(name:"Arial",size:12.0)
                     
+                   cell.imageProduct.sd_setImage(with: URL(string:"\(priductData?.defaultImage ?? "")"), placeholderImage: UIImage(named: "productImageplaceholder"))
+                   if priductData?.isInWishlist == false {
+                       cell.likeButton.setImage(UIImage(named: "grayheart"), for: .normal)
+                   } else {
+                       cell.likeButton.setImage(UIImage(named: "redheart"), for: .normal)
+                   }
+                } else {
+                   let priductData =  arrayAfterSearch?[indexPath.row]
+                   cell.productName.text = priductData?.searchName
+                   cell.productType.text = priductData?.categoryName
+//                 cell.price.text = "\(priductData?.spclPrice ?? 0)"   // "\u{20B9}850"
+//                    cell.discountPrice.text = "\(priductData?.extraPrice ?? 0)" //"\u{20B9}1150"
+//                    cell.imageProduct.sd_setImage(with: URL(string:"\(priductData?.defaultImage ?? "")"), placeholderImage: UIImage(named: "placeholder.png"))
+//                    if priductData?.isInWishlist == false {
+//                       cell.likeButton.setImage(UIImage(named: "heartIcon"), for: .normal)
+//                    } else {
+//                      cell.likeButton.setImage(UIImage(named: "redheart"), for: .normal)
+//                    }
+                }
                 
-                let priductData = productArraya[indexPath.row]
-                            
-                          // cell.imageProduct.image = UIImage(named: "imagegrid")
-                
-                
-                
-                           cell.likeButton.addTarget(self, action: #selector(self.likeAction), for: UIControl.Event.touchUpInside)
-                           cell.likeButton.tag = indexPath.row
-                           cell.viewBG.layer.cornerRadius = 16
-                           cell.viewBG.clipsToBounds = true
-                            cell.productName.text = priductData.name
-                           cell.productType.text = "Click Fashion"
-                            cell.price.text = "\(priductData.spclPrice ?? 0)"   // "\u{20B9}850"
-                           cell.discountPrice.text = "\(priductData.extraPrice ?? 0)" //"\u{20B9}1150"
-                            cell.imageProduct.sd_setImage(with: URL(string:"\(priductData.defaultImage ?? "")"), placeholderImage: UIImage(named: "placeholder.png"))
-                
-                
-                           cell.likeButton.layer.shadowRadius = 12.0
-                           cell.likeButton.layer.shadowColor = UIColor.black.cgColor
-                           cell.likeButton.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-                           cell.likeButton.layer.shadowOpacity = 0.7
-                           cell.likeButton.layer.cornerRadius = 18
-                           cell.likeButton.clipsToBounds = true
-                                      
-                           let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "  \(String(describing: cell.discountPrice.text!))  " )
-                           attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, attributeString.length))
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "  \(String(describing: cell.discountPrice.text!))  " )
+                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, attributeString.length))
                 cell.discountPrice.attributedText = attributeString
                 return cell
            }
@@ -231,46 +418,219 @@ class SearchProductController: UIViewController, UITableViewDelegate, UITableVie
            backItem.title = ""
            navigationItem.backBarButtonItem = backItem
 
-         if tableviewPopUp == tableView {
-              arraySelecteditems.removeAllObjects()
-              if !arraySelecteditems.contains(arrayData[indexPath.row]) {
-                arraySelecteditems.add(arrayData[indexPath.row])
+        if tableviewPopUp == tableView {
+           arraySelecteditems.removeAllObjects()
+            if !arraySelecteditems.contains(arrayData[indexPath.row]) {
+                 arraySelecteditems.add(arrayData[indexPath.row])
               }
-              tableviewPopUp.reloadData()
-         }
-        
-        
-   //        if indexPath.section == TableSection.viewAttachedPresc {
-   //            let storyboard = UIStoryboard(name:"Assessments", bundle: Bundle.main)
-   //            let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "attachedPrescriptionListController") as! AttachedPrescriptionListController
-   //            attachedPrescriptionListController.orderId = orderId
-   //            self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
-   //        }
-       }
+            tableviewPopUp.reloadData()
+            var textfldValue = ""
+            if textFieldSearch.text!.isEmpty {
+                textfldValue = ""
+            } else {
+                textfldValue = "\(textFieldSearch.text!)"
+            }
+            UIView.animate(withDuration: Double(0.5),
+                                             delay: 0.0,
+                                             options: .beginFromCurrentState, animations: { () -> Void in
+                                              self.customPopUp.isHidden = true
+                                                let index = indexPath.row
+                                                switch index {
+                                                           case 0:
+                                                               self.profuct(fldBrandId:"", fldCatId: "", fldUserId: "1", fldSearchTxt: "\(textfldValue)", fldPageNo: 0, fldSortBy: "1")
+                                                           case 1:
+                                                                 self.profuct(fldBrandId:"", fldCatId: "", fldUserId: "1", fldSearchTxt: "\(textfldValue)", fldPageNo: 0, fldSortBy: "2")
+                                                           case 2:
+                                                               self.profuct(fldBrandId:"", fldCatId: "", fldUserId: "1", fldSearchTxt: "\(textfldValue)", fldPageNo: 0, fldSortBy: "3")
+                                                           default:
+                                                               return
+                                                           }
+                                                
+                    }, completion: { (Bool) -> Void in
+                              })
+           
+            
+        } else {
+            let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "ProductDetailController") as? ProductDetailController {
+               let priductData =  ary_UserList?[indexPath.row]
+                
+               var idvalue = ""
+               if let id = priductData?.id {
+                    idvalue = "\(id)"
+                } else  {
+                    idvalue = "\(String(describing: priductData?.id!))"
+                }
+               vc.str_fld_product_id = "\(idvalue)"
+                vc.strcartcount = self.strcartTotalCount
+               self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+   //    if indexPath.section == TableSection.viewAttachedPresc {
+   //       let storyboard = UIStoryboard(name:"Assessments", bundle: Bundle.main)
+   //       let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "attachedPrescriptionListController") as! AttachedPrescriptionListController
+   //       attachedPrescriptionListController.orderId = orderId
+   //       self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
+   //     }
+     }
     
     @objc func likeAction(_ sender: UIButton) {
+         let tag = sender.tag
+         var id = ""
+         var iswishlist = "0"
+        let priductData =  ary_UserList?[tag]
+        if let idvalue = priductData?.id {
+            id = "\(idvalue)"
+        }
+        if priductData?.isInWishlist == false {
+            iswishlist = "0"
+        } else {
+            iswishlist = "1"
+        }
         
+//         if self.isSearch == false {
+//            let priductData =  ary_UserList?[tag]
+//
+//            if let idvalue = priductData?.catID {
+//                 id = "\(idvalue))"
+//            }
+//            if priductData?.isInWishlist == false {
+//                iswishlist = "0"
+//            } else {
+//                iswishlist = "1"
+//            }
+//         } else {
+//            let priductData =  arrayAfterSearch?[tag]
+//            id = "\(String(describing: priductData?.categoryID))"
+//         }
+         wishlist_add_update(userId: "1", productId: id, actionType: iswishlist)
     }
+ 
     
     @IBAction func filterButton(_ sender: Any) {
-        
         let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
         if let vc = storyBoard.instantiateViewController(withIdentifier: "CategoryContorller") as? CategoryContorller {
-            self.navigationController?.pushViewController(vc, animated: true)
+          self.navigationController?.pushViewController(vc, animated: true)
         }
-
-        
-        
-        
-        
     }
     
     @IBAction func shortButton(_ sender: Any) {
-        
-        
-        
+       callPopUp()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view!.endEditing(true)
+        self.resignKeyboard()
+        UIView.animate(withDuration: Double(0.5),
+                                          delay: 0.0,
+                                          options: .beginFromCurrentState, animations: { () -> Void in
+                                           self.customPopUp.isHidden = true
+         }, completion: { (Bool) -> Void in
+        })
+    }
+
+       func textField(_ textField:UITextField,shouldChangeCharactersIn range:NSRange, replacementString string: String) -> Bool {
+         if textFieldSearch.isEditing==true {
+             if (self.ary_UserList != nil) {
+                 self.ary_UserList?.removeAll()
+             }
+             for resultItem in (ary_Search ?? []) {
+                 var productNamestring = ""
+                 var productSpecialPrice = ""
+                 var productExtraPrice = ""
+                 var expstringappend = ""
+                
+                 if let docName = resultItem.name {
+                     productNamestring = "\(docName)"
+                 }
+                 if let specialPrice = resultItem.spclPrice {
+                     productSpecialPrice = "\(specialPrice)"
+                 }
+                 if let extraPrice = resultItem.extraPrice {
+                     productExtraPrice = "\(extraPrice)"
+                 }
+                 expstringappend = "\(productNamestring)\(productSpecialPrice)\(productExtraPrice)"
+//                 let search=expstringappend as NSString
+                 let substring=(textField.text! as NSString).replacingCharacters(in: range, with: string)
+                 self.profuct(fldBrandId:"", fldCatId: "0", fldUserId: "1", fldSearchTxt: "\(substring)", fldPageNo: 0, fldSortBy: "1")
+//                 let r: NSRange=search.range(of: substring,options: .caseInsensitive)
+//                 if r.location != NSNotFound || substring == "" {
+//                     if r.length > 0 || substring == ""  {
+////                      self.ary_UserList?.append(resultItem)
+////                      self.lbl_Msg.isHidden=true
+//                        //searchproduct(userId: "1", SearchTxt: "\(substring)")
+//
+//
+//                     }
+//                 }
+             }
+            
+//             if (self.ary_UserList ?? []).count == 0 {
+//                 self.lbl_Msg.text=" No Product found"
+//                 self.lbl_Msg.isHidden=false
+//             }
+//             self.tableViewList.reloadData()
+         }
+         return true
+     }
+    
+     func textFieldDidBeginEditing(_ textField: UITextField) {
+         
+     }
+     
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         textField.resignFirstResponder()
+         return true;
+     }
+
+    
+    func resignKeyboard() {
+       textFieldSearch.resignFirstResponder()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
     }
     
-
+    
+//    func callProductList() {
+//
+//            let json = [
+//                "fld_user_id"         : "1",
+//                "fld_search_txt"     : "simple"
+//            ] as [String : Any]
+//
+//            print("json: ", json)
+//            DIProgressHud.show()
+//            print("WebService.searchByDoctor json", json)
+//            postAPIAction(WebService.productsearch, parameters: json, showGenricErrorPopup: false) { (response) in
+//                DispatchQueue.main.async {
+//                   DIProgressHud.hide()
+//                }
+//                print("searchByDoctor response: ", response ?? "")
+//                if let status = response?["status"] as? Int, status == 1 {
+////                    if let dataDict = response as? Dictionary<String, Any> {
+////                        self.searchDoctorObject = DoctorSearchListing(fromDictionary: dataDict)
+////                        self.ary_UserList = self.searchDoctorObject?.doctorData ?? []
+////                        self.ary_Search = self.searchDoctorObject?.doctorData ?? []
+////                        if (self.ary_UserList ?? []).count > 0 {
+////                            DispatchQueue.main.async {
+////                                self.tableView_List.isHidden=false
+////                                self.lbl_Msg.isHidden=true
+////                            }
+////                            self.setupSearchableContent()
+////                        } else {
+////                            DispatchQueue.main.async {
+////                                self.tableView_List.isHidden=true
+////                                self.lbl_Msg.frame=CGRect(x: 10,y: 176,width: self.tableView_List.frame.size.width-20,height: 45);
+////                                self.lbl_Msg.isHidden=false
+////                            }
+////                        }
+////                        DispatchQueue.main.async {
+////                            self.tableView_List .reloadData();
+////                        }
+////                    }
+//                }
+//            }
+//    }
 }

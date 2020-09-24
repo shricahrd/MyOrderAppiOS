@@ -11,6 +11,7 @@ import CoreData
 public var splashID: String = "0";
 var userId: String = "0";
 class SplashVC: UIViewController, URLSessionDelegate, UIAlertViewDelegate {
+    
     @IBOutlet weak var splashImageView: UIImageView!
     //MARK: - Lifecycle Functions
     override func viewDidLoad() {
@@ -36,25 +37,27 @@ class SplashVC: UIViewController, URLSessionDelegate, UIAlertViewDelegate {
     @objc private func dismissSplashController() {
           self.moveToHomeAndLogin()
     }
-    
+//    func getUserID() -> String {
+//        if let pkUD = UserDefaults.standard.value(forKey: UserInfo.pkUD) as? String {
+//            return pkUD
+//        }
+//        return "0"
+//    }
     func moveToHomeAndLogin() {
         if isKeyPresentInUserDefaults(key: "UserInfo") {
-            
-            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-            if let vc = storyboard.instantiateViewController(withIdentifier: "ProfileSetUpVC") as? ProfileSetUpVC {
-                self.navigationController?.pushViewController(vc, animated: true)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "Home") as? Home {
+//                 vc.navigationController?.isNavigationBarHidden = true
+//              vc.navigationItem.hidesBackButton = true
+              
+                 self.navigationController?.show(vc,sender:self)
             }
-            
-          // HomeController 
-            
         } else {
-            let storyboard1: UIStoryboard = UIStoryboard(name: "Profile", bundle: Bundle.main)
-            if let vc = storyboard1.instantiateViewController(withIdentifier: "ProfileSetUpVC") as? ProfileSetUpVC {
+            let storyboard1: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            if let vc = storyboard1.instantiateViewController(withIdentifier: "WelcomeVC") as? WelcomeVC {
                 vc.navigationController?.isNavigationBarHidden = true
                 vc.navigationItem.hidesBackButton = true
                 self.navigationController?.show(vc,sender:self)
-                
-               // ViewController
             }
         }
     }

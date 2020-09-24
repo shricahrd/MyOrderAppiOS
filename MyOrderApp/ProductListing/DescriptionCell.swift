@@ -8,11 +8,13 @@
 //
 
 import UIKit
+import WebKit
 
 class DescriptionCell: UITableViewCell {
 
     @IBOutlet var viewBg: UIView!
     @IBOutlet var descriptionText: UILabel!
+    @IBOutlet weak var webViewDescription: WKWebView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

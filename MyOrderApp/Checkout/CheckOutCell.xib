@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CheckOutCell" rowHeight="125" id="KGk-i7-Jjw" customClass="CheckOutCell" customModule="MyOrderApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="338" height="125"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CheckOutCell" rowHeight="102" id="KGk-i7-Jjw" customClass="CheckOutCell" customModule="MyOrderApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="341" height="102"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="338" height="125"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="341" height="102"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Nd-zZ-Odu">
-                        <rect key="frame" x="16" y="0.0" width="306" height="123"/>
+                        <rect key="frame" x="16" y="0.0" width="309" height="92"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RK Kumar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gg4-lc-qDs">
-                                <rect key="frame" x="15" y="19" width="198" height="20.5"/>
+                                <rect key="frame" x="15" y="19" width="215" height="20.5"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.5" id="5X5-58-rC4"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.5" id="ZIR-4V-vqx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="301 Court Road, Ashok nagar, Okhla III, Delhi-110020" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIU-ZX-iAk">
-                                <rect key="frame" x="15" y="47.5" width="275" height="36.5"/>
+                                <rect key="frame" x="15" y="41.5" width="278" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="kSf-xP-hhv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-Vp-fPE">
-                                <rect key="frame" x="221" y="14" width="65" height="30"/>
+                                <rect key="frame" x="238" y="14" width="55" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1lb-ea-O9o"/>
-                                    <constraint firstAttribute="width" constant="65" id="6cc-7Q-dfq"/>
+                                    <constraint firstAttribute="width" constant="55" id="6cc-7Q-dfq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Change"/>
@@ -49,15 +50,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="bIU-ZX-iAk" secondAttribute="bottom" constant="39" id="Tsh-P6-F7Q"/>
+                            <constraint firstAttribute="bottom" secondItem="bIU-ZX-iAk" secondAttribute="bottom" constant="10.5" id="2Vt-Pk-ofd"/>
                             <constraint firstItem="Gg4-lc-qDs" firstAttribute="centerY" secondItem="0QI-Vp-fPE" secondAttribute="centerY" id="Ttm-e1-xp6"/>
                             <constraint firstAttribute="trailing" secondItem="bIU-ZX-iAk" secondAttribute="trailing" constant="16" id="VTI-i1-5Tf"/>
-                            <constraint firstItem="bIU-ZX-iAk" firstAttribute="top" secondItem="Gg4-lc-qDs" secondAttribute="bottom" constant="8" id="WBA-Ud-W9E"/>
+                            <constraint firstItem="bIU-ZX-iAk" firstAttribute="top" secondItem="Gg4-lc-qDs" secondAttribute="bottom" constant="2" id="WBA-Ud-W9E"/>
                             <constraint firstItem="Gg4-lc-qDs" firstAttribute="leading" secondItem="2Nd-zZ-Odu" secondAttribute="leading" constant="15" id="X3Y-10-td2"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="123" id="XsF-9A-rHh"/>
                             <constraint firstItem="bIU-ZX-iAk" firstAttribute="leading" secondItem="Gg4-lc-qDs" secondAttribute="leading" id="dR2-3X-auy"/>
                             <constraint firstItem="0QI-Vp-fPE" firstAttribute="top" secondItem="2Nd-zZ-Odu" secondAttribute="top" constant="14" id="eo6-We-jX3"/>
-                            <constraint firstAttribute="trailing" secondItem="0QI-Vp-fPE" secondAttribute="trailing" constant="20" id="wIP-Zg-1KQ"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="92" id="mo2-y1-FfH"/>
+                            <constraint firstAttribute="trailing" secondItem="0QI-Vp-fPE" secondAttribute="trailing" constant="16" id="wIP-Zg-1KQ"/>
                             <constraint firstItem="0QI-Vp-fPE" firstAttribute="leading" secondItem="Gg4-lc-qDs" secondAttribute="trailing" constant="8" id="xag-jH-KqO"/>
                         </constraints>
                     </view>
@@ -77,7 +78,7 @@
                 <outlet property="name" destination="Gg4-lc-qDs" id="VIz-WB-XQA"/>
                 <outlet property="viewBg" destination="2Nd-zZ-Odu" id="XU3-JQ-gng"/>
             </connections>
-            <point key="canvasLocation" x="-104.34782608695653" y="175.78125"/>
+            <point key="canvasLocation" x="-102.17391304347827" y="168.08035714285714"/>
         </tableViewCell>
     </objects>
 </document>

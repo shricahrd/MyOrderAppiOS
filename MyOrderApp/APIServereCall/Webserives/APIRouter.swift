@@ -57,26 +57,71 @@ enum APIRouter: URLRequestConvertible {
 // HOME API
     
     case hotDeals(productType:String,pageNumber:Int)
+    case newCollection(productType:String,pageNumber:Int)
+  
    // case loginManufacture(mobileNumber:String,flg:String)
     // PRODUCT NAME
     case produNmae(fldBrandId:String,fldCatCid:String,fldUserId:String,fldSearchTxt:String,fldPageNo:Int,fldSortBy:String)
     // WISH LIST
-    
+    case banners
     case wishList(fldUserId:String)
+    case homeProducts(fldPageNo:String)
     
+    case filtersnew(fldbrandid: String,fldcatid: String,fldsearchtxt: String)
+
     //STATE LIST
     case stateLis
     case cityList(stateCode:String)
     case areaList(stateId:String,cityId:String)
+    case productdetailes(productID:String,userId:String, colourId:String, sizeId:String)
+    case productsearch(userId:String, SearchTxt:String)
+    case wishlistAddUpdate(userId:String, productId:String, actionType:String)
+    case brand(fldPageNo:String)
+    case filters(fldbrandid: String, fldcatid: String, fldsearchtxt: String)
+    case filterValue(fldbrandid: String, fldcatid: String,fldfilterstype: String,fldsearchtxt: String)
     
+    case filterProduct(fldcatid: String,fldbrandid: String,fldsizeid: String, fldcolorid: String, fldmaxprice: String, fldminprice: String,fldpageno: String, flduserid: String, fldmaterialid: String, fldotherid: String,fldsortby: String, fldsearchtxt: String, fldscatid: String)
     
-    
+//    {
+//    "fld_cat_id":"2",
+//    "fld_brand_id":"",
+//    "fld_size_id":"",
+//    "fld_color_id":"",
+//    "fld_max_price":"",
+//    "fld_min_price":"",
+//    "fld_page_no":"",
+//    "fld_user_id":"",
+//    "fld_material_id":"",
+//    "fld_other_id":"",
+//    "fld_sort_by":"",
+//    "fld_search_txt":"",
+//    "fld_scat_id":""
+//    }
+//    {
+//    "fld_brand_id":"",
+//    "fld_cat_id":2,
+//    "fld_filters_type":1,
+//    "fld_search_txt":""
+//    }
+//    "fld_brand_id":"",
+//    "fld_cat_id":2,
+//    "fld_search_txt":""
+//    {
+//    "fld_product_id":1,
+//    "fld_user_id":1,
+//    "fld_color_id":"",
+//    "fld_size_id":""
+//    }
 
-    
+//    {
+//    "fld_user_id":1,
+//    "fld_product_id":1,
+//    "fld_action_type":0
+//    }
 
-    
-    
-    
+//    "fld_user_id":1,
+//    "fld_search_txt":"simple"
+
     private var path: String {
         switch self {
       
@@ -122,20 +167,39 @@ enum APIRouter: URLRequestConvertible {
             return "city_listing"
         case.areaList:
             return "area_listing"
-            
+        case.productdetailes:
+            return "productdetailes"
+        case.productsearch:
+             return "productsearch"
+        case.wishlistAddUpdate:
+             return "wishlist_add_update"
+        case.brand:
+             return "brand"
+        case.filters:
+            return "filters"
+        case.filterValue:
+            return "filters_value"
+        case.filterProduct:
+            return "filterProduct"
+        case.banners:
+            return "banners"
+        case.newCollection:
+            return "new_collection"
+        case.homeProducts:
+            return "homeProducts"
+        case.filtersnew:
+            return "filtersnew"
+        default:
+            break
         }
     }
-    
-    
+
     private var methods:HTTPMethod {
         switch self {
-            
-        case.manufactureRegister, .stockistRegister, .distributorRegister, .retailerRegister, .salesagentRegister,.loginManufacture, .loginstockfacture, .logindistributorfacture, .loginretailerfacture, .loginsalesagentfacture, .VerifyManufactur, .Verifystockfacture, .Verifydistributorfacture, .Verifyretailerfacture,.Verifysalesagentfacture, .hotDeals,.produNmae, .wishList, .cityList,.areaList:
-            
+        case.manufactureRegister, .stockistRegister, .distributorRegister, .retailerRegister, .salesagentRegister,.loginManufacture, .loginstockfacture, .logindistributorfacture, .loginretailerfacture, .loginsalesagentfacture, .VerifyManufactur, .Verifystockfacture, .Verifydistributorfacture, .Verifyretailerfacture,.Verifysalesagentfacture, .hotDeals,.produNmae, .wishList, .cityList,.areaList,.productdetailes,.productsearch,.wishlistAddUpdate,.brand,.filters,.filterValue,.filterProduct,.banners,.newCollection,.homeProducts,.filtersnew:
             return.post
         case.stateLis:
             return .get
-            
         default:
             break
         }

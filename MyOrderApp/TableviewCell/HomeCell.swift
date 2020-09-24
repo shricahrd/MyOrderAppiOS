@@ -53,29 +53,22 @@ class HomeCell: UITableViewCell, UICollectionViewDelegate , UICollectionViewData
         
           let footerNib = UINib.init(nibName: "CollectionViewHedder", bundle: nil)
               featuredCategaryCollecationView.register(footerNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionViewHedder")
-//
+
 //        featuredCategaryCollecationView.reloadData()
-        featuredCategaryCollecationView.dataSource = self
-        featuredCategaryCollecationView.delegate = self
-        
+          featuredCategaryCollecationView.dataSource = self
+          featuredCategaryCollecationView.delegate = self
     }
     
-    
-    
-    
-    
+
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 //        return CGSize(width: collectionView.frame.width, height: 45)
 //    }
-//
+
+    
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
 //        return CGSize(width: collectionView.frame.width, height: 0)
 //    }
 
-    
-    
-    
-    
     
     func hartDeales(productType:String,pagnumber:Int){
 

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MyOrderApp.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>00D5C64EB8653BB89FB1E28E0E8F5C08CC47F61E</string>
+				<key>dateExpires</key>
+				<string>9/12/21</string>
+				<key>type</key>
+				<string>Apple Development</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>00D5C64EB8653BB89FB1E28E0E8F5C08CC47F61E</string>
+						<key>dateExpires</key>
+						<string>9/12/21</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>AFNetworking.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>DGWL98AJQ9</string>
+						<key>name</key>
+						<string>Amit Jain</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>00D5C64EB8653BB89FB1E28E0E8F5C08CC47F61E</string>
+						<key>dateExpires</key>
+						<string>9/12/21</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>Alamofire.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>DGWL98AJQ9</string>
+						<key>name</key>
+						<string>Amit Jain</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>00D5C64EB8653BB89FB1E28E0E8F5C08CC47F61E</string>
+						<key>dateExpires</key>
+						<string>9/12/21</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>SDWebImage.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>DGWL98AJQ9</string>
+						<key>name</key>
+						<string>Amit Jain</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>00D5C64EB8653BB89FB1E28E0E8F5C08CC47F61E</string>
+						<key>dateExpires</key>
+						<string>9/12/21</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>SVProgressHUD.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>DGWL98AJQ9</string>
+						<key>name</key>
+						<string>Amit Jain</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>00D5C64EB8653BB89FB1E28E0E8F5C08CC47F61E</string>
+						<key>dateExpires</key>
+						<string>9/12/21</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>SideMenu.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>DGWL98AJQ9</string>
+						<key>name</key>
+						<string>Amit Jain</string>
+					</dict>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>DGWL98AJQ9.com.marketing.myorderapp</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>DGWL98AJQ9</string>
+				<key>get-task-allow</key>
+				<true/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>DGWL98AJQ9.com.marketing.myorderapp</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>MyOrderApp.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>9b9c524b-f34e-4535-a2bb-4f1a3d53e4f4</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: com.marketing.myorderapp</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>DGWL98AJQ9</string>
+				<key>name</key>
+				<string>Amit Jain</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

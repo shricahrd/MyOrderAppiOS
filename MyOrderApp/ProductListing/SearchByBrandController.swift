@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SearchByBrandController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchByBrandController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet var textFieldSearch: UITextField!
     @IBOutlet var tableViewList: UITableView!
     @IBOutlet var searchbutton: UIButton!
-    
+
     var arrayData = ["Top wear", "Bottom wear", "Accessories"]
     var screenSize:CGRect = UIScreen.main.bounds
     var screenWidth:CGFloat = 0.0
@@ -21,28 +21,23 @@ class SearchByBrandController: UIViewController, UITableViewDelegate, UITableVie
     var tableviewPopUp: UITableView!
     var arraySelecteditems = NSMutableArray()
     
-    
     // MARK: - Data
-       //
        
-       struct Section {
+    struct Section {
            var name: String!
            var items: [String]!
            var collapsed: Bool!
-           
            init(name: String, items: [String], collapsed: Bool = false) {
                self.name = name
                self.items = items
                self.collapsed = collapsed
            }
-       }
-    
+    }
     
     var sections = [Section]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         sections = [
                    Section(name: "Top Wear", items: ["T-Shirt", "Full-Shirt"]),
                    Section(name: "Bottom Wear", items: ["T-Shirt", "Full-Shirt"]),
@@ -55,14 +50,39 @@ class SearchByBrandController: UIViewController, UITableViewDelegate, UITableVie
         
         textFieldSearch.layer.borderColor = UIColor.gray.cgColor
         textFieldSearch.layer.borderWidth = 1
-        textFieldSearch.layer.cornerRadius = 25
         textFieldSearch.clipsToBounds = true
+        
+        let paddingView_CurrentPwd:UIView=UIView()
+        paddingView_CurrentPwd.frame=CGRect(x: 0,y: 0,width: 45,height: 20)
+        let paddingRightView_CurrentPwd:UIView=UIView()
+              paddingRightView_CurrentPwd.frame=CGRect(x: 0,y: 0,width: 20,height: 20)
+        textFieldSearch.delegate = self
+        textFieldSearch.textColor = UIColor.black
+        textFieldSearch.leftView = paddingView_CurrentPwd
+        textFieldSearch.rightView = paddingRightView_CurrentPwd
+        textFieldSearch.placeholder = "Search"
+        textFieldSearch.tintColor = UIColor.black;
+        textFieldSearch.font = UIFont(name:"Arial",size:16.0)
+        textFieldSearch.backgroundColor = UIColor.white
+        textFieldSearch.layer.cornerRadius = 22.0
+        textFieldSearch.isSecureTextEntry = true
+        textFieldSearch.leftViewMode = .always
+        textFieldSearch.rightViewMode = .always
+        textFieldSearch.tag = 100
+        textFieldSearch.returnKeyType = .next
+        textFieldSearch.keyboardType = UIKeyboardType.asciiCapable
+        
         
         //popUp()
     }
     
     @IBAction func cartAction(_ sender: Any) {
-        callPopUp()
+       // callPopUp()
+        
+        let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "MyCartController") as? MyCartController {
+           self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func registerNib() {
@@ -211,18 +231,13 @@ class SearchByBrandController: UIViewController, UITableViewDelegate, UITableVie
                return cell!
            }
        }
-    
-    
-    
-    
-    
-       
-//       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//           return UITableView.automaticDimension
-//       }
 
-//       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//             if let cell = tableView.dequeueReusableCell(withIdentifier: "searchbybrandCell", for: indexPath) as? searchbybrandCell {
+//     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//           return UITableView.automaticDimension
+//     }
+
+//     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//       if let cell = tableView.dequeueReusableCell(withIdentifier: "searchbybrandCell", for: indexPath) as? searchbybrandCell {
 //               cell.selectionStyle = .none
 //               cell.title.text = "   \(arrayData[indexPath.row])"
 //               cell.backgroundColor = UIColor(red:255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
@@ -233,17 +248,14 @@ class SearchByBrandController: UIViewController, UITableViewDelegate, UITableVie
 //           return UITableViewCell()
 //       }
        
-       func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            tableView.deselectRow(at: indexPath, animated: true)
            let backItem = UIBarButtonItem()
            backItem.title = ""
            navigationItem.backBarButtonItem = backItem
-
-       }
+    }
     
     @objc func addAction(_ sender: UIButton) {
-        
-        
         
     }
     
@@ -254,7 +266,6 @@ class SearchByBrandController: UIViewController, UITableViewDelegate, UITableVie
        @objc func toggleCollapse(_ sender: UIButton) {
            let section = sender.tag
            let collapsed = sections[section].collapsed
-           
            // Toggle collapse
            sections[section].collapsed = !collapsed!
            
@@ -262,7 +273,7 @@ class SearchByBrandController: UIViewController, UITableViewDelegate, UITableVie
            
            let start = indices[section]
            let end = start + sections[section].items.count
-           
+
            tableViewList.beginUpdates()
            for i in start ..< end + 1 {
                tableViewList.reloadRows(at: [IndexPath(row: i, section: 1)], with: .automatic)
@@ -290,26 +301,22 @@ class SearchByBrandController: UIViewController, UITableViewDelegate, UITableVie
       func getRowIndex(_ row: NSInteger) -> Int {
           var index = row
           let indices = getHeaderIndices()
-          
           for i in 0..<indices.count {
               if i == indices.count - 1 || row < indices[i + 1] {
                   index -= indices[i]
                   break
               }
           }
-          
           return index
       }
       
       func getHeaderIndices() -> [Int] {
           var index = 0
           var indices: [Int] = []
-          
           for section in sections {
               indices.append(index)
               index += section.items.count + 1
           }
-          
           return indices
       }
 
