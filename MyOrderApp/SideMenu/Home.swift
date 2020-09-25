@@ -59,9 +59,9 @@ class Home: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITable
        arraysection = ["Hot Deal", "New Collection"]
        textFieldSearch = UITextField()
     
-        let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
-        (self.navigationController?.navigationBar.frame.height ?? 0.0)
-         print("topBarHeight:",topBarHeight);
+       let topBarHeight = UIApplication.shared.statusBarFrame.size.height + (self.navigationController?.navigationBar.frame.height ?? 0.0)
+       print("topBarHeight:", topBarHeight)
+        
        textFieldSearch.frame = CGRect(x: 16, y: topBarHeight+10, width: view.frame.size.width - 32 , height: 40)
        textFieldSearch.delegate = self
        self.view.addSubview(textFieldSearch)
@@ -837,6 +837,9 @@ class MenuListController: UITableViewController {
      
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
         if indexPath.row == 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             if let apptDetailController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
@@ -871,7 +874,7 @@ class MenuListController: UITableViewController {
         if indexPath.row > 4 {
             if indexPath.row == 5 {
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                if let apptDetailController = storyboard.instantiateViewController(withIdentifier: "DownloadViewController") as? DownloadViewController {
+                if let apptDetailController = storyboard.instantiateViewController(withIdentifier: "MyOrderStatusController") as? MyOrderStatusController {
                     self.navigationController?.pushViewController(apptDetailController, animated: true)
                 }
             }

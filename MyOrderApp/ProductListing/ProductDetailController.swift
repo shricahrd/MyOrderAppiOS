@@ -866,7 +866,7 @@ class ProductDetailController: UIViewController, UIScrollViewDelegate, UITableVi
         print("Detail json: ", json)
 //        DIProgressHud.show()
         postMyOrderAPIAction(WebService.productdetail, parameters: json, showGenricErrorPopup: false) { (response) in
-        print("response detail:", response ?? "")
+        print("response productdetail:", response ?? "")
                    DispatchQueue.main.async {
 //                     DIProgressHud.hide()
                    }
@@ -893,13 +893,13 @@ class ProductDetailController: UIViewController, UIScrollViewDelegate, UITableVi
                             }
                         }
                         if let iscart = self.dictData.value(forKey: "isInCart") as? Int, iscart == 1 {
-//                           self.btnAddToCart.isHidden = false
-//                           self.viewBottomBg.isHidden = false
-                            self.bottomviewBG();
+                           self.btnAddToCart.isHidden = false
+                           self.viewBottomBg.isHidden = false
+                           self.bottomviewBG();
                         } else {
-//                            self.btnAddToCart.isHidden = true
-//                            self.viewBottomBg.isHidden = true
-                             self.bottomviewBG();
+                            self.btnAddToCart.isHidden = true
+                            self.viewBottomBg.isHidden = true
+                            self.bottomviewBG();
                         }
                         DispatchQueue.main.async {
                             self.tableViewList.reloadData()
