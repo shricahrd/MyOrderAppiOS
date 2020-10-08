@@ -14,7 +14,6 @@ public let UIColorforButtonBGColor = UIColor(red: 247.0/255.0, green: 40.0/255.0
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window:UIWindow?
     static var shared: AppDelegate {
         return (UIApplication.shared.delegate as? AppDelegate)!

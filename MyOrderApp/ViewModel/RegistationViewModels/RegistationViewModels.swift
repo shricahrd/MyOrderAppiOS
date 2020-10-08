@@ -28,15 +28,14 @@ class RegistationViewModels: BaseCommand {
         override func validate(completion: @escaping(Bool, String?) -> Void) {
             
             if(self.name == nil || self.name?.count == 0){
-                completion(false, "Please enter user id")
-            
+                completion(false, "Please enter username")
             } else if(self.isValidEmail(emailStr: self.email)==false){
                 completion(false, "Please enter valid email address")
-
-                
+            } else if(self.isValidEmail(emailStr: self.email)==false){
+                completion(false, "Please enter valid mobile number")
             } else if(self.password == nil || self.password?.count == 0){
                 completion(false, "Please enter password")
-            }else{
+            } else {
                 completion(true, "")
             }
         }

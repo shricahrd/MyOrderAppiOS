@@ -7,12 +7,9 @@ import UIKit
 import SVProgressHUD
 
 class WelcomeVC: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource{
-
-    
-    
     var screenSize: CGRect = UIScreen.main.bounds
-      var screenWidth: CGFloat = 0.0
-      var screenHeight: CGFloat = 0.0
+    var screenWidth: CGFloat = 0.0
+    var screenHeight: CGFloat = 0.0
     var scrollViewMain: UIScrollView!
     var viewBG: UIView!
     var btnManufacture: UIButton!
@@ -21,53 +18,43 @@ class WelcomeVC: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UI
     var btnStockist: UIButton!
     var btnSalesAgent: UIButton!
     var btnGetStarted: UIButton!
-    
     var viewBottomBG: UIView!
     var selectLoginType = ""
-    
     var btnAlreadyHaveAccount: UIButton!
     var btnSignIn: UIButton!
-    
     var tableViewList = UITableView()
     var arrayCategory = NSMutableArray()
     var array_temp:NSMutableArray!
     var str_id:NSMutableString!
     var array_selecteditems = NSMutableArray()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         screenWidth = screenSize.width
         screenHeight = screenSize.height
-
         array_temp = NSMutableArray()
         array_selecteditems = NSMutableArray()
-
         arrayCategory.removeAllObjects()
         let dict =  [
             "title": "MANUFACTURER",
             "type": "1" ]
         arrayCategory.add(dict)
-        
         let dict1 = [
             "title": "DISTRIBUTOR",
             "type": "2" ]
         arrayCategory.add(dict1)
-        
         let dict2 =  [
             "title": "RETAILER",
             "type": "3" ]
         arrayCategory.add(dict2)
-        
         let dict3 = [
             "title": "STOCKLIST",
             "type": "4" ]
         arrayCategory.add(dict3)
-        
         let dict4 = [
             "title": "SALES AGENT",
             "type": "5" ]
         arrayCategory.add(dict4)
-
         self.uiSetUp()
     }
     
@@ -426,60 +413,40 @@ class WelcomeVC: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UI
     }
    
     @objc func clickGetStarted(_ sender: AnyObject!) {
-//                if selectLoginType == "" {
-//
-//                           Utility.showAlert(withMessage: "Please choose role first", onController: self)
-//
-//                } else if selectLoginType == "1" {
-//
-//                    let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
-//                    if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
-//                        attachedPrescriptionListController.typesOfRegistation = TypesOfRegistation.ManuFactursReg
-//
-//
-//                        self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
-//                    }
-//                } else if selectLoginType == "2" {
-//
-//                    let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
-//                    if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
-//                        attachedPrescriptionListController.typesOfRegistation = TypesOfRegistation.Distributor
-//
-//
-//                        self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
-//                    }
-//
-//                } else  if selectLoginType == "3" {
-//
-//                    let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
-//                    if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
-//                        attachedPrescriptionListController.typesOfRegistation = TypesOfRegistation.Retailer
-//
-//
-//                        self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
-//                    }
-//                } else if selectLoginType == "4" {
-//
-//                    let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
-//                    if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
-//                        attachedPrescriptionListController.typesOfRegistation = TypesOfRegistation.Stocker
-//
-//
-//                        self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
-//                    }
-//
-//
-//                }else if selectLoginType == "5" {
-//
-//                    let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
-//                    if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-//                        attachedPrescriptionListController.catagaryLogin = "5"
-//
-//                        attachedPrescriptionListController.loginType = .SALESAGENT
-//                        self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
-//                    }
-//                }
-//
+          if selectLoginType == "" {
+             Utility.showAlert(withMessage: "Please choose role first", onController: self)
+          } else if selectLoginType == "1" {
+             let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
+             if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+                attachedPrescriptionListController.typesOfRegistation = TypesOfRegistation.ManuFactursReg
+                self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
+             }
+          } else if selectLoginType == "2" {
+                let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
+                if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+                   attachedPrescriptionListController.typesOfRegistation = TypesOfRegistation.Distributor
+                   self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
+                }
+          } else if selectLoginType == "3" {
+                let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
+                if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+                        attachedPrescriptionListController.typesOfRegistation = TypesOfRegistation.Retailer
+                        self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
+                }
+          } else if selectLoginType == "4" {
+                let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
+                if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+                   attachedPrescriptionListController.typesOfRegistation = TypesOfRegistation.Stocker
+                   self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
+                }
+          } else if selectLoginType == "5" {
+                let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
+                if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+                   attachedPrescriptionListController.catagaryLogin = "5"
+                   attachedPrescriptionListController.loginType = .SALESAGENT
+                   self.navigationController?.pushViewController(attachedPrescriptionListController, animated: true)
+                }
+          }
                 
                // let storyboard = UIStoryboard(name:"Main", bundle: Bundle.main)
         //        if let attachedPrescriptionListController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {

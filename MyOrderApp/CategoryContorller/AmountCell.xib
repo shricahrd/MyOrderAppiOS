@@ -105,9 +105,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="amountText" destination="efd-g3-ADb" id="Ys4-fx-r0Y"/>
+                <outlet property="amountText" destination="efd-g3-ADb" id="pIU-HD-DWA"/>
                 <outlet property="applyButton" destination="EfT-4O-Uvj" id="Auk-eI-ixJ"/>
-                <outlet property="quantity" destination="kMw-5Q-cDi" id="9Yt-nK-JQj"/>
+                <outlet property="quantity" destination="kMw-5Q-cDi" id="sAA-72-MRh"/>
                 <outlet property="textFieldCoupon" destination="2eS-oh-AMv" id="ELa-Ed-2Z2"/>
                 <outlet property="viewBg" destination="WQL-YN-tRn" id="GUz-gb-koS"/>
             </connections>

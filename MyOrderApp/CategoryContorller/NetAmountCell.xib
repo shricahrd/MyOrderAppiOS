@@ -115,6 +115,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="discountLabel" destination="ldv-0z-lI9" id="Nsa-qD-vte"/>
+                <outlet property="netamountLabel" destination="7RH-sG-JHJ" id="P0i-Q7-bf4"/>
+                <outlet property="totalAmount" destination="3Fa-8F-BBs" id="4Qe-Dc-Nvd"/>
+                <outlet property="totalQuantity" destination="Th7-bN-lHD" id="OdB-rq-JIk"/>
+            </connections>
             <point key="canvasLocation" x="71.014492753623188" y="-60.267857142857139"/>
         </tableViewCell>
     </objects>

@@ -32,6 +32,10 @@ enum TableSection {
   var arrayList = NSMutableArray()
   var arrayColorSizeList = NSMutableArray()
   var scrollViewMain = UIScrollView()
+  var arrayFinal  =  NSMutableArray()
+    
+  var dictMain = NSDictionary()
+    
   override func viewDidLoad() {
       super.viewDidLoad()
       self.screenWidth = screenSize.width
@@ -42,45 +46,45 @@ enum TableSection {
   }
     
   func registerNib() {
-    
-    scrollViewMain.frame = CGRect(x: 0, y: 75, width: screenWidth, height: screenHeight-75);
-    scrollViewMain.bounces = true
-    scrollViewMain.delegate = self
-    scrollViewMain.backgroundColor = UIColor(red:250.0 / 255.0, green:250.0 / 255.0, blue:250.0 / 255.0, alpha: 1.0)
-   //view.addSubview(scrollViewMain)
-    tableViewList.register(UINib(nibName: "AmountCell", bundle: nil), forCellReuseIdentifier: "AmountCell");
-    tableViewList.register(UINib(nibName: "NumberOfSizesCell", bundle: nil), forCellReuseIdentifier: "NumberOfSizesCell");
-    tableViewList.register(UINib(nibName: "productSizesHeader", bundle: nil), forCellReuseIdentifier: "productSizesHeader");
-    tableViewList.register(UINib(nibName: "CartColorCell", bundle: nil), forCellReuseIdentifier: "CartColorCell");
+       scrollViewMain.frame = CGRect(x: 0, y: 75, width: screenWidth, height: screenHeight-75);
+       scrollViewMain.bounces = true
+       scrollViewMain.delegate = self
+       scrollViewMain.backgroundColor = UIColor(red:250.0 / 255.0, green:250.0 / 255.0, blue:250.0 / 255.0, alpha: 1.0)
+       //view.addSubview(scrollViewMain)
+       tableViewList.register(UINib(nibName: "AmountCell", bundle: nil), forCellReuseIdentifier: "AmountCell");
+       tableViewList.register(UINib(nibName: "SizesCell", bundle: nil), forCellReuseIdentifier: "SizesCell");
+       tableViewList.register(UINib(nibName: "productSizesHeader", bundle: nil), forCellReuseIdentifier: "productSizesHeader");
+       tableViewList.register(UINib(nibName: "CartColorCell", bundle: nil), forCellReuseIdentifier: "CartColorCell");
       
-    let nib = UINib(nibName: "CartListCell", bundle: nil)
-    tableViewList.register(nib, forHeaderFooterViewReuseIdentifier: "CartListCell")
-    tableViewList.register(UINib(nibName: "AmountCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "AmountCell")
-    tableViewList.register(UINib(nibName: "NetAmountCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "NetAmountCell")
+       let nib = UINib(nibName: "CartListCell", bundle: nil)
+       tableViewList.register(nib, forHeaderFooterViewReuseIdentifier: "CartListCell")
+       tableViewList.register(UINib(nibName: "AmountCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "AmountCell")
+       tableViewList.register(UINib(nibName: "NetAmountCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "NetAmountCell")
+       tableViewList.register(UINib(nibName: "ColorSizeListCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "ColorSizeListCell")
 
+    
+    
     tableViewList.delegate = self
-    tableViewList.dataSource = self
-    tableViewList.separatorStyle = .none
-    checkoutButton.layer.cornerRadius = 24
-    checkoutButton.clipsToBounds = true
-//  self.scrollViewMain.contentSize = CGSize(width: 0, height: tableViewList.frame.maxY + 200)
-    self.apiCartList()
-    self.callUISetUpHeader()
-    
-    
+       tableViewList.dataSource = self
+       tableViewList.separatorStyle = .none
+       checkoutButton.layer.cornerRadius = 24
+       checkoutButton.clipsToBounds = true
+       //self.scrollViewMain.contentSize = CGSize(width: 0, height: tableViewList.frame.maxY + 200)
+       self.apiCartList()
+       self.callUISetUpHeader()
    }
     
 
 
     func callUISetUpHeader() {
        let viewHeaderBg = UIView()
-                viewHeaderBg.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 75);
-                viewHeaderBg.backgroundColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue:255.0 / 255.0, alpha: 1.0)
+       viewHeaderBg.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 75);
+       viewHeaderBg.backgroundColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue:255.0 / 255.0, alpha: 1.0)
                 viewHeaderBg.layer.shadowColor = UIColor.black.cgColor
-                viewHeaderBg.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+                viewHeaderBg.layer.shadowOffset = CGSize(width: 0.0, height: 0.3)
                 viewHeaderBg.layer.masksToBounds = false
-                viewHeaderBg.layer.shadowRadius = 2.0
-                viewHeaderBg.layer.shadowOpacity = 0.5
+                viewHeaderBg.layer.shadowRadius = 0.3
+                viewHeaderBg.layer.shadowOpacity = 0.3
                 self.view.addSubview(viewHeaderBg)
                 
                 let btnBack = UIButton()
@@ -107,12 +111,12 @@ enum TableSection {
 //                viewHeaderBg.addSubview(btnCart)
          
                 let viewUnLine = UIView()
-                viewUnLine.frame = CGRect(x: 0, y: 75.0, width: screenWidth, height: 1.0);
+                viewUnLine.frame = CGRect(x: 0, y: 75.0, width: screenWidth, height: 0.0);
                 viewUnLine.backgroundColor = UIColor(red: 215.0 / 255.0, green: 215.0 / 255.0, blue:215.0 / 255.0, alpha: 1.0)
                 viewUnLine.layer.shadowColor = UIColor.black.cgColor
-                viewUnLine.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+                viewUnLine.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
                 viewUnLine.layer.masksToBounds = false
-                viewUnLine.layer.shadowRadius = 1.0
+                viewUnLine.layer.shadowRadius = 0.0
                 viewUnLine.layer.shadowOpacity = 0.5
                 viewHeaderBg.addSubview(viewUnLine)
     }
@@ -257,6 +261,7 @@ extension MyCartController:UITableViewDelegate, UITableViewDataSource {
             self.callCartRemoveApi(fld_product_id: product_id, fld_size_id: "\(sizeidValue)", fld_color_id:colorIdValue)
           }
     }
+    
     @objc func selectIndex(_ sender: UIButton) {
         let index = sender.tag
         let indexSelected = NSNumber(value: index)
@@ -300,20 +305,42 @@ extension MyCartController:UITableViewDelegate, UITableViewDataSource {
     
     @objc func expandCells(atSection section: NSNumber) {
         self.arrayColorSizeList.removeAllObjects()
-        if let dict = arrayList[Int(truncating: section)] as? NSDictionary {
+        if let dict = self.arrayFinal[Int(truncating: section)] as? NSDictionary {
             print("dict:", dict)
-            if let arrayColorSizeList = dict["color_size_list"] as? NSArray {
-                if let dict1 = arrayColorSizeList[0] as? NSDictionary {
-                     if let arraySizeList = dict1["size_list"] as? NSArray {
-                        let dict = [
-                                  "title":""
-                              ]
-                        self.arrayColorSizeList.add(dict)
-                        self.arrayColorSizeList.add(dict)
-                        self.arrayColorSizeList.addObjects(from: arraySizeList as [AnyObject])
-                     }
+            if let dict = self.arrayFinal[Int(truncating: section)] as? NSDictionary {
+                if let arraySizeList = dict["size_list"] as? NSArray {
+                   print("arraySizeList:", arraySizeList)
+                   let dict = [
+                       "title": ""
+                   ]
+                   self.arrayColorSizeList.add(dict)
+                   self.arrayColorSizeList.addObjects(from: arraySizeList as [AnyObject])
                 }
+                
+//                if let isColrSize = dict.value(forKey: "isColrSize") as? Bool, isColrSize == true {
+//                    if let arraySizeList = dict["size_list"] as? NSArray {
+//                       let dict = [
+//                           "title": ""
+//                       ]
+//                       self.arrayColorSizeList.add(dict)
+//                       self.arrayColorSizeList.addObjects(from: arraySizeList as [AnyObject])
+//                    }
+//                } else {
+//                }
             }
+            
+//            if let arrayColorSizeList = dict["color_size_list"] as? NSArray {
+//                if let dict1 = arrayColorSizeList[0] as? NSDictionary {
+//                     if let arraySizeList = dict1["size_list"] as? NSArray {
+//                        let dict = [
+//                                  "title":""
+//                              ]
+//                        self.arrayColorSizeList.add(dict)
+//                        self.arrayColorSizeList.addObjects(from: arraySizeList as [AnyObject])
+//                     }
+//                }
+//            }
+            
         }
         print("self.arrayColorSizeList:", self.arrayColorSizeList)
         selectedSection = Int(CInt(truncating: section))
@@ -324,51 +351,55 @@ extension MyCartController:UITableViewDelegate, UITableViewDataSource {
 
       // MARK: - Tableview Method
        func numberOfSections(in tableView: UITableView) -> Int {
-               return self.arrayList.count
+               return self.arrayFinal.count
        }
 
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
            if (section == selectedSection) {
-            return self.arrayColorSizeList.count
+               return self.arrayColorSizeList.count
            }
            return 0
        }
 
        func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 40
+            return 30
        }
 
        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-          var height: Int = 50
+          var height: Int = 30
           if arrayColorSizeList.count > 0 {
-               if indexPath.row == 0 {
-                   return 100
-               }
-               if indexPath.row == 1 {
-                   return 50
-               }
+             if indexPath.row == 0 {
+                  return 30
+             }
           }
            return CGFloat(height)
        }
 
        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-           if section == self.arrayList.count - 1 {
+           if section == self.arrayFinal.count - 1 {
               return 150
-           } else if section == self.arrayList.count - 2 {
+           } else if section == self.arrayFinal.count - 2 {
               return 150
            } else {
-              return 200
+            if let dict = self.arrayFinal[section] as? NSDictionary {
+                if let isColrSize = dict.value(forKey: "isColrSize") as? Bool, isColrSize == true {
+                   return 55
+                } else {
+                   return 120
+                }
+             }
+               return 0
            }
        }
 
        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if self.arrayList.count-2 == section {
-                let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "AmountCell") as! AmountCell
-                cell.textFieldCoupon.delegate = self;
-                cell.textFieldCoupon.layer.cornerRadius = 8
-                cell.textFieldCoupon.layer.borderWidth = 1
-                cell.textFieldCoupon.layer.borderColor = UIColor.lightGray.cgColor
-                cell.textFieldCoupon.clipsToBounds = true;
+        if self.arrayFinal.count-2 == section {
+           let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "AmountCell") as! AmountCell
+           cell.textFieldCoupon.delegate = self;
+           cell.textFieldCoupon.layer.cornerRadius = 8
+           cell.textFieldCoupon.layer.borderWidth = 1
+           cell.textFieldCoupon.layer.borderColor = UIColor.lightGray.cgColor
+           cell.textFieldCoupon.clipsToBounds = true;
           
                 let paddingView_CurrentPwd:UIView=UIView()
                 paddingView_CurrentPwd.frame=CGRect(x: 0,y: 0,width: 25,height: 20)
@@ -391,122 +422,118 @@ extension MyCartController:UITableViewDelegate, UITableViewDataSource {
                 cell.textFieldCoupon.keyboardType = UIKeyboardType.asciiCapable
                 cell.applyButton.addTarget(self, action: #selector(self.applyCoupon), for: .touchUpInside)
                 cell.applyButton.tag = section;
+                if self.dictMain.count > 0 {
+                   let cart_total = self.dictMain.value(forKey: "cart_total") as? Int ?? 0
+                   let total_qty = self.dictMain.value(forKey: "total_qty") as? Int ?? 0
+                   cell.quantity.text = "\u{20B9}\(total_qty)"
+                   cell.amountText.text = "\(cart_total)"
+                }
                 return cell
-            } else if self.arrayList.count-1 == section {
-                        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "NetAmountCell") as! NetAmountCell
-                        return cell
+            } else if self.arrayFinal.count-1 == section {
+                let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "NetAmountCell") as! NetAmountCell
+                if self.dictMain.count > 0 {
+                   let cart_total = self.dictMain.value(forKey: "cart_total") as? Int ?? 0
+                   let shipping_total = self.dictMain.value(forKey: "shipping_total") as? Int ?? 0
+//                 let save_total = self.dictMain.value(forKey: "save_total") as? Int ?? 0
+                   let total_qty = self.dictMain.value(forKey: "total_qty") as? Int ?? 0
+                   cell.totalAmount.text = "\u{20B9}\(cart_total)"
+                   cell.netamountLabel.text = "\u{20B9}\(cart_total)"
+                   cell.discountLabel.text = "\u{20B9}\(shipping_total)"
+                   cell.totalQuantity.text = "\(total_qty)"
+                }
+                return cell
             } else {
-                 let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CartListCell") as! CartListCell
-                 header.viewBg.backgroundColor = .white
-                 header.viewBg.layer.masksToBounds = false
-                 header.viewBg.layer.shadowRadius = 2.0
-                 header.viewBg.layer.shadowColor = UIColor.clear.cgColor
-                 header.viewBg.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-                 header.viewBg.layer.shadowOpacity = 0.7
-                 header.contentView.backgroundColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
-                 header.deleteButton.addTarget(self, action: #selector(self.deletePoduct), for: .touchUpInside);
-                 header.deleteButton.tag = section;
-                 if selectedSection == section {
-                    header.dropDown.setImage(UIImage(named: "dropdowncart"), for: .normal)
-                    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-                      }, completion: nil)
-                    } else {
-                                        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-                                                  }, completion: nil)
-                                                  header.dropDown.setImage(UIImage(named: "reminderRightArrow"), for: .normal)
-                                         }
-                                              header.dropDown.isUserInteractionEnabled = true
-                                              header.dropDown.addTarget(self, action: #selector(self.selectIndex), for: .touchUpInside)
-                                              header.dropDown.tag = section;
-                                              if let dict = self.arrayList[section] as? NSDictionary {
-                                                    if let imgString = dict.value(forKey: "default_image") as? String, let imageURL = URL(string: "\(imgString)") {
-                                                       header.productimage.setImageWith(imageURL, placeholderImage:UIImage(named: "Banner"))
-                                                    }
-                                                    let fld_product_name = dict.value(forKey: "fld_product_name") as? String ?? ""
-                                                    let fld_product_sku = dict.value(forKey: "fld_product_sku") as? String ?? ""
-                                                    //let fld_product_qty = dict.value(forKey: "fld_product_qty") as? String ?? ""
-                                                    header.productname.text = fld_product_name.capitalized;
-                                                    header.brandname.text = fld_product_sku.uppercased()
-                                                    
-                                                
-                                                    if let arrayColorSizeList = dict["color_size_list"] as? NSArray {
-                                                       if let dict1 = arrayColorSizeList[0] as? NSDictionary {
-                                                        var colorSizeQty = ""
-                                                        let color_name = dict1.value(forKey: "color_name") as? String ?? ""
-                                                        
-                                                         if let color_size_qty = dict1.value(forKey: "color_size_qty") as? Int {
-                                                            colorSizeQty = "\(color_size_qty)"
-                                                         }
-                                                         if let color_size_qty = dict1.value(forKey: "color_size_qty") as? String {
-                                                             colorSizeQty = "\(color_size_qty)"
-                                                         }
-                                                        header.quantityValue.text = colorSizeQty
-                                                        header.colorText.text = color_name
-//
-                                                        if let colorid = dict1.value(forKey: "color_id") as? Int {
-//                                                             colorIdValue = "\(colorid)"
-                                                          }
-                                                       }
-                                                  }
-                            }
-                          return header;
+            
+            if let dict = self.arrayFinal[section] as? NSDictionary {
+                if let isColrSize = dict.value(forKey: "isColrSize") as? Bool, isColrSize == true {
+                    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ColorSizeListCell") as! ColorSizeListCell
+                    header.viewBG.backgroundColor = .white
+                    header.viewBG.layer.masksToBounds = false
+                    header.viewBG.layer.shadowRadius = 2.0
+                    header.viewBG.layer.shadowColor = UIColor.clear.cgColor
+                    header.viewBG.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+                    header.viewBG.layer.shadowOpacity = 0.7
+                    header.viewBG.layer.cornerRadius = 4
+                    header.contentView.backgroundColor = UIColor(red: 243.0 / 255.0, green: 243.0 / 255.0, blue: 243.0 / 255.0, alpha: 1)
+                    if let dict = self.arrayFinal[section] as? NSDictionary {
+                       if let color_name = dict.value(forKey: "color_name") as? String {
+                          header.colorvalue.text = color_name
+                       }
+                       if let color_size_qty = dict.value(forKey: "color_size_qty") as? Int {
+                          header.quantityvalue.text = "\(color_size_qty)"
+                       }
                     }
+                  if selectedSection == section {
+                     header.dropdownSelected.setImage(UIImage(named: "dropdowncart"), for: .normal)
+                     UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+                      }, completion: nil)
+                     } else {
+                       UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+                       }, completion: nil)
+                         header.dropdownSelected.setImage(UIImage(named: "reminderRightArrow"), for: .normal)
+                       }
+                    header.dropdownSelected.addTarget(self, action: #selector(self.selectIndex), for: .touchUpInside)
+                    header.dropdownSelected.tag = section;
+                    return header;
+                } else {
+                    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CartListCell") as! CartListCell
+                    header.viewBg.backgroundColor = .white
+                    header.viewBg.layer.masksToBounds = false
+                    header.viewBg.layer.shadowRadius = 2.0
+                    header.viewBg.layer.shadowColor = UIColor.clear.cgColor
+                    header.viewBg.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+                    header.viewBg.layer.shadowOpacity = 0.7
+                    header.contentView.backgroundColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
+                    header.deleteButton.addTarget(self, action: #selector(self.deletePoduct), for: .touchUpInside);
+                    header.deleteButton.tag = section;
+                    if let dict = self.arrayFinal[section] as? NSDictionary {
+                    if let imgString = dict.value(forKey: "default_image") as? String, let imageURL = URL(string: "\(imgString)") {
+                       header.productimage.setImageWith(imageURL, placeholderImage:UIImage(named: "Banner"))
+                    }
+                    let fld_product_name = dict.value(forKey: "fld_product_name") as? String ?? ""
+                    let fld_product_sku = dict.value(forKey: "fld_product_sku") as? String ?? ""
+                    header.productname.text = fld_product_name.capitalized;
+                    header.brandname.text = fld_product_sku.uppercased()
+                }
+                return header;
+              }
+            }
+           }
             return UIView();
       }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.arrayList.count > 0 {
             if (indexPath.section == selectedSection)  {
-               if indexPath.row == 0 {
-                  if let cell = tableView.dequeueReusableCell(withIdentifier: "CartColorCell") as? CartColorCell {
-                                   return cell
-                                }
-                  }
-                  if indexPath.row == 1 {
-                               let cell = tableView.dequeueReusableCell(withIdentifier: "productSizesHeader") as! productSizesHeader
-                               cell.remove.text = "Remove"
-                               return cell
+                  if indexPath.row == 0 {
+                     let cell = tableView.dequeueReusableCell(withIdentifier: "productSizesHeader") as! productSizesHeader
+                     cell.remove.text = "Remove"
+                     return cell
                   } else {
-                                   if let cell = tableView.dequeueReusableCell(withIdentifier: "NumberOfSizesCell", for: indexPath) as? NumberOfSizesCell {
-                                      cell.selectionStyle = .none
-                                      cell.contentView.backgroundColor = UIColor(red:250.0 / 255.0, green:250.0 / 255.0, blue:250.0 / 255.0, alpha: 1.0)
-                                    
-                   //                   collectionWidth = cell.contentView.frame.size.width
-                   //                   collectionHeight = cell.contentView.frame.size.height
-                   //
-                   //                   let layout = UICollectionViewFlowLayout()
-                   //                   cell.collectionView.register(UINib(nibName: "ReminderCollectionCell", bundle: nil), forCellWithReuseIdentifier: "ReminderCollectionCell")
-                   //                   cell.collectionView.reloadData()
-                   //                   if layout != nil {
-                   //                      cell.collectionView.collectionViewLayout = layout
-                   //                      layout.scrollDirection = .vertical
-                   //                   }
-                   //                   cell.collectionView.dataSource = self
-                   //                   cell.collectionView.delegate = self
-                   //                   layout.minimumLineSpacing = 5
-                   //                   cell.collectionView.showsVerticalScrollIndicator = false
-                   //                   cell.collectionView.keyboardDismissMode = .interactive
-                                       
-                                       if let dict = self.arrayColorSizeList[indexPath.row] as? NSDictionary {
-                                          let size_name = dict.value(forKey: "size_name") as? String ?? ""
-                                          let qty = dict.value(forKey: "qty") as? String ?? ""
-                                          let price = dict.value(forKey: "price") as? Int ?? 0
-                                          cell.size.text = size_name
-                                          cell.price.text = "\(price)"
-                                          cell.qtyTextField.text = "\(qty)"
-                                          cell.qtyTextField.textAlignment = .center
-                                          cell.qtyTextField.delegate = self
-                                      }
-                                      cell.qtyTextField.layer.borderWidth = 1
-                                      cell.qtyTextField.tag = indexPath.row;
-                                      cell.qtyTextField.layer.borderColor = UIColor.lightGray.cgColor
-                                      cell.qtyTextField.layer.cornerRadius = 4
-                                      cell.removeButton.addTarget(self, action: #selector(self.removeProductButton), for: UIControl.Event.touchUpInside)
-                                      cell.removeButton.tag = indexPath.row;
-                                      return cell
-                                }
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "SizesCell", for: indexPath) as? SizesCell {
+                       cell.selectionStyle = .none
+                       cell.contentView.backgroundColor = UIColor(red:250.0 / 255.0, green:250.0 / 255.0, blue:250.0 / 255.0, alpha: 1.0)
+//                     cell.contentView.backgroundColor = .yellow
+                       if let dict = self.arrayColorSizeList[indexPath.row] as? NSDictionary {
+                          let size_name = dict.value(forKey: "size_name") as? String ?? ""
+                          let qty = dict.value(forKey: "qty") as? String ?? ""
+                          let price = dict.value(forKey: "price") as? Int ?? 0
+                          cell.sizeLabel.text = size_name
+                          cell.priceLabel.text = "\(price)"
+                          cell.textFieldQty.text = "\(qty)"
+                          cell.textFieldQty.textAlignment = .center
+                          cell.textFieldQty.delegate = self
                         }
-                }
+                        cell.textFieldQty.layer.borderWidth = 1
+                        cell.textFieldQty.tag = indexPath.row;
+                        cell.textFieldQty.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.textFieldQty.layer.cornerRadius = 4
+                        cell.removeButton.addTarget(self, action: #selector(self.removeProductButton), for: UIControl.Event.touchUpInside)
+                        cell.removeButton.tag = indexPath.row;
+                        return cell
+                    }
+                 }
+             }
           }
           return UITableViewCell()
      }
@@ -555,7 +582,7 @@ extension MyCartController:UITableViewDelegate, UITableViewDataSource {
      }
      
      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return CGSize(width: collectionWidth/3.2, height: 50)
+          return CGSize(width: collectionWidth/3.2, height: 50)
      }
      
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -577,51 +604,124 @@ extension MyCartController:UITableViewDelegate, UITableViewDataSource {
      }
 
      @objc func clickPayNaow(sender: UIButton!) {
- //       let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
- //       let VC = storyBoard.instantiateViewController(withIdentifier: "CreateYourTeam") as! CreateYourTeam
- //       self.navigationController?.pushViewController(VC, animated: true)
+ //      let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+ //      let VC = storyBoard.instantiateViewController(withIdentifier: "CreateYourTeam") as! CreateYourTeam
+ //      self.navigationController?.pushViewController(VC, animated: true)
      }
     
     func apiCartList() {
-        let json = [
-            "fld_user_id": getUserID(),
-            ] as [String : Any]
-        print("Detail json: ", json)
-//        DIProgressHud.show()
-        postMyOrderAPIAction(WebService.cart, parameters: json, showGenricErrorPopup: false) { (response) in
-            print("response detail:", response ?? "")
-            DispatchQueue.main.async {
-//               DIProgressHud.hide()
-            }
-            self.arrayList.removeAllObjects()
-            if let status = response?.object(forKey: "status") as? Bool, status == true {
-                if let dataArray = response?["cart_data"] as? NSArray, dataArray.count > 0 {
-                   self.arrayList = dataArray as! NSMutableArray
-                    let dict =
-                        [
-                         "title":""
-                        ]
-                    self.arrayList.add(dict)
-                    self.arrayList.add(dict)
-                }
-            }
-            
-            if self.arrayList.count == 0 {
+            let json = [
+                "fld_user_id": getUserID(),
+                ] as [String : Any]
+            print("Detail json: ", json)
+    //      DIProgressHud.show()
+            postMyOrderAPIAction(WebService.cart, parameters: json, showGenricErrorPopup: false) { (response) in
+                print("response cart:", response ?? "")
                 DispatchQueue.main.async {
-                  self.checkoutButton.isHidden = true
-                  self.createOrDisplayPlaceholder()
-                  self.tableViewList.reloadData()
-               }
-            } else {
-              self.checkoutButton.isHidden = false
-                DispatchQueue.main.async {
-                  self.hidePlaceholder()
-                  self.tableViewList.reloadData()
+    //             DIProgressHud.hide()
                 }
+                self.arrayList.removeAllObjects()
+                self.arrayFinal.removeAllObjects()
+                if let status = response?.object(forKey: "status") as? Bool, status == true {
+                    if let dataArray = response?["cart_data"] as? NSArray, dataArray.count > 0 {
+                       self.arrayList = dataArray as! NSMutableArray
+                    }
+                    let cart_total = response?["cart_total"] as? Int ?? 0
+                    let shipping_total = response?["shipping_total"] as? Int ?? 0
+                    let save_total = response?["save_total"] as? Int ?? 0
+                    let total_qty = response?["total_qty"] as? Int ?? 0
+                    let dict = [
+                        "cart_total": cart_total,
+                        "save_total": save_total,
+                        "total_qty": total_qty,
+                        "shipping_total": shipping_total]
+                    self.dictMain = dict as NSDictionary
+                    print("self.arrayList",   self.dictMain)
+                    
+                }
+                                    for i in 0 ..< self.arrayList.count {
+                                        if let dict = self.arrayList[i] as? NSDictionary {
+                                           print("dict:", dict)
+                                           let default_image = dict.value(forKey: "default_image") as? String ?? ""
+                                           let fld_brand_name = dict.value(forKey: "fld_brand_name") as? String ?? ""
+                                           let fld_delivery_days = dict.value(forKey: "fld_delivery_days") as? String ?? ""
+                                           let fld_product_color = dict.value(forKey: "fld_product_color") as? Int ?? 0
+                                           let fld_product_id = dict.value(forKey: "fld_product_id") as? Int ?? 0
+                                           let fld_product_name = dict.value(forKey: "fld_product_name") as? String ?? ""
+                                           let fld_product_price = dict.value(forKey: "fld_product_price") as? Int ?? 0
+                                           let fld_product_qty = dict.value(forKey: "fld_product_qty") as? Int ?? 0
+                                           let fld_product_size = dict.value(forKey: "fld_product_size") as? Int ?? 0
+                                           let fld_product_sku = dict.value(forKey: "fld_product_sku") as? String ?? ""
+                                           let fld_shipping_charges = dict.value(forKey: "fld_shipping_charges") as? String ?? ""
+                                           let fld_spcl_price = dict.value(forKey: "fld_spcl_price") as? String ?? ""
+                                           let dictdata = [
+                                            "default_image" : default_image,
+                                            "fld_brand_name" : fld_brand_name,
+                                            "fld_delivery_days" : fld_delivery_days,
+                                            "fld_product_color" : fld_product_color,
+                                            "fld_product_id" : fld_product_id,
+                                            "fld_product_name" : fld_product_name,
+                                            "fld_product_price" : fld_product_price,
+                                            "fld_product_qty" : fld_product_qty,
+                                            "fld_product_size" : fld_product_size,
+                                            "fld_product_sku" : fld_product_sku,
+                                            "fld_shipping_charges" : fld_shipping_charges,
+                                            "fld_spcl_price" : fld_spcl_price,
+                                            "isColrSize" : false
+                                            ] as [String : Any]
+                                            self.arrayFinal.add(dictdata)
+//                                            if let dict1 = self.arrayList[i] as? NSDictionary {
+                                                    print("dict:", dict)
+                                                    if let arrayColorSizeList = dict["color_size_list"] as? NSArray {
+                                                       for (_,messageDictionary) in arrayColorSizeList.enumerated() {
+                                                           if let dictDictionary = messageDictionary as? NSDictionary {
+                                                               let color_name = dictDictionary["color_name"] as? String ?? "" //dict1.value(forKey: "color_name") as? String ?? ""
+                                                               let color_size_qty = dictDictionary["color_size_qty"] as? Int ?? 0 //dict1.value(forKey: "color_size_qty") as? Int ?? 0
+                                                               let color_id = dictDictionary["color_id"] as? Int ?? 0
+                                                            if let arraySizeList = dictDictionary["size_list"] as? NSArray {
+                                                                let dictcolorsize = [
+                                                                    "color_id": color_id,
+                                                                    "color_name": color_name,
+                                                                    "color_size_qty": color_size_qty,
+                                                                    "size_list": arraySizeList,
+                                                                    "isColrSize" : true
+                                                                ] as [String : Any]
+                                                                self.arrayFinal.add(dictcolorsize)
+                                                            }
+                                                          }
+                                                        }
+                                                    }
+//                                                }
+                //                       print("self.arrayFinal:", self.arrayFinal)
+                                            
+                                            
+                                        }
+                                    }
+                 print("self.arrayFinal:", self.arrayFinal)
+                
+                let dict = [
+                    "title":""
+                ]
+                self.arrayFinal.add(dict)
+                self.arrayFinal.add(dict)
+                
+                if self.arrayList.count == 0 {
+                    DispatchQueue.main.async {
+                      self.checkoutButton.isHidden = true
+                      self.createOrDisplayPlaceholder()
+                      self.tableViewList.reloadData()
+                   }
+                } else {
+                  
+                    DispatchQueue.main.async {
+                      self.checkoutButton.isHidden = false
+                      self.hidePlaceholder()
+                      self.tableViewList.reloadData()
+                    }
+                }
+              
             }
-          
         }
-    }
     // MARK: - UI Create Place Holder
     func createOrDisplayPlaceholder() {
         if let placeHolder = view.viewWithTag(100) as? UILabel {

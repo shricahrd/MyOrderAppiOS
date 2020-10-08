@@ -39,6 +39,7 @@ enum WebService {
     static let addAddress = "addAddress"
     static let deleteAddress = "deleteAddress"
     static let addDefaultAddress = "addDefaultAddress"
+    static let order_list = "order_list"
 }
 
 enum JsonParams {

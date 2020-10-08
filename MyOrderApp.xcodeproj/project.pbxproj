@@ -26,6 +26,8 @@
 		182C55EB251131010072A2B8 /* calibril.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 182C55E8251131010072A2B8 /* calibril.ttf */; };
 		182C55EC251131010072A2B8 /* calibrib.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 182C55E9251131010072A2B8 /* calibrib.ttf */; };
 		182C55ED251131010072A2B8 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 182C55EA251131010072A2B8 /* Calibri.ttf */; };
+		1830B59F2525B07400C9827C /* MenuController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1830B59E2525B07400C9827C /* MenuController.storyboard */; };
+		1830B5A42525E9BC00C9827C /* MenuCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830B5A32525E9BC00C9827C /* MenuCategoryController.swift */; };
 		183C4EE52509327600F4C09B /* AllReminderHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C4EE32509327600F4C09B /* AllReminderHeaderCell.swift */; };
 		183C4EE62509327600F4C09B /* AllReminderHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183C4EE42509327600F4C09B /* AllReminderHeaderCell.xib */; };
 		183D273C2504C635007CD864 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183D273B2504C635007CD864 /* WebKit.framework */; };
@@ -41,6 +43,10 @@
 		184132D424EEEF84005EA25F /* WishListAddUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184132D324EEEF84005EA25F /* WishListAddUpdateModel.swift */; };
 		184C6A812510CA800037B86E /* WelcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C6A7F2510CA800037B86E /* WelcomeCell.swift */; };
 		184C6A822510CA800037B86E /* WelcomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184C6A802510CA800037B86E /* WelcomeCell.xib */; };
+		184D472F251F2FD6005B0645 /* ColorSizeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D472D251F2FD6005B0645 /* ColorSizeListCell.swift */; };
+		184D4730251F2FD6005B0645 /* ColorSizeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184D472E251F2FD6005B0645 /* ColorSizeListCell.xib */; };
+		184FC0A82521B4C8005494F0 /* SizesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184FC0A62521B4C8005494F0 /* SizesCell.swift */; };
+		184FC0A92521B4C8005494F0 /* SizesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184FC0A72521B4C8005494F0 /* SizesCell.xib */; };
 		1857A1E324F7EB6C00018821 /* HomeProductsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857A1E224F7EB6C00018821 /* HomeProductsModel.swift */; };
 		18587D802506CDEE00B66C4A /* AddNewAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18587D7E2506CDED00B66C4A /* AddNewAddressController.swift */; };
 		185896F524F106CD00183DD7 /* FiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185896F424F106CD00183DD7 /* FiltersModel.swift */; };
@@ -233,6 +239,8 @@
 		182C55E8251131010072A2B8 /* calibril.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = calibril.ttf; sourceTree = "<group>"; };
 		182C55E9251131010072A2B8 /* calibrib.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = calibrib.ttf; sourceTree = "<group>"; };
 		182C55EA251131010072A2B8 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
+		1830B59E2525B07400C9827C /* MenuController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MenuController.storyboard; sourceTree = "<group>"; };
+		1830B5A32525E9BC00C9827C /* MenuCategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryController.swift; sourceTree = "<group>"; };
 		183C4EE32509327600F4C09B /* AllReminderHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllReminderHeaderCell.swift; sourceTree = "<group>"; };
 		183C4EE42509327600F4C09B /* AllReminderHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllReminderHeaderCell.xib; sourceTree = "<group>"; };
 		183D273B2504C635007CD864 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -248,6 +256,10 @@
 		184132D324EEEF84005EA25F /* WishListAddUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListAddUpdateModel.swift; sourceTree = "<group>"; };
 		184C6A7F2510CA800037B86E /* WelcomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCell.swift; sourceTree = "<group>"; };
 		184C6A802510CA800037B86E /* WelcomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeCell.xib; sourceTree = "<group>"; };
+		184D472D251F2FD6005B0645 /* ColorSizeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSizeListCell.swift; sourceTree = "<group>"; };
+		184D472E251F2FD6005B0645 /* ColorSizeListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSizeListCell.xib; sourceTree = "<group>"; };
+		184FC0A62521B4C8005494F0 /* SizesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizesCell.swift; sourceTree = "<group>"; };
+		184FC0A72521B4C8005494F0 /* SizesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SizesCell.xib; sourceTree = "<group>"; };
 		1857A1E224F7EB6C00018821 /* HomeProductsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductsModel.swift; sourceTree = "<group>"; };
 		18587D7E2506CDED00B66C4A /* AddNewAddressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressController.swift; sourceTree = "<group>"; };
 		185896F424F106CD00183DD7 /* FiltersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersModel.swift; sourceTree = "<group>"; };
@@ -466,6 +478,14 @@
 				182C55E8251131010072A2B8 /* calibril.ttf */,
 			);
 			path = FontFiles;
+			sourceTree = "<group>";
+		};
+		1830B5A02525B39000C9827C /* MenuCategoryController */ = {
+			isa = PBXGroup;
+			children = (
+				1830B5A32525E9BC00C9827C /* MenuCategoryController.swift */,
+			);
+			path = MenuCategoryController;
 			sourceTree = "<group>";
 		};
 		184132D224EEEF31005EA25F /* WishListAddUpdateModel */ = {
@@ -777,6 +797,7 @@
 				7BED02C024E41B050035F179 /* Home.storyboard */,
 				EC43E8DF24B2B59200C497B6 /* Main.storyboard */,
 				7B3F899624E54B5D009C734F /* Profile.storyboard */,
+				1830B59E2525B07400C9827C /* MenuController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -943,6 +964,7 @@
 				EC278B3924C233B70051E6EB /* ProductListing */,
 				EC278B3624C230190051E6EB /* ForgotPassword */,
 				EC278B3024C214400051E6EB /* SignupTermsConditions */,
+				1830B5A02525B39000C9827C /* MenuCategoryController */,
 				EC45670024BF6B1E0010A15B /* MyCart */,
 				EC21281224BC6CAB00E60210 /* Checkout */,
 				EC687D0A24BC534500B5978F /* Welcome */,
@@ -991,6 +1013,10 @@
 				183C4EE32509327600F4C09B /* AllReminderHeaderCell.swift */,
 				183C4EE42509327600F4C09B /* AllReminderHeaderCell.xib */,
 				1840CD2825056655009B4EDF /* CartColorCell.xib */,
+				184D472D251F2FD6005B0645 /* ColorSizeListCell.swift */,
+				184D472E251F2FD6005B0645 /* ColorSizeListCell.xib */,
+				184FC0A62521B4C8005494F0 /* SizesCell.swift */,
+				184FC0A72521B4C8005494F0 /* SizesCell.xib */,
 			);
 			path = MyCart;
 			sourceTree = "<group>";
@@ -1112,6 +1138,7 @@
 				EC43E8D324B2B59200C497B6 /* Frameworks */,
 				EC43E8D424B2B59200C497B6 /* Resources */,
 				8AA56C9C2C9E10595FE6836E /* [CP] Embed Pods Frameworks */,
+				BDFD04A0E00575CC24F6EC76 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1167,13 +1194,16 @@
 				EC43E8E924B2B59A00C497B6 /* LaunchScreen.storyboard in Resources */,
 				183D27402504EC58007CD864 /* CartListCell.xib in Resources */,
 				184C6A822510CA800037B86E /* WelcomeCell.xib in Resources */,
+				184D4730251F2FD6005B0645 /* ColorSizeListCell.xib in Resources */,
 				182C55ED251131010072A2B8 /* Calibri.ttf in Resources */,
 				EC687D0124BC2EA800B5978F /* ShippingAddressCell.xib in Resources */,
 				EC1A125324BF978A009D691B /* ProductQuantityCell.xib in Resources */,
 				EC687D0524BC3C1D00B5978F /* InvoiceCell.xib in Resources */,
 				EC1A124F24BF909C009D691B /* NumberOfSizesCell.xib in Resources */,
+				184FC0A92521B4C8005494F0 /* SizesCell.xib in Resources */,
 				7BED02D724E44AD80035F179 /* CollectionViewHedder.xib in Resources */,
 				EC9FD46D24CD647A007B83D2 /* SIAlertView.bundle in Resources */,
+				1830B59F2525B07400C9827C /* MenuController.storyboard in Resources */,
 				EC892EB424BF137C00CCF5A0 /* SummaryAmountCell.xib in Resources */,
 				182103E224EB8FE70004868C /* ApplyCategoryCell.xib in Resources */,
 				EC1A125724BFA007009D691B /* TotalProductQuantitiyCell.xib in Resources */,
@@ -1268,6 +1298,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyOrderApp/Pods-MyOrderApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BDFD04A0E00575CC24F6EC76 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyOrderApp/Pods-MyOrderApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyOrderApp/Pods-MyOrderApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyOrderApp/Pods-MyOrderApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1281,6 +1328,7 @@
 				183DD0EC250A1E8C00B5B57C /* NetAmountCell.swift in Sources */,
 				185896F524F106CD00183DD7 /* FiltersModel.swift in Sources */,
 				ECDA7D3524B41D24002D6962 /* SignUpViewController.swift in Sources */,
+				184FC0A82521B4C8005494F0 /* SizesCell.swift in Sources */,
 				18587D802506CDEE00B66C4A /* AddNewAddressController.swift in Sources */,
 				EC278B4124C235890051E6EB /* MyOrderStatusController.swift in Sources */,
 				ECF174E324B7995C00990942 /* Home.swift in Sources */,
@@ -1290,6 +1338,7 @@
 				EC43E8DE24B2B59200C497B6 /* ViewController.swift in Sources */,
 				7BECE43724D9A12900E8EF32 /* RegistationViewModels.swift in Sources */,
 				ECF174EA24B7995C00990942 /* DownloadViewController.swift in Sources */,
+				1830B5A42525E9BC00C9827C /* MenuCategoryController.swift in Sources */,
 				1864669324F0424D003DF1C4 /* BrandModel.swift in Sources */,
 				7B1FEACE24E58B0200961F83 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				EC892EB324BF137C00CCF5A0 /* SummaryAmountCell.swift in Sources */,
@@ -1307,6 +1356,7 @@
 				EC3674F824C38ADD008C088E /* searchbybrandCell.swift in Sources */,
 				EC278B4724C236AE0051E6EB /* NewIssueController.swift in Sources */,
 				183F8FEE24FA236100F16D13 /* FiltersNewVM.swift in Sources */,
+				184D472F251F2FD6005B0645 /* ColorSizeListCell.swift in Sources */,
 				EC606C1224B878B40078A052 /* CategoryCell.swift in Sources */,
 				7B1FEACD24E58B0200961F83 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				1840CD2925056655009B4EDF /* CartColorCell.swift in Sources */,

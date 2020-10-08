@@ -798,7 +798,14 @@ class ProductDetailController: UIViewController, UIScrollViewDelegate, UITableVi
             postMyOrderAPIAction(WebService.cart_add_update, parameters: json, showGenricErrorPopup: false) { (response) in
                           print("response detail:", response ?? "")
                           DispatchQueue.main.async {
-                             DIProgressHud.hide()
+//                        DIProgressHud.hide()
+                          self.strcartcount = response?["cart_total_count"] as? Int ?? 0
+                          if self.strcartcount > 0 {
+                             self.cartCountLabel.isHidden = false
+                             self.cartCountLabel.text = "\(self.strcartcount)"
+                          } else {
+                              self.cartCountLabel.isHidden = true
+                            }
                           }
                           if let status = response?.object(forKey: "status") as? Bool, status == true {
                              DispatchQueue.main.async {

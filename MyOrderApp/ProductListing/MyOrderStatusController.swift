@@ -15,7 +15,7 @@ class MyOrderStatusController: UIViewController, UITextFieldDelegate, UITableVie
     var strcartcount = 0
     var cartCountLabel = UILabel()
     var tableViewList = UITableView()
-    
+    var arrayOrderList = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -25,7 +25,6 @@ class MyOrderStatusController: UIViewController, UITextFieldDelegate, UITableVie
         textFieldSearch = UITextField()
         
         self.uiSetUpScrollView()
-        
         let topBarHeight = UIApplication.shared.statusBarFrame.size.height + (self.navigationController?.navigationBar.frame.height ?? 0.0)
         print("topBarHeight:", topBarHeight)
         textFieldSearch.frame = CGRect(x: 16, y: 90, width: view.frame.size.width - 32 , height: 40)
@@ -75,64 +74,66 @@ class MyOrderStatusController: UIViewController, UITextFieldDelegate, UITableVie
          viewHeaderBg.layer.masksToBounds = false
          viewHeaderBg.layer.shadowRadius = 0.6
          viewHeaderBg.layer.shadowOpacity = 0.5
-           self.view.addSubview(viewHeaderBg)
+         self.view.addSubview(viewHeaderBg)
            
-           let btnBack = UIButton()
-           btnBack.frame = CGRect(x:16, y: 40, width: 20, height: 20)
-           btnBack.backgroundColor = .clear
-           btnBack.setImage(UIImage(named: "backArrow"), for: .normal)
-           btnBack.addTarget(self,action:#selector(self.clickOnBack(_:)),for: UIControl.Event.touchUpInside)
-           btnBack.isUserInteractionEnabled = true
-           viewHeaderBg.addSubview(btnBack)
+         let btnBack = UIButton()
+         btnBack.frame = CGRect(x:16, y: 40, width: 20, height: 20)
+         btnBack.backgroundColor = .clear
+         btnBack.setImage(UIImage(named: "backArrow"), for: .normal)
+         btnBack.addTarget(self,action:#selector(self.clickOnBack(_:)),for: UIControl.Event.touchUpInside)
+         btnBack.isUserInteractionEnabled = true
+         viewHeaderBg.addSubview(btnBack)
            
-           let imageLogo = UIImageView()
-           imageLogo.frame = CGRect(x: 80, y: 30, width:  screenWidth-160, height: 40)
-           imageLogo.image = UIImage(named: "logo")
-           imageLogo.contentMode =  .center
-           imageLogo.clipsToBounds = true
-           viewHeaderBg.addSubview(imageLogo)
+         let imageLogo = UIImageView()
+         imageLogo.frame = CGRect(x: 80, y: 30, width:  screenWidth-160, height: 40)
+         imageLogo.image = UIImage(named: "logo")
+         imageLogo.contentMode =  .center
+         imageLogo.clipsToBounds = true
+         viewHeaderBg.addSubview(imageLogo)
            
-           let btnCart = UIButton()
-           btnCart.frame = CGRect(x:screenWidth-50, y: 40, width:  25, height: 25)
-           btnCart.backgroundColor = .clear
-           btnCart.setImage(UIImage(named: "cartLogo"), for: .normal)
-           btnCart.addTarget(self,action:#selector(self.clickOnCart(_:)),for: UIControl.Event.touchUpInside)
-           btnCart.isUserInteractionEnabled = true
-           viewHeaderBg.addSubview(btnCart)
+         let btnCart = UIButton()
+         btnCart.frame = CGRect(x:screenWidth-50, y: 40, width:  25, height: 25)
+         btnCart.backgroundColor = .clear
+         btnCart.setImage(UIImage(named: "cartLogo"), for: .normal)
+         btnCart.addTarget(self,action:#selector(self.clickOnCart(_:)),for: UIControl.Event.touchUpInside)
+         btnCart.isUserInteractionEnabled = true
+         viewHeaderBg.addSubview(btnCart)
     
-           let viewUnLine = UIView()
-           viewUnLine.frame = CGRect(x: 0, y: 75.0, width: screenWidth, height: 0.5);
-           viewUnLine.backgroundColor = UIColor(red: 215.0 / 255.0, green: 215.0 / 255.0, blue:215.0 / 255.0, alpha: 1.0)
-           viewUnLine.layer.shadowColor = UIColor.black.cgColor
-           viewUnLine.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-           viewUnLine.layer.masksToBounds = false
-           viewUnLine.layer.shadowRadius = 1.0
-           viewUnLine.layer.shadowOpacity = 0.5
+         let viewUnLine = UIView()
+         viewUnLine.frame = CGRect(x: 0, y: 75.0, width: screenWidth, height: 0.5);
+         viewUnLine.backgroundColor = UIColor(red: 215.0 / 255.0, green: 215.0 / 255.0, blue:215.0 / 255.0, alpha: 1.0)
+         viewUnLine.layer.shadowColor = UIColor.black.cgColor
+         viewUnLine.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+         viewUnLine.layer.masksToBounds = false
+         viewUnLine.layer.shadowRadius = 1.0
+         viewUnLine.layer.shadowOpacity = 0.5
            
-           cartCountLabel = UILabel()
-           cartCountLabel.frame = CGRect(x:screenWidth-46, y: 28, width:  24, height: 24);
-           self.cartCountLabel.layer.cornerRadius = self.cartCountLabel.frame.width/2
-           self.cartCountLabel.clipsToBounds = true
-           self.cartCountLabel.layer.borderColor = UIColor.white.cgColor
-           self.cartCountLabel.layer.borderWidth = 2
-           self.cartCountLabel.textAlignment = .center
-           self.cartCountLabel.textColor = .white
-           self.cartCountLabel.backgroundColor = .red
-           self.cartCountLabel.font = UIFont(name:"Arial",size:12.0)
-           viewHeaderBg.addSubview(self.cartCountLabel)
-           //self.strcartcount = 2
-
-           if self.strcartcount > 0 {
-              self.cartCountLabel.isHidden = false
-              self.cartCountLabel.text = "\(self.strcartcount)"
-           } else {
-              self.cartCountLabel.isHidden = true
-           }
-       }
+         cartCountLabel = UILabel()
+         cartCountLabel.frame = CGRect(x:screenWidth-46, y: 28, width:  24, height: 24);
+         self.cartCountLabel.layer.cornerRadius = self.cartCountLabel.frame.width/2
+         self.cartCountLabel.clipsToBounds = true
+         self.cartCountLabel.layer.borderColor = UIColor.white.cgColor
+         self.cartCountLabel.layer.borderWidth = 2
+         self.cartCountLabel.textAlignment = .center
+         self.cartCountLabel.textColor = .white
+         self.cartCountLabel.backgroundColor = .red
+         self.cartCountLabel.font = UIFont(name:"Arial",size:12.0)
+         viewHeaderBg.addSubview(self.cartCountLabel)
+         //self.strcartcount = 2
+         if self.strcartcount > 0 {
+            self.cartCountLabel.isHidden = false
+            self.cartCountLabel.text = "\(self.strcartcount)"
+         } else {
+            self.cartCountLabel.isHidden = true
+         }
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.callOrderListApi()
+    }
     
     func uisetUpTableView() {
-        
         tableViewList = UITableView()
         tableViewList.frame = CGRect(x: 0, y: textFieldSearch.frame.maxY+2, width: screenWidth, height: screenHeight - (textFieldSearch.frame.maxY+2))
         tableViewList.backgroundColor = .yellow
@@ -148,13 +149,11 @@ class MyOrderStatusController: UIViewController, UITextFieldDelegate, UITableVie
       
     }
        
-       
     @objc func clickOnBack(_ sender: AnyObject!) {
           self.navigationController!.setNavigationBarHidden(false,animated: false)
           self.navigationItem.hidesBackButton = true
           self.navigationController?.popViewController(animated: true)
     }
-
        
     // MARK: - TableView Delegate Methods
        
@@ -163,7 +162,7 @@ class MyOrderStatusController: UIViewController, UITextFieldDelegate, UITableVie
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return 5
+        return self.arrayOrderList.count
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -190,42 +189,40 @@ class MyOrderStatusController: UIViewController, UITextFieldDelegate, UITableVie
             heading.backgroundColor = .clear
             sectionHeader.addSubview(heading)
             return sectionHeader
-        }
+     }
 
-        func tableView(_ tableView:UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersCell", for: indexPath as IndexPath) as! OrdersCell
-            cell.selectionStyle = .none
-            cell.viewBg.layer.cornerRadius = 0
-            cell.viewBg.clipsToBounds = true
-            cell.contentView.backgroundColor = UIColor(red: 250.0 / 255.0, green: 250.0 / 255.0, blue:250.0 / 255.0, alpha: 1.0)
-            cell.viewBg.layer.shadowColor = UIColor.black.cgColor
-            cell.viewBg.layer.shadowOffset = CGSize(width: 0.0, height: 0.3)
-            cell.viewBg.layer.masksToBounds = false
-            cell.viewBg.layer.shadowRadius = 0.2
-            cell.viewBg.layer.shadowOpacity = 0.3
+     func tableView(_ tableView:UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersCell", for: indexPath as IndexPath) as! OrdersCell
+          cell.selectionStyle = .none
+          cell.viewBg.layer.cornerRadius = 0
+          cell.viewBg.clipsToBounds = true
+          cell.contentView.backgroundColor = UIColor(red: 250.0 / 255.0, green: 250.0 / 255.0, blue:250.0 / 255.0, alpha: 1.0)
+          cell.viewBg.layer.shadowColor = UIColor.black.cgColor
+          cell.viewBg.layer.shadowOffset = CGSize(width: 0.0, height: 0.3)
+          cell.viewBg.layer.masksToBounds = false
+          cell.viewBg.layer.shadowRadius = 0.2
+          cell.viewBg.layer.shadowOpacity = 0.3
             
-            cell.moreDetail.layer.cornerRadius = 14
-            cell.moreDetail.layer.borderWidth = 1.4
-            cell.moreDetail.layer.borderColor = UIColor(red:28.0 / 255.0, green:72.0 / 255.0, blue:156.0 / 255.0,alpha:1.0).cgColor
-            cell.moreDetail.clipsToBounds = true
-            cell.moreDetail.titleLabel?.textColor = UIColor(red:28.0 / 255.0, green:72.0 / 255.0, blue:156.0 / 255.0,alpha:1.0)
-            cell.moreDetail.titleLabel?.font = UIFont(name:"Arial",size:12.0)
+          cell.moreDetail.layer.cornerRadius = 14
+          cell.moreDetail.layer.borderWidth = 1.4
+          cell.moreDetail.layer.borderColor = UIColor(red:28.0 / 255.0, green:72.0 / 255.0, blue:156.0 / 255.0,alpha:1.0).cgColor
+          cell.moreDetail.clipsToBounds = true
+          cell.moreDetail.titleLabel?.textColor = UIColor(red:28.0 / 255.0, green:72.0 / 255.0, blue:156.0 / 255.0,alpha:1.0)
+          cell.moreDetail.titleLabel?.font = UIFont(name:"Arial",size:12.0)
             
-//          if let dict = self.arrayAddressList[indexPath.row] as? NSDictionary {
-//             let fld_user_name = dict.value(forKey: "fld_user_name") as? String ?? ""
-//             let fld_user_city = dict.value(forKey: "fld_user_city") as? String ?? ""
-//             let fld_user_address = dict.value(forKey: "fld_user_address") as? String ?? ""
-//             let fld_user_locality = dict.value(forKey: "fld_user_locality") as? String ?? ""
-//             let fld_user_state = dict.value(forKey: "fld_user_state") as? String ?? ""
-//               let fld_user_pincode = dict.value(forKey: "fld_user_pincode") as? String ?? ""
-//               let str_address = fld_user_address + ", \(fld_user_locality)" + ", \(fld_user_city)" + ", \(fld_user_state)-\(fld_user_pincode)"
-//               cell.lblName.text = fld_user_name.capitalized
-//               cell.lblAddress.text = str_address
-//               cell.lblName.textColor = .black
-//               cell.lblName.font = UIFont.boldSystemFont(ofSize: 14.0)
-//               cell.lblAddress.font = UIFont(name: cell.lblAddress.font.fontName, size: 12)
-//               cell.lblUseastheshiipingaddress.text = "Use as the shipping address"
-//            }
+          if let dict = self.arrayOrderList[indexPath.row] as? NSDictionary {
+             let fld_order_qty = dict.value(forKey: "fld_order_qty") as? Int ?? 0
+             let order_status = dict.value(forKey: "order_status") as? Int ?? 0
+             let fld_order_date = dict.value(forKey: "fld_order_date") as? String ?? ""
+             let fld_suborder_id = dict.value(forKey: "fld_suborder_id") as? String ?? ""
+             let price = dict.value(forKey: "price") as? Int ?? 0
+          
+             cell.quantity.text = "Qty: \(fld_order_qty)"
+             cell.price.text = "Price: \(price)"
+             cell.orderNo.text = "Order No. \(fld_suborder_id)"
+             cell.supplierName.text = "Supplier: \("fashion")"
+            cell.date.text = CommonMethods.sharedInstance.getDateInNotificationString(fld_order_date)
+           }
 //            cell.btnEddit.addTarget(self, action: #selector(btnEddit), for: .touchUpInside)
 //            cell.btnEddit.tag = indexPath.row
 //            cell.btnDelete.addTarget(self, action: #selector(btnDelete), for: .touchUpInside)
@@ -243,6 +240,7 @@ class MyOrderStatusController: UIViewController, UITextFieldDelegate, UITableVie
 //                 cell.btnCheckUnckeck.layer.borderWidth = 1
 //                 cell.btnCheckUnckeck.layer.borderColor = UIColor.darkGray.cgColor
 //             }
+            
             return cell
         }
         
@@ -264,4 +262,35 @@ class MyOrderStatusController: UIViewController, UITextFieldDelegate, UITableVie
 //             }
 //          }
         }
+    
+    func callOrderListApi() {
+  
+        let json = [
+                    "fld_user_id":getUserID(),
+                    "fld_order_type":0,
+                    "fld_page_no":0
+         ] as [String : Any]
+         print("Detail json: ", json)
+         //DIProgressHud.show()
+         postMyOrderAPIAction(WebService.order_list, parameters: json, showGenricErrorPopup: false) { (response) in
+         print("order_list:", response ?? "")
+         DispatchQueue.main.async {
+          // DIProgressHud.hide()
+         }
+            
+         if let status = response?.object(forKey: "status") as? Bool, status == true {
+            DispatchQueue.main.async {
+            let message = response?["message"] as? String
+               self.arrayOrderList.removeAllObjects()
+                if let dataArray = response?.object(forKey: "order_data") as? NSArray, dataArray.count > 0 {
+                  self.arrayOrderList = dataArray as! NSMutableArray
+               }
+            }
+          }
+          
+           DispatchQueue.main.async {
+            self.tableViewList.reloadData()
+           }
+        }
+    }
 }

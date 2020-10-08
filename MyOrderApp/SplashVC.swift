@@ -35,22 +35,23 @@ class SplashVC: UIViewController, URLSessionDelegate, UIAlertViewDelegate {
     }
     
     @objc private func dismissSplashController() {
-          self.moveToHomeAndLogin()
+        self.moveToHomeAndLogin()
     }
+    
 //    func getUserID() -> String {
 //        if let pkUD = UserDefaults.standard.value(forKey: UserInfo.pkUD) as? String {
 //            return pkUD
 //        }
 //        return "0"
 //    }
+    
     func moveToHomeAndLogin() {
         if isKeyPresentInUserDefaults(key: "UserInfo") {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let vc = storyboard.instantiateViewController(withIdentifier: "Home") as? Home {
-//                 vc.navigationController?.isNavigationBarHidden = true
-//              vc.navigationItem.hidesBackButton = true
-              
-                 self.navigationController?.show(vc,sender:self)
+//             vc.navigationController?.isNavigationBarHidden = true
+//             vc.navigationItem.hidesBackButton = true
+               self.navigationController?.show(vc,sender:self)
             }
         } else {
             let storyboard1: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)

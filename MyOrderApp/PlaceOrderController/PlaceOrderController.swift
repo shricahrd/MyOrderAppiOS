@@ -372,10 +372,10 @@ class PlaceOrderController: UIViewController, UITableViewDelegate, UITableViewDa
                                             if let fld_product_qty = dict.value(forKey: "fld_product_qty") as? String {
                                                fldproductqty = "\(fld_product_qty)"
                                             }
-                                            if let fld_product_price = dict.value(forKey: "fld_product_price") as? Int {
+                                            if let fld_product_price = dict.value(forKey: "fld_spcl_price") as? Int {
                                                fldproductprice = "\(fld_product_price)"
                                             }
-                                            if let fld_product_price = dict.value(forKey: "fld_product_price") as? String {
+                                            if let fld_product_price = dict.value(forKey: "fld_spcl_price") as? String {
                                                fldproductprice = "\(fld_product_price)"
                                             }
                                             cell.itemName.text = fld_product_name.capitalized

@@ -469,17 +469,15 @@ class Home: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITable
            heading.text = "  \(dict["title"] as? String ?? "")"
         }
         heading.font = UIFont(name: "calibrib", size: 22)
-        
         heading.textColor = .black
         heading.backgroundColor = .white
         sectionHeader.addSubview(heading)
-        
         let viewAll = UIButton()
         viewAll.frame = CGRect(x: tableView.frame.size.width-80, y: 0, width: 80, height: 45)
         viewAll.setTitle("View All", for: .normal)
         viewAll.setTitleColor(UIColor(red:28.0 / 255.0, green:72.0 / 255.0, blue:156.0 / 255.0,alpha:1.0), for: UIControl.State.normal)
         viewAll.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-//        viewAll.backgroundColor = UIColor(red:28.0 / 255.0, green:72.0 / 255.0, blue:156.0 / 255.0,alpha:1.0)
+//      viewAll.backgroundColor = UIColor(red:28.0 / 255.0, green:72.0 / 255.0, blue:156.0 / 255.0,alpha:1.0)
         sectionHeader.addSubview(viewAll)
         viewAll.addTarget(self, action: #selector(self.viewAllAction), for: UIControl.Event.touchUpInside)
         viewAll.tag = section;
@@ -843,13 +841,13 @@ class MenuListController: UITableViewController {
         if indexPath.row == 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             if let apptDetailController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-                self.navigationController?.pushViewController(apptDetailController, animated: true)
+               self.navigationController?.pushViewController(apptDetailController, animated: true)
             }
         }
         if indexPath.row == 1 {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            if let apptDetailController = storyboard.instantiateViewController(withIdentifier: "ChangeLanguageViewController") as? ChangeLanguageViewController {
-                self.navigationController?.pushViewController(apptDetailController, animated: true)
+            let storyboard = UIStoryboard(name: "MenuController", bundle: Bundle.main)
+            if let apptDetailController = storyboard.instantiateViewController(withIdentifier: "MenuCategoryController") as? MenuCategoryController {
+               self.navigationController?.pushViewController(apptDetailController, animated: true)
             }
         }
         if indexPath.row == 2 {

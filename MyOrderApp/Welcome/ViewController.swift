@@ -41,14 +41,19 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegat
             static let password = 2
            
        }
+    
+    var viewBottomBg: UIView!
+    var googleBtn:UIButton!
+    var facebookBtn:UIButton!
+    
 override func viewDidLoad() {
     super.viewDidLoad()
     screenWidth = screenSize.width
     screenHeight = screenSize.height
-   
     self.view.backgroundColor = UIColorforBackGroundColor
-//    self.viewBg.layer.cornerRadius = 30
-//    self.viewBg.clipsToBounds = true
+    
+//  self.viewBg.layer.cornerRadius = 30
+//  self.viewBg.clipsToBounds = true
 //    self.viewBg.backgroundColor = UIColor(red:255.0 / 255.0, green:255.0 / 255.0, blue:255.0 / 255.0, alpha:1.0)
 //    self.viewBg.layer.borderWidth = 1.4;
 //    self.viewBg.layer.borderColor = UIColor.gray.withAlphaComponent(0.1).cgColor
@@ -62,19 +67,12 @@ override func viewDidLoad() {
     
     
     switch loginType {
-   
     case .STOCKIST: break
-        
     case .DISTRIBUTOR: break
-        
     case .RETAILER: break
-        
     case .SALESAGENT: break
-        
     case .MANUFACTURER:break
-        
-   
-    }
+       }
        self.uiSetUp()
     }
     
@@ -206,13 +204,80 @@ override func viewDidLoad() {
         btnSignIn.addTarget(self,action:#selector(self.clickOnSignIn(_:)),for: UIControl.Event.touchUpInside)
         btnSignIn.isUserInteractionEnabled = true
         viewTextBg.addSubview(btnSignIn)
-        
         scrollViewMain.keyboardDismissMode = .interactive
- }
+        callBottomUiSetUp()
+   }
+    
+    func callBottomUiSetUp() {
+        
+         viewBottomBg = UIView()
+         viewBottomBg.frame = CGRect(x: CGFloat(50), y: viewTextBg.frame.maxY-30 , width: screenWidth-(100), height: 150)
+         viewBottomBg.backgroundColor = .clear
+         viewBottomBg.layer.shadowColor = UIColor.black.cgColor
+//         viewBottomBg.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+         viewBottomBg.layer.masksToBounds = false
+//         viewBottomBg.layer.shadowRadius = 3.0
+//         viewBottomBg.layer.shadowOpacity = 0.5
+//         viewBottomBg.cornerRadius = 0
+         viewBottomBg.clipsToBounds = true
+         scrollViewMain.addSubview(viewBottomBg)
+        
+         let orTitle = UILabel()
+         orTitle.frame = CGRect(x: 16, y: 0, width: viewBottomBg.frame.size.width-32, height: 30);
+         orTitle.text = "-OR-";
+         orTitle.textColor = .gray
+         orTitle.textAlignment = .center
+         orTitle.font = UIFont.boldSystemFont(ofSize: 26.0)
+         viewBottomBg.addSubview(orTitle)
+        
+         googleBtn = UIButton()
+         googleBtn.frame = CGRect(x: 26, y: orTitle.frame.maxY+20, width: 52, height: 52)
+         googleBtn.layer.shadowRadius = 2.0
+         googleBtn.clipsToBounds = true
+         googleBtn.backgroundColor = .white
+         googleBtn.layer.shadowColor = UIColor.black.cgColor
+         googleBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+         googleBtn.layer.masksToBounds = false
+         googleBtn.layer.shadowRadius = 1.0
+         googleBtn.layer.shadowOpacity = 0.5
+         googleBtn.tag = 1
+         googleBtn.layer.cornerRadius = googleBtn.frame.width / 2
+         googleBtn.setImage(UIImage(named: "googleicon"), for: .normal)
+         googleBtn.addTarget(self,action:#selector(self.clickOnGoogleBtn(_:)),for: UIControl.Event.touchUpInside)
+         googleBtn.isUserInteractionEnabled = true
+         viewBottomBg.addSubview(googleBtn)
+        
+         facebookBtn = UIButton()
+         facebookBtn.frame = CGRect(x: viewBottomBg.frame.size.width - 76, y: orTitle.frame.maxY+20, width: 52, height: 52)
+         facebookBtn.setImage(UIImage(named: "fbicons"), for: .normal)
+         facebookBtn.layer.shadowRadius = 2.0
+         facebookBtn.clipsToBounds = true
+         facebookBtn.backgroundColor = .white
+         facebookBtn.layer.shadowColor = UIColor.black.cgColor
+         facebookBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+         facebookBtn.layer.masksToBounds = false
+         facebookBtn.layer.shadowRadius = 1.0
+         facebookBtn.layer.shadowOpacity = 0.5
+         facebookBtn.tag = 1
+         facebookBtn.layer.cornerRadius = facebookBtn.frame.width / 2
+         facebookBtn.addTarget(self,action:#selector(self.clickOnFacebookBtn(_:)),for: UIControl.Event.touchUpInside)
+         facebookBtn.isUserInteractionEnabled = true
+         viewBottomBg.addSubview(facebookBtn)
+        
+         self.scrollViewMain.contentSize = CGSize(width: 0, height: viewBottomBg.frame.maxY + 80)
+        
+    }
+    
+    @objc func clickOnGoogleBtn(_ sender: AnyObject!) {
+        
+    }
+    
+    @objc func clickOnFacebookBtn(_ sender: AnyObject!) {
+        
+    }
     
     @objc func clickOnSignIn(_ sender: AnyObject!) {
         view.endEditing(true)
-        
         print("userNameTextField.text!",userNameTextField.text! )
         print("passwordTextField.text!",passwordTextField.text! )
         if (userNameTextField.text==""||userNameTextField.text==" ") {
@@ -232,35 +297,37 @@ override func viewDidLoad() {
           } else if catagaryLogin == "5" { // btnSalesAgent
              salesAgent(mobileNumber: userNameTextField.text!, password: passwordTextField.text!)
           } else {
-            
-          }
-      }
+         
+            }
+       }
     }
-
-        // MARK: - UITextFieldDelegate
-         
     
-         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-             view.endEditing(true)
-             scrollViewMain.setContentOffset(CGPoint(x: scrollViewMain.contentOffset.x, y: 0), animated: true)
-             return true
-         }
+    // MARK: - UITextFieldDelegate
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         view.endEditing(true)
+         scrollViewMain.setContentOffset(CGPoint(x: scrollViewMain.contentOffset.x, y: 0), animated: true)
+         return true
+    }
          
-         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-     
-             return true
-         }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+         return true
+    }
          
-         func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-             return true
-         }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+         return true
+    }
          
     func textFieldDidBeginEditing(_ textField: UITextField) {
-          if textField.isEqual(userNameTextField) {
+         if textField.isEqual(userNameTextField) {
             scrollViewMain.setContentOffset(CGPoint(x: scrollViewMain.contentOffset.x, y: 100), animated: true)
-          } else if textField.isEqual(passwordTextField) {
+         } else if textField.isEqual(passwordTextField) {
             scrollViewMain.setContentOffset(CGPoint(x: scrollViewMain.contentOffset.x, y: 150), animated: true)
-          }
+         }
     }
 
     @IBAction func forgotButton(_ sender: Any) {

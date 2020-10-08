@@ -8,17 +8,20 @@
 
 import UIKit
 
-class ColorSizeListCell: UITableViewCell {
+class ColorSizeListCell: UITableViewHeaderFooterView {
 
+    @IBOutlet weak var viewBG: UIView!
+    @IBOutlet weak var colorlabel: UILabel!
+    @IBOutlet weak var colorvalue: UILabel!
+    @IBOutlet weak var quantityvalue: UILabel!
+    @IBOutlet weak var dropdownSelected: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//    }
     
 }
