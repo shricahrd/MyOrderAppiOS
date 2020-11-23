@@ -42,9 +42,13 @@ class BaseViewController: UIViewController {
 extension BaseViewController {
     func addTitleImage(){
         self.navigationController?.navigationBar.isHidden = false
-        let logo = UIImage(named: "titleLogo")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
+        let logoButton = UIButton()
+        logoButton.setImage(UIImage(named: "titleLogo"), for: .normal)
+        logoButton.addTarget(self, action: #selector(self.actionOnLogo), for: UIControl.Event.touchUpInside)
+
+//        let logo = UIImage(named: "titleLogo")
+//        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = logoButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.layoutIfNeeded()
@@ -70,13 +74,11 @@ extension BaseViewController {
     }
     func addSideMenu(){
         var  centerVC: BaseViewController = DashboardViewController.getController(story: "Dashboard")  as! DashboardViewController
-       
         if UserModel.shared.aSelectedUserType == .manufacture {
             centerVC = DashboardMenuFacturerVC.getController(story: "Dashboard")  as! DashboardMenuFacturerVC
         }else if UserModel.shared.aSelectedUserType == .stockist ||
                     UserModel.shared.aSelectedUserType == .distributor {
             centerVC = DashboardStokistDistributorVC.getController(story: "Dashboard")  as! DashboardStokistDistributorVC
-
         }
         let  leftMenuVC = LeftMenuViewController.getController(story: "Dashboard")  as! LeftMenuViewController
         let centerNavVC = UINavigationController(rootViewController: centerVC)
@@ -85,6 +87,9 @@ extension BaseViewController {
         rootController.configs.bounceOnRightPanelOpen = false
         let vs = rootController.center(centerNavVC).left(leftMenuVC)
         UIApplication.shared.windows.first?.rootViewController = vs
+    }
+    @objc func actionOnLogo() {
+        self.addSideMenu()
     }
     @objc func actionOnLeftIcon() {
         panel?.openLeft(animated: true)

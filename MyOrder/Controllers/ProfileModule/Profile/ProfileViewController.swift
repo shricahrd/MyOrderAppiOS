@@ -53,6 +53,8 @@ class ProfileViewController: BaseViewController {
         }
     }
     @IBAction func actionOnLogout(_ sender: Any) {
+        UserDefaults.standard.setValue(nil, forKey: OldUser)
+        UserDefaults.standard.setValue(nil, forKey: OldUserType)
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let redViewController = mainStoryBoard.instantiateViewController(withIdentifier: "WellcomeViewController") as! WellcomeViewController
         let centerNavVC = UINavigationController(rootViewController: redViewController)

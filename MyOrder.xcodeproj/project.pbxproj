@@ -177,6 +177,7 @@
 		D9EF5827253F471500443F88 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF5826253F471500443F88 /* EditProfileViewModel.swift */; };
 		D9F74DDC2536FC5D00B3B6BC /* LeftMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F74DDB2536FC5D00B3B6BC /* LeftMenuModel.swift */; };
 		D9F74DDF2536FD0400B3B6BC /* LeftMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F74DDE2536FD0400B3B6BC /* LeftMenuViewModel.swift */; };
+		E8CF8F5A256BD45200FBD6B4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CF8F59256BD45200FBD6B4 /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -358,6 +359,7 @@
 		D9EF5826253F471500443F88 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		D9F74DDB2536FC5D00B3B6BC /* LeftMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuModel.swift; sourceTree = "<group>"; };
 		D9F74DDE2536FD0400B3B6BC /* LeftMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewModel.swift; sourceTree = "<group>"; };
+		E8CF8F59256BD45200FBD6B4 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -726,6 +728,7 @@
 				D98D0193253EDC0300926280 /* ProfileModule */,
 				D9216741254B01A300849132 /* OrderModule */,
 				D95404F32531A6CE003C3277 /* LoaderViewController.swift */,
+				E8CF8F59256BD45200FBD6B4 /* SplashViewController.swift */,
 				D97C2AE6252F899E00651C9D /* BaseViewController.swift */,
 			);
 			path = Controllers;
@@ -1035,7 +1038,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D97C2AC5252F810200651C9D /* Build configuration list for PBXNativeTarget "MyOrder" */;
 			buildPhases = (
-				C9CCEE5F7A1F23C9B1AAC43A /* [CP] Build Pods Frameworks */,
+				69EC67FAC8D1A8C72EAAC43A /* Compile Binary Libraries */,
 				034598D53C80513FD508F0D0 /* [CP] Check Pods Manifest.lock */,
 				D97C2AAD252F810000651C9D /* Sources */,
 				D97C2AAE252F810000651C9D /* Frameworks */,
@@ -1142,7 +1145,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C9CCEE5F7A1F23C9B1AAC43A /* [CP] Build Pods Frameworks */ = {
+		69EC67FAC8D1A8C72EAAC43A /* Compile Binary Libraries */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1151,7 +1154,7 @@
 			);
 			inputPaths = (
 			);
-			name = "[CP] Build Pods Frameworks";
+			name = "Compile Binary Libraries";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -1295,6 +1298,7 @@
 				D9A4A39825336B6C004F22D4 /* ProductListViewModel.swift in Sources */,
 				D94C619425548E1E002B533F /* DashboardStokistDistributorModel.swift in Sources */,
 				D9825125254AA17C008107CF /* CheckoutModel.swift in Sources */,
+				E8CF8F5A256BD45200FBD6B4 /* SplashViewController.swift in Sources */,
 				D9EF581A253F349400443F88 /* ProfileViewModel.swift in Sources */,
 				D952C391254DA89F0067C0D7 /* AddIssueViewModel.swift in Sources */,
 				D9000C6F2532242500BE869A /* DashboardModel.swift in Sources */,

@@ -54,10 +54,15 @@ class LeftMenuViewController: UIViewController, FAPanelStateDelegate {
         }
     }
     func navigateToDashboard(){
-        if let  aDashboardViewController = DashboardViewController.getController(story: "Dashboard")  as? DashboardViewController {
-            let centerNavVC = UINavigationController(rootViewController: aDashboardViewController)
-            panel?.center(centerNavVC)
+        var  centerVC: BaseViewController = DashboardViewController.getController(story: "Dashboard")  as! DashboardViewController
+        if UserModel.shared.aSelectedUserType == .manufacture {
+            centerVC = DashboardMenuFacturerVC.getController(story: "Dashboard")  as! DashboardMenuFacturerVC
+        }else if UserModel.shared.aSelectedUserType == .stockist ||
+                    UserModel.shared.aSelectedUserType == .distributor {
+            centerVC = DashboardStokistDistributorVC.getController(story: "Dashboard")  as! DashboardStokistDistributorVC
         }
+        let centerNavVC = UINavigationController(rootViewController: centerVC)
+        panel?.center(centerNavVC)
     }
     func navigateToWearList(id: Int){
         if let  aWearlistViewcontroller = WearlistViewcontroller.getController(story: "Dashboard")  as? WearlistViewcontroller {

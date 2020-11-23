@@ -21,6 +21,7 @@ class WellcomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewBlue.makeBottomRounded()
+       
     }
     @IBAction func actionOnRole(_ sender: UIButton) {
         self.buttonMenufacturer.alpha = 0.7

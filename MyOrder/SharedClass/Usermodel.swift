@@ -22,9 +22,6 @@ final class UserModel: NSObject {
     func setUserModel(aLoginModel: LoginModel, aUserType: UserType){
         self.aSelectedUserType = aUserType
         self.fld_user_id = aLoginModel.fld_user_id
-        #if targetEnvironment(simulator)
-      //  self.fld_user_id = 2
-        #endif
         self.fld_user_name = aLoginModel.fld_user_name
         self.fld_user_email = aLoginModel.fld_user_email
         self.fld_user_phone = aLoginModel.fld_user_phone

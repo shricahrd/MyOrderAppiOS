@@ -48,6 +48,8 @@ class  LoginViewModel: NSObject {
                     json["gst_detail"] = result?["gst_detail"] as? Int ?? 0
                     json["referal_code"] = result?["referal_code"] as? String ?? ""
                     json["token"] = result?["token"] as? String ?? ""
+                    UserDefaults.standard.set(aRegistrationType.rawValue, forKey: OldUserType)
+                    UserDefaults.standard.synchronize()
                     let aLoginModel = LoginModel(fromDictionary:json)
                     aLoginSuccess(aLoginModel)
                 }else {

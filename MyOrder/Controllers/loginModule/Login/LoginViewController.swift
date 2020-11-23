@@ -101,6 +101,7 @@ class LoginViewController: BaseViewController {
                                                       aPassword: self.textFieldPassword.text ?? "") { (model) in
             self.hideActivity()
             UserModel.shared.setUserModel(aLoginModel: model, aUserType: self.aSelectedUserType)
+           
             DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
                 self.addSideMenu()
             }

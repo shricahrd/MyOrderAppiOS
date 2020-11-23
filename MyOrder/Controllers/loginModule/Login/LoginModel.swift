@@ -57,5 +57,7 @@ class LoginModel: NSObject {
         if let token = dictionary["token"] as? String {
             self.token = token
         }
+        UserDefaults.standard.set(dictionary, forKey: OldUser)
+        UserDefaults.standard.synchronize()
     }
 }

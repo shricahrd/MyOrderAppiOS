@@ -31,6 +31,9 @@ enum LeftPenalType : Int {
     case helpSupport = 11
 }
 
+let OldUser                 = "OldUser"
+let OldUserType             = "OldUserType"
+
 let NoInternet              = "Internet connection not available."
 let Someerror               = "Some error occour."
 let OTPSend                 = "OTP is sent to your register phone number."

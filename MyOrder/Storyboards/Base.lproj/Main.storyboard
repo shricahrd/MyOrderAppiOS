@@ -37,10 +37,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="712"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0nG-w2-qgA">
-                                        <rect key="frame" x="0.0" y="124.5" width="414" height="562.5"/>
+                                        <rect key="frame" x="0.0" y="123" width="414" height="564"/>
                                         <subviews>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tp6-hK-PYo">
-                                                <rect key="frame" x="50" y="414" width="314" height="56"/>
+                                                <rect key="frame" x="50" y="415" width="314" height="56"/>
                                                 <color key="backgroundColor" name="AppWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <state key="normal" title="SALES AGENT">
@@ -56,7 +56,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W48-gm-wg0">
-                                                <rect key="frame" x="50" y="347.5" width="314" height="56.5"/>
+                                                <rect key="frame" x="50" y="348.5" width="314" height="56.5"/>
                                                 <color key="backgroundColor" name="AppWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <state key="normal" title="RETAILER">
@@ -72,7 +72,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rc-Fb-bND">
-                                                <rect key="frame" x="50" y="281.5" width="314" height="56"/>
+                                                <rect key="frame" x="50" y="282" width="314" height="56.5"/>
                                                 <color key="backgroundColor" name="AppWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <state key="normal" title="DISTRIBUTOR">
@@ -88,13 +88,13 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your Role for Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qof-18-l2C">
-                                                <rect key="frame" x="10" y="111.5" width="394" height="17.5"/>
+                                                <rect key="frame" x="10" y="112.5" width="394" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" name="AppWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thm-VR-a1O">
-                                                <rect key="frame" x="50" y="215" width="314" height="56.5"/>
+                                                <rect key="frame" x="50" y="215.5" width="314" height="56.5"/>
                                                 <color key="backgroundColor" name="AppWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <state key="normal" title="STOCKIST">
@@ -110,7 +110,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Tf-JD-fKn">
-                                                <rect key="frame" x="50" y="149" width="314" height="56"/>
+                                                <rect key="frame" x="50" y="149" width="314" height="56.5"/>
                                                 <color key="backgroundColor" name="AppWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <state key="normal" title="MANUFACTURER">
@@ -158,7 +158,7 @@
                                         <rect key="frame" x="182" y="50" width="50" height="59"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQz-pI-Hix">
-                                        <rect key="frame" x="137.5" y="119" width="139" height="35.5"/>
+                                        <rect key="frame" x="147" y="119" width="120" height="34"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="29"/>
                                         <color key="textColor" name="AppWhite"/>
                                         <nil key="highlightedColor"/>
@@ -205,7 +205,7 @@
                                 <rect key="frame" x="267.5" y="706" width="12.5" height="12.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plS-Nh-Xem">
-                                <rect key="frame" x="116" y="839" width="182.5" height="13"/>
+                                <rect key="frame" x="125" y="839" width="164.5" height="13"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Already have an account? ">
                                         <attributes>
@@ -225,7 +225,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpo-VF-TJE">
-                                <rect key="frame" x="248.5" y="830.5" width="50" height="30"/>
+                                <rect key="frame" x="239.5" y="830.5" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="V3g-no-uP6"/>
                                 </constraints>
@@ -269,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A5H-Xb-TaN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-80" y="159"/>
+            <point key="canvasLocation" x="-77" y="169"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="sRR-TE-cKD">
@@ -286,7 +286,7 @@
                                         <rect key="frame" x="182" y="50" width="50" height="59"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzO-Be-hxN">
-                                        <rect key="frame" x="157" y="119" width="100.5" height="35.5"/>
+                                        <rect key="frame" x="162.5" y="119" width="89" height="34"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="29"/>
                                         <color key="textColor" name="AppWhite"/>
                                         <nil key="highlightedColor"/>
@@ -429,7 +429,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isA-ZT-VLG">
-                                        <rect key="frame" x="277" y="172" width="117" height="44"/>
+                                        <rect key="frame" x="287" y="172" width="107" height="43"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                         <state key="normal" title="Forgot Password? ">
                                             <color key="titleColor" name="AppBlack"/>
@@ -461,7 +461,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8H-pe-WO2">
-                                <rect key="frame" x="121" y="839" width="172.5" height="13"/>
+                                <rect key="frame" x="129.5" y="839" width="155" height="13"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Don't have an account? ">
                                         <attributes>
@@ -481,7 +481,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM8-ms-RUf">
-                                <rect key="frame" x="243.5" y="830.5" width="50" height="30"/>
+                                <rect key="frame" x="234.5" y="830.5" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="lJJ-2z-uim"/>
                                 </constraints>
@@ -490,7 +490,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-OR-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGz-pP-u74">
-                                <rect key="frame" x="191" y="636.5" width="32" height="20"/>
+                                <rect key="frame" x="188" y="636.5" width="38" height="20"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                 <color key="textColor" name="AppLightGray"/>
                                 <nil key="highlightedColor"/>
@@ -537,16 +537,16 @@
                                 <rect key="frame" x="182" y="50" width="50" height="59"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNk-12-9sD">
-                                <rect key="frame" x="85" y="119" width="244.5" height="35.5"/>
+                                <rect key="frame" x="96.5" y="119" width="221" height="34"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="29"/>
                                 <color key="textColor" name="AppWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Is7-ig-POD">
-                                <rect key="frame" x="0.0" y="194.5" width="414" height="701.5"/>
+                                <rect key="frame" x="0.0" y="193" width="414" height="703"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gF2-4j-BOW">
-                                        <rect key="frame" x="0.0" y="651.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="653" width="414" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="0bp-MQ-i5p"/>
@@ -682,7 +682,7 @@
                                         <rect key="frame" x="182" y="50" width="50" height="59"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE8-Vs-D9K">
-                                        <rect key="frame" x="76.5" y="119" width="261.5" height="35.5"/>
+                                        <rect key="frame" x="89" y="119" width="236" height="34"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="29"/>
                                         <color key="textColor" name="AppWhite"/>
                                         <nil key="highlightedColor"/>
@@ -897,7 +897,7 @@
                                         <rect key="frame" x="182" y="50" width="50" height="59"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ltg-ch-uBX">
-                                        <rect key="frame" x="151" y="119" width="112" height="35.5"/>
+                                        <rect key="frame" x="157.5" y="119" width="99.5" height="34"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="29"/>
                                         <color key="textColor" name="AppWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1150,7 +1150,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxh-Eh-sg5">
-                                <rect key="frame" x="116" y="839" width="182.5" height="13"/>
+                                <rect key="frame" x="125" y="839" width="164.5" height="13"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Already have an account? ">
                                         <attributes>
@@ -1170,7 +1170,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvR-vj-KOA">
-                                <rect key="frame" x="248.5" y="830.5" width="50" height="30"/>
+                                <rect key="frame" x="239.5" y="830.5" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="KKU-Rk-WI7"/>
                                 </constraints>
@@ -1341,10 +1341,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pd2-ys-zJD">
-                                <rect key="frame" x="0.0" y="194.5" width="414" height="701.5"/>
+                                <rect key="frame" x="0.0" y="193" width="414" height="703"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJh-tY-p9X">
-                                        <rect key="frame" x="0.0" y="651.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="653" width="414" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="PCa-b4-32u"/>
@@ -1357,7 +1357,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6c-jx-zzT" customClass="JAPinView" customModule="MyOrder" customModuleProvider="target">
-                                        <rect key="frame" x="80" y="255.5" width="254" height="50"/>
+                                        <rect key="frame" x="80" y="256" width="254" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="EQs-gP-IBq"/>
@@ -1373,13 +1373,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKS-LG-NyP">
-                                        <rect key="frame" x="187" y="355.5" width="40" height="19"/>
+                                        <rect key="frame" x="187" y="356" width="40" height="19"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                         <color key="textColor" name="AppBlack"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQ5-eS-0de">
-                                        <rect key="frame" x="35" y="424.5" width="344" height="50"/>
+                                        <rect key="frame" x="35" y="425" width="344" height="50"/>
                                         <color key="backgroundColor" name="AppLightOrange"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="s44-bl-UL4"/>
@@ -1398,7 +1398,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-7o-Hii">
-                                        <rect key="frame" x="109" y="494.5" width="196" height="17"/>
+                                        <rect key="frame" x="105" y="495" width="204.5" height="17"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Didn’t received an OTP? ">
                                                 <attributes>
@@ -1416,7 +1416,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZl-x8-RQb">
-                                        <rect key="frame" x="255" y="488" width="50" height="30"/>
+                                        <rect key="frame" x="259.5" y="488.5" width="50" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="vwM-t4-ocK"/>
                                         </constraints>
@@ -1459,7 +1459,7 @@
                                 <rect key="frame" x="0.0" y="822" width="414" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTP sent successfully" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5T-Io-NqZ">
-                                        <rect key="frame" x="20" y="11.5" width="138" height="17"/>
+                                        <rect key="frame" x="20" y="11.5" width="139" height="17"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <color key="textColor" name="AppWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1473,7 +1473,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0W-gd-fHn">
-                                <rect key="frame" x="166.5" y="119" width="81.5" height="35.5"/>
+                                <rect key="frame" x="171.5" y="119" width="71" height="34"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="29"/>
                                 <color key="textColor" name="AppWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1535,23 +1535,53 @@
         <!--Navigation Controller-->
         <scene sceneID="wnN-xm-JlK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W8B-7B-zDa" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="W8B-7B-zDa" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E8U-7U-3oG">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="cfX-xP-eov" kind="relationship" relationship="rootViewController" id="jJW-L2-eY7"/>
+                        <segue destination="Rds-N0-0IY" kind="relationship" relationship="rootViewController" id="Dvy-AB-OzN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEu-wN-nWE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-929" y="159"/>
+            <point key="canvasLocation" x="-1423" y="170"/>
+        </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="wkg-7c-zIw">
+            <objects>
+                <viewController id="Rds-N0-0IY" customClass="SplashViewController" customModule="MyOrder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XBh-yG-mDN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="IqD-6T-QBc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Uqd-bA-tX1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IqD-6T-QBc" firstAttribute="leading" secondItem="Uqd-bA-tX1" secondAttribute="leading" id="4k6-wx-ZUw"/>
+                            <constraint firstItem="IqD-6T-QBc" firstAttribute="top" secondItem="XBh-yG-mDN" secondAttribute="top" id="Mem-Ll-Ga0"/>
+                            <constraint firstItem="IqD-6T-QBc" firstAttribute="trailing" secondItem="Uqd-bA-tX1" secondAttribute="trailing" id="Swq-hU-3bl"/>
+                            <constraint firstAttribute="bottom" secondItem="IqD-6T-QBc" secondAttribute="bottom" id="vxS-s2-Zdx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wa5-Op-sPy"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bMK-cy-Lgw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-741" y="169"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Splash" width="375" height="812"/>
         <image name="arrow_forward" width="12.5" height="12.5"/>
         <image name="logo" width="50" height="59"/>
         <image name="showPassword" width="24" height="21"/>
