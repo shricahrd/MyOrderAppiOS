@@ -2,7 +2,7 @@
 //  ProductListViewModel.swift
 //  MyOrder
 //
-//  Created by gwl on 11/10/20.
+//  Created by sourabh on 11/10/20.
 //
 
 import UIKit
@@ -72,25 +72,25 @@ class ProductListViewModel: NSObject {
                                      afld_search_txt: String,
                                      afld_sort_by: Int,
                                      afld_page_no: Int,
+                                     aCatID: Int,
                                      aProductListSuccess:@escaping  ProductListSuccess,
                                      aFailed:@escaping  Failed) {
-        
         var brandIds: [String] = []
         for brand in aFilterModel.aBranddata {
             if brand.isSelected == true {
-                brandIds.append(brand.fld_id.description)
+                brandIds.append("brand" + brand.fld_id.description)
             }
         }
         var colorIds: [String] = []
         for color in aFilterModel.aColordata {
             if color.isSelected == true {
-                colorIds.append(color.fld_id.description)
+                colorIds.append("color" + color.fld_id.description)
             }
         }
         var sizeIds: [String] = []
         for size in aFilterModel.aSizedata {
             if size.isSelected == true {
-                sizeIds.append(size.fld_id.description)
+                sizeIds.append("size" + size.fld_id.description)
             }
         }
         var categoryIds: [String] = []
@@ -99,7 +99,12 @@ class ProductListViewModel: NSObject {
                 categoryIds.append(cat.fld_cat_id.description)
             }
         }
+//        if aFilterModel.aCategorydata.count <= 0 {
+//            categoryIds.append(aCatID.description)
+//        }
+        
         let jsonReq =  ["fld_cat_id":categoryIds.joined(separator: ","),
+                        "fld_scat_id":aCatID.description,
                         "fld_brand_id":brandIds.joined(separator: ","),
                         "fld_size_id":sizeIds.joined(separator: ","),
                         "fld_color_id":colorIds.joined(separator: ","),
@@ -108,7 +113,6 @@ class ProductListViewModel: NSObject {
                         "fld_page_no":afld_page_no,
                         "fld_sort_by":afld_sort_by,
                         "fld_search_txt":afld_search_txt,
-                        "fld_scat_id":"",
                         "fld_material_id":"",
                         "fld_other_id":"",
                         "fld_user_id":UserModel.shared.fld_user_id,

@@ -2,7 +2,7 @@
 //  CartModel.swift
 //  MyOrder
 //
-//  Created by gwl on 19/10/20.
+//  Created by sourabh on 19/10/20.
 //
 
 import UIKit
@@ -68,9 +68,16 @@ class CartList: NSObject {
     var fld_product_color: Int = 0
     var fld_product_id: String = ""
     var colorsizelist: [Colorsizelist] = []
+    var aAdditionalColor: [AdditionalColor] = []
+    var aAdditionalSize: [AdditionalSize] = []
+
+    
     override init(){
     }
-    init(fromDictionary dictionary: [String: Any], aColorsizelist: [Colorsizelist]) {
+    init(fromDictionary dictionary: [String: Any],
+         aColorsizelist: [Colorsizelist],
+         aAdditionalColor: [AdditionalColor],
+         aAdditionalSize: [AdditionalSize]) {
         if let default_image = dictionary["default_image"] as? String {
             self.default_image = default_image
         }
@@ -111,6 +118,8 @@ class CartList: NSObject {
             self.fld_product_id = fld_product_id
         }
         colorsizelist = aColorsizelist
+        self.aAdditionalColor = aAdditionalColor
+        self.aAdditionalSize = aAdditionalSize
     }
 }
 class Colorsizelist: NSObject {
@@ -137,6 +146,55 @@ class Colorsizelist: NSObject {
         self.size_list = sizes
     }
 }
+class AdditionalColor: NSObject {
+    var color_code: String = ""
+    var color_name: String = ""
+    var color_id: Int = 0
+    var price: Int = 0
+    var qty: Int = 0
+    override init(){
+    }
+    init(fromDictionary dictionary: [String: Any]) {
+        if let color_code = dictionary["color_code"] as? String {
+            self.color_code = color_code
+        }
+        if let color_name = dictionary["color_name"] as? String {
+            self.color_name = color_name
+        }
+        if let color_id = dictionary["color_id"] as? Int {
+            self.color_id = color_id
+        }
+        if let price = dictionary["price"] as? Int {
+            self.price = price
+        }
+        if let qty = dictionary["qty"] as? String {
+            self.qty = Int(qty) ?? 0
+        }
+    }
+}
+class AdditionalSize: NSObject {
+    var size_name: String = ""
+    var price: Int = 0
+    var qty: Int = 0
+    var size_id: Int = 0
+    override init(){
+    }
+    init(fromDictionary dictionary: [String: Any]) {
+        if let size_name = dictionary["size_name"] as? String {
+            self.size_name = size_name
+        }
+        if let size_id = dictionary["size_id"] as? Int {
+            self.size_id = size_id
+        }
+        if let price = dictionary["price"] as? Int {
+            self.price = price
+        }
+        if let qty = dictionary["qty"] as? String {
+            self.qty = Int(qty) ?? 0
+        }
+    }
+}
+    
 class Sizelist: NSObject {
     var color_id: Int = 0
     var price: Int = 0

@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  MyOrder
 //
-//  Created by gwl on 09/10/20.
+//  Created by sourabh on 09/10/20.
 //
 
 import UIKit
@@ -13,7 +13,8 @@ class LoginViewController: BaseViewController {
     var aSelectedUserType : UserType = .unknown
     let aLoginViewModel = LoginViewModel()
     override func viewDidLoad() {
-        super.viewDidLoad() 
+        super.viewDidLoad()
+        self.textFieldUsername.delegate = self
         viewSignIn.makeBottomShadow()
         #if targetEnvironment(simulator)
         switch aSelectedUserType {
@@ -22,16 +23,19 @@ class LoginViewController: BaseViewController {
             self.textFieldPassword.text = "12345678"
         case .distributor:
             self.textFieldUsername.text = "7405655808"
+            self.textFieldUsername.text = "7405655808"
+
             self.textFieldPassword.text = "1234567890"
         case .manufacture:
-            self.textFieldUsername.text = "8200145181"
-            self.textFieldPassword.text = "1234567890"
+//            self.textFieldUsername.text = "8200145181"
+            self.textFieldUsername.text = "9598802382"
+            self.textFieldPassword.text = "12345678"
         case .stockist:
-            self.textFieldUsername.text = "8200145181"
-            self.textFieldPassword.text = "1234567890"
+            self.textFieldUsername.text = "9898989898"
+            self.textFieldPassword.text = "12345678"
         case .agent:
-            self.textFieldUsername.text = "7405655808"
-            self.textFieldPassword.text = "123123123"
+            self.textFieldUsername.text = "8965845214"
+            self.textFieldPassword.text = "12345678"
         default:
             self.textFieldUsername.text = ""
             self.textFieldPassword.text = ""
@@ -111,5 +115,18 @@ class LoginViewController: BaseViewController {
         }
 //        #endif
        
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == textFieldUsername {
+        let result = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        if result.contains("\n") { return true}
+            if result.count > 10 {
+                return false
+            }
+        }
+        return true
     }
 }

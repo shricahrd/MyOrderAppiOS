@@ -2,7 +2,7 @@
 //  ApiendPoints.swift
 //  MyOrder
 //
-//  Created by gwl on 10/10/20.
+//  Created by sourabh on 10/10/20.
 //
 
 
@@ -83,6 +83,26 @@ let kAreaList                       =   "area_listing"
 let kCoupons                        =   "coupons"
 let kCancelReason                   =   "getReason"
 let kCancelOrder                    =   "cancel_return_order"
+let kLegalPages                     =   "legalPages"
+let kDashboard                      =   "dashboard"
+let kOrderListDelivered             =   "leveling_order_list"
+let kOrderListDispatched            =   "order_list_delivered"
+let kReward                         =   "reward"
+let kProductSearch                  =   "productsearch"
+let kRewardRootCat                  =   "rewardRootCat"
+let kRewardProducts                 =   "rewardProducts"
+let kRewardOrderList                =   "rewardorder_list"
+let kRewardCart                     =   "rewardCart"
+let kRewardCartAddUpdate            =   "rewardCart_add_update"
+let kRewardCartReview               =   "rewardCart_review"
+let kRewardSaveOrder                =   "rewardSaveOrder"
+let kRewardPoints                   =   "rewardPoints"
+let kLevelingIssuesList             =   "leveling_issues_list"
+
+
+
+
+
 
 
 

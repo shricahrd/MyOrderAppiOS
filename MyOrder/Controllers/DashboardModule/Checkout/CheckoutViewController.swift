@@ -2,7 +2,7 @@
 //  CheckoutViewController.swift
 //  MyOrder
 //
-//  Created by gwl on 29/10/20.
+//  Created by sourabh on 29/10/20.
 //
 
 import UIKit
@@ -11,10 +11,10 @@ class CheckOutCell: UITableViewCell {
     @IBOutlet weak var labelQty: UILabel!
     @IBOutlet weak var labelItem: UILabel!
     @IBOutlet weak var labelPrice: UILabel!
-    func setCellData(aCartReviewList: CartReviewList) {
+    func setCellData(aCartReviewList: CartReviewList, isReedem: Bool) {
         self.labelQty.text = aCartReviewList.fld_product_qty.description
         self.labelItem.text = aCartReviewList.fld_product_name
-        self.labelPrice.text = aCartReviewList.fld_product_price.description
+        self.labelPrice.text = isReedem == false ? aCartReviewList.fld_spcl_price.description : aCartReviewList.fld_product_points.description
     }
 }
 class CheckoutViewController: BaseViewController {
@@ -29,19 +29,41 @@ class CheckoutViewController: BaseViewController {
     @IBOutlet weak var labelDiscount: UILabel!
     @IBOutlet weak var labelNetAmount: UILabel!
     @IBOutlet weak var viewSuccess: UIView!
-
+    
+    @IBOutlet weak var labelPrice: UILabel!
+    @IBOutlet weak var labelTotalAmountTitle: UILabel!
+    @IBOutlet weak var labelNetAmountTitle: UILabel!
+    @IBOutlet weak var labelDiscountTitle: UILabel!
+    @IBOutlet weak var redeemHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewRedeem: UIView!
+    @IBOutlet weak var labelRedeemPoints: UILabel!
+    
     var aCheckoutViewModel = CheckoutViewModel()
     var aCheckoutModel = CheckoutModel()
     var aAddressListModel = AddressListModel()
     var aAddressListViewModel = AddressListViewModel()
     var aCouponModel = CouponModel()
     var aProfileViewModel = ProfileViewModel()
+    var isRedeemView = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTitleImage()
         self.addLeftBarButton(imageName: "back")
         self.updateUI()
         self.viewSuccess.isHidden = true
+        if isRedeemView == true {
+            self.labelPrice.text = "Points"
+            self.labelTotalAmountTitle.text = "Total Points"
+            self.labelNetAmountTitle.text = "Points redeemed"
+            self.labelDiscountTitle.text = " "
+            self.labelDiscount.text = " "
+            self.viewRedeem.layer.borderWidth = 1.0
+            self.viewRedeem.layer.borderColor = UIColor.lightGray.cgColor
+            self.redeemHeight.constant = 40.0
+        }else {
+            self.redeemHeight.constant = 0.0
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,6 +71,8 @@ class CheckoutViewController: BaseViewController {
     }
     override func actionOnLeftIcon() {
         self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func actionOnRedeemPoints(_ sender: Any) {
     }
     @IBAction func actionOnChange(_ sender: Any) {
         if let aAddressListViewController = AddressListViewController.getController(story: "Profile")  as? AddressListViewController {
@@ -59,7 +83,17 @@ class CheckoutViewController: BaseViewController {
         self.addSideMenu()
     }
     @IBAction func actionOnPlaceOrder(_ sender: Any) {
-        self.placeOrder()
+        if self.isRedeemView == true {
+            let points = Int(self.labelRedeemPoints.text!) ?? 0
+            let total = aCheckoutModel.cart_total - aCheckoutModel.aCouponModel.discount_amount
+            if total <= points {
+                self.placeOrder()
+            }else {
+                self.showAlartWith(message: "Insufficient points")
+            }
+        }else {
+            self.placeOrder()
+        }
     }
 }
 extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
@@ -75,7 +109,7 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckOutCell") as! CheckOutCell
-        cell.setCellData(aCartReviewList: aCheckoutModel.aCartReviewList[indexPath.row])
+        cell.setCellData(aCartReviewList: aCheckoutModel.aCartReviewList[indexPath.row], isReedem: self.isRedeemView)
         cell.selectionStyle = .none
         return cell
     }
@@ -83,8 +117,24 @@ extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension CheckoutViewController {
     func getCartReview(){
+        if self.isRedeemView == true {
+            self.showActivity()
+            self.aCheckoutViewModel.getCartPointsServiceCall{ (model) in
+                self.hideActivity()
+                self.labelRedeemPoints.text = model
+                self.getCart()
+            }  aFailed: { (error) in
+                self.hideActivity()
+                self.getCart()
+            }
+        }else {
+            getCart()
+        }
+    }
+    
+    func getCart(){
         self.showActivity()
-        self.aCheckoutViewModel.getCartReviewServiceCall { (model) in
+        self.aCheckoutViewModel.getCartReviewServiceCall(isRedeem: self.isRedeemView){ (model) in
             self.hideActivity()
             self.aCheckoutModel = model
             self.aCheckoutModel.aCouponModel = self.aCouponModel
@@ -115,7 +165,7 @@ extension CheckoutViewController {
             }
         }  aFailed: { (error) in
             self.hideActivity()
-//            self.showAlartWith(message: error!.localizedDescription)
+            //            self.showAlartWith(message: error!.localizedDescription)
             self.userProfileServiceCall()
         }
     }
@@ -133,9 +183,21 @@ extension CheckoutViewController {
     func updateUI() {
         self.tableViewItems.separatorColor = UIColor.clear
         self.labelTotalQty.text = aCheckoutModel.total_qty.description
-        self.labelTotalAmount.text = "₹ " + String(format: "%.2f",Double(aCheckoutModel.cart_total))
-        self.labelDiscount.text = "₹ " + String(format: "%.2f", Double(aCheckoutModel.aCouponModel.discount_amount))
-        self.labelNetAmount.text = "₹ " + String(format: "%.2f", Double(aCheckoutModel.cart_total - aCheckoutModel.aCouponModel.discount_amount))
+        
+        
+        if self.isRedeemView == false {
+            self.labelTotalAmount.text = "₹ " + String(format: "%.2f",Double(aCheckoutModel.cart_total))
+            self.labelDiscount.text = "₹ " + String(format: "%.2f", Double(aCheckoutModel.aCouponModel.discount_amount))
+            self.labelNetAmount.text = "₹ " + String(format: "%.2f", Double(aCheckoutModel.cart_total - aCheckoutModel.aCouponModel.discount_amount))
+        }else {
+            self.labelTotalAmount.text =  String(format: "%.2f",Double(aCheckoutModel.cart_total))
+            self.labelDiscount.text =  " "
+            self.labelNetAmount.text = String(format: "%.2f", Double(aCheckoutModel.cart_total - aCheckoutModel.aCouponModel.discount_amount))
+        }
+        
+        
+        
+        
         self.tableViewItems.reloadData()
         self.labelAddressTitle.text = aAddressListModel.fld_user_name
         self.labelAddress.text = aAddressListModel.fld_user_address + ", " +
@@ -154,7 +216,7 @@ extension CheckoutViewController {
     
     func placeOrder(){
         self.showActivity()
-        self.aCheckoutViewModel.placeOrderCODServiceCall(afld_shipping_id: aAddressListModel.fld_address_id,
+        self.aCheckoutViewModel.placeOrderCODServiceCall(isRedeem: self.isRedeemView, afld_shipping_id: aAddressListModel.fld_address_id,
                                                          afld_coupon_code: aCheckoutModel.aCouponModel.coupon_code,
                                                          afld_shipping_charges: 0,
                                                          afld_grand_total: aCheckoutModel.cart_total - aCheckoutModel.aCouponModel.discount_amount,
@@ -164,7 +226,7 @@ extension CheckoutViewController {
             self.showAlartWith(message: msg) { (done) in
                 self.viewSuccess.isHidden = false
                 self.addLeftBarButton(imageName: "nil")
-
+                
             }
         } aFailed: { (error) in
             self.hideActivity()

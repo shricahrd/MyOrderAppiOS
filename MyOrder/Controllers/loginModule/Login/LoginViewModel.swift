@@ -2,7 +2,7 @@
 //  LoginViewModel.swift
 //  MyOrder
 //
-//  Created by gwl on 09/10/20.
+//  Created by sourabh on 09/10/20.
 //
 
 import UIKit
@@ -31,7 +31,7 @@ class  LoginViewModel: NSObject {
         case .retailer:
             loginFor = kRetailerLogin
         case .agent:
-            loginFor = kManufactureLogin
+            loginFor = kSalesagentLogin
         default:
             loginFor = kSalesagentLogin
         }

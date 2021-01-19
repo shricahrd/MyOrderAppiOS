@@ -2,7 +2,7 @@
 //  OrderListViewModel.swift
 //  MyOrder
 //
-//  Created by gwl on 29/10/20.
+//  Created by sourabh on 29/10/20.
 //
 
 import Foundation
@@ -12,13 +12,23 @@ typealias OrderListModelSuccess = (_ model: OrderListModel) -> Void
 
 class OrderListViewModel: NSObject {
     func aGetOrdersListServiceCall(afld_page_no: Int,
+                                   aOrderServiceType: OrderServiceType,
                                     aOrderListModelSuccess:@escaping  OrderListModelSuccess,
                                    aFailed:@escaping  Failed) {
         let jsonReq = ["fld_user_id":UserModel.shared.fld_user_id,
                        "fld_order_type": 0,
                        "fld_page_no":afld_page_no,
                        "panel_type":UserModel.shared.aSelectedUserType.rawValue] as [String : Any]
-        ApiService.shared.callServiceWith(apiName: kOrderList, parameter: jsonReq, methods:  .post) { (result, error) in
+        
+        var serviceUrl = ""
+        if aOrderServiceType == .myorder {
+            serviceUrl = kOrderList
+        }else if aOrderServiceType == .delivered {
+            serviceUrl = kOrderListDelivered
+        }else {
+            serviceUrl = kOrderListDispatched
+        }
+        ApiService.shared.callServiceWith(apiName: serviceUrl, parameter: jsonReq, methods:  .post) { (result, error) in
             if error == nil {
                 let object = result?["order_data"] as? [[String: Any]] ?? []
                 var aMyOrders: [MyOrders] = []
@@ -36,7 +46,10 @@ class OrderListViewModel: NSObject {
                             }
                             aColorsizelist.append(Colorsizelist(fromDictionary: colors, sizes: aSizeList))
                         }
-                        aCartList.append(CartList(fromDictionary: aColorSizesList, aColorsizelist: aColorsizelist))
+                        aCartList.append( CartList(fromDictionary: aColorSizesList,
+                                                   aColorsizelist: aColorsizelist,
+                                                   aAdditionalColor: [],
+                                                   aAdditionalSize: []))
                     }
                     aMyOrders.append(MyOrders(fromDictionary: order, aCartLists: aCartList))
                 }

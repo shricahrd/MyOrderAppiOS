@@ -1,7 +1,7 @@
 //  LeftMenuViewController.swift
 //  MyOrder
 //
-//  Created by gwl on 11/10/20.
+//  Created by sourabh on 11/10/20.
 //
 
 import UIKit
@@ -49,6 +49,20 @@ class LeftMenuViewController: UIViewController, FAPanelStateDelegate {
             self.navigateToIssues()
         case .ledger:
             self.navigateToLedger()
+        case .about:
+            self.navigateToAbout()
+        case .helpSupport:
+            self.navigateToHelp()
+        case .referandearn:
+            self.navigateToReferAndEarn()
+        case .wallet:
+            self.navigateToWallet()
+        case .reward:
+            self.navigateToReward()
+        case .redeemOrders:
+            self.navigateToRedeemOrder()
+        case .rewardCart:
+            self.navigateToRedeemCart()
         default:
             debugPrint(object)
         }
@@ -115,9 +129,51 @@ class LeftMenuViewController: UIViewController, FAPanelStateDelegate {
         }
     }
     
+    func navigateToAbout(){
+        if let  aHelpAboutViewController = HelpAboutViewController.getController(story: "Order")  as? HelpAboutViewController {
+            aHelpAboutViewController.isHelp = false
+            let centerNavVC = UINavigationController(rootViewController: aHelpAboutViewController)
+            panel?.center(centerNavVC)
+        }
+    }
+    func navigateToHelp(){
+        if let  aHelpAboutViewController = HelpAboutViewController.getController(story: "Order")  as? HelpAboutViewController {
+            let centerNavVC = UINavigationController(rootViewController: aHelpAboutViewController)
+            panel?.center(centerNavVC)
+        }
+    }
     
+    func navigateToReferAndEarn(){
+        if let  aReferAndEarnViewController = ReferAndEarnViewController.getController(story: "Order")  as? ReferAndEarnViewController {
+            let centerNavVC = UINavigationController(rootViewController: aReferAndEarnViewController)
+            panel?.center(centerNavVC)
+        }
+    }
+    func navigateToWallet(){
+        if let  aWalletViewController = WalletViewController.getController(story: "Order")  as? WalletViewController {
+            let centerNavVC = UINavigationController(rootViewController: aWalletViewController)
+            panel?.center(centerNavVC)
+        }
+    }
+    func navigateToReward(){
+        if let  aRewardCatagoryViewController = RewardCatagoryViewController.getController(story: "Reward")  as? RewardCatagoryViewController {
+            let centerNavVC = UINavigationController(rootViewController: aRewardCatagoryViewController)
+            panel?.center(centerNavVC)
+        }
+    }
+    func navigateToRedeemOrder(){
+        if let  aRedeemOrderViewController = RedeemOrderViewController.getController(story: "Reward")  as? RedeemOrderViewController {
+            let centerNavVC = UINavigationController(rootViewController: aRedeemOrderViewController)
+            panel?.center(centerNavVC)
+        }
+    }
+    func navigateToRedeemCart(){
+        if let  aRewardCartViewController = RewardCartViewController.getController(story: "Reward")  as? RewardCartViewController {
+            let centerNavVC = UINavigationController(rootViewController: aRewardCartViewController)
+            panel?.center(centerNavVC)
+        }
+    }
     @IBAction func actionOnProfile(_ sender: Any) {
-        
     }
     func leftPanelWillBecomeActive() {
         self.tableArray = self.aLeftMenuViewModel.getSideMenuObjects()

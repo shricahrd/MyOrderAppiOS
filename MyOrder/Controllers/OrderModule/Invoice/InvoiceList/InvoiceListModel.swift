@@ -2,7 +2,7 @@
 //  InvoiceListModel.swift
 //  MyOrder
 //
-//  Created by gwl on 31/10/20.
+//  Created by sourabh on 31/10/20.
 //
 
 import UIKit
@@ -25,11 +25,15 @@ class InvoiceList: NSObject {
     var fld_order_amt: String = ""
     var fld_order_date: String = ""
     var fld_order_no: String = ""
+    var fld_supplier_name: String = ""
     override init(){
     }
     init(fromDictionary dictionary: [String: Any]) {
         if let fld_invoice_no = dictionary["fld_invoice_no"] as? String {
             self.fld_invoice_no = fld_invoice_no
+        }
+        if let fld_supplier_name = dictionary["fld_supplier_name"] as? String {
+            self.fld_supplier_name = fld_supplier_name
         }
         if let fld_order_amt = dictionary["fld_order_amt"] as? String {
             self.fld_order_amt = fld_order_amt

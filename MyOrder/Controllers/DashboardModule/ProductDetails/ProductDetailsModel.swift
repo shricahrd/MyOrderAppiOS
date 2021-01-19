@@ -2,7 +2,7 @@
 //  ProductDetailsModel.swift
 //  MyOrder
 //
-//  Created by gwl on 12/10/20.
+//  Created by sourabh on 12/10/20.
 //
 
 import UIKit
@@ -172,6 +172,7 @@ class Colors: NSObject {
     var fld_color_name : String = ""
     var fld_color_code : String = ""
     var fld_color_thumbnail : String = ""
+    var fld_color_price : String = ""
     override init() {
     }
     init(fromDictionary dictionary: [String: Any]) {
@@ -180,6 +181,9 @@ class Colors: NSObject {
         }
         if let fld_color_name = dictionary["fld_color_name"] as? String {
             self.fld_color_name = fld_color_name
+        }
+        if let fld_color_price = dictionary["fld_color_price"] as? Int {
+            self.fld_color_price = fld_color_price.description
         }
         if let fld_color_code = dictionary["fld_color_code"] as? String {
             self.fld_color_code = fld_color_code

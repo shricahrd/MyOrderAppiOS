@@ -2,7 +2,7 @@
 //  FilterViewController.swift
 //  MyOrder
 //
-//  Created by gwl on 12/10/20.
+//  Created by sourabh on 12/10/20.
 //
 
 import UIKit
@@ -13,7 +13,10 @@ class FilterViewController: BaseViewController  {
     @IBOutlet weak var viewColor: TagListView!
     @IBOutlet weak var viewSize: TagListView!
     @IBOutlet weak var rangeSlider: RangeSeekSlider!
-  
+    @IBOutlet weak var LabletitleCategory: UILabel!
+    @IBOutlet weak var LabletitleColor: UILabel!
+    @IBOutlet weak var LabletitleSize: UILabel!
+    
     var aFilterViewModel = FilterViewModel()
     var aFilterModel: FilterModel? = nil
     var aCatagoryId = 0
@@ -30,7 +33,6 @@ class FilterViewController: BaseViewController  {
         self.addRightBarButton()
         self.updateUi()
     }
-   
     @IBAction func actionOnBrand(_ sender: Any) {
         if let  aBrandlistViewController = BrandlistViewController.getController(story: "Dashboard")  as? BrandlistViewController {
             aBrandlistViewController.tableArray = self.aFilterModel?.aBranddata ?? []
@@ -69,7 +71,7 @@ extension FilterViewController: TagListViewDelegate {
         if sender == self.viewColor {
             tagView.isSelected = !tagView.isSelected
             if tagView.isSelected == true {
-                tagView.borderWidth = 6
+                tagView.borderWidth = 1
             }else {
                 tagView.borderWidth = 0
             }
@@ -102,7 +104,6 @@ extension FilterViewController {
             }
         }
     }
-    
     func updateUi() {
         if let aaFilterModel = self.aFilterModel {
             var category: [String] = []
@@ -129,14 +130,13 @@ extension FilterViewController {
                 if let _ = UIColor(hex: aColor.fld_code) {
                     viewColor.tagViews[index].isSelected = aColor.isSelected
                     if viewColor.tagViews[index].isSelected == true {
-                        viewColor.tagViews[index].borderWidth = 6
+                        viewColor.tagViews[index].borderWidth = 1
                     }else {
                         viewColor.tagViews[index].borderWidth = 0
                     }
                 }
             }
             
-           
             var sizes: [String] = []
             viewSize.textFont = UIFont.systemFont(ofSize: 14.0)
             viewSize.removeAllTags()
@@ -148,11 +148,23 @@ extension FilterViewController {
                 viewSize.tagViews[index].isSelected = asizes.isSelected
             }
             
-            
             self.rangeSlider.minValue = CGFloat(aaFilterModel.aPricedata.min_price)
             self.rangeSlider.maxValue = CGFloat(aaFilterModel.aPricedata.max_price)
             self.rangeSlider.selectedMinValue = CGFloat(aaFilterModel.aPricedata.min_price_value)
             self.rangeSlider.selectedMaxValue = CGFloat(aaFilterModel.aPricedata.max_price_value)
+            
+            if aaFilterModel.aCategorydata.count <= 0 {
+                self.viewCategory.removeFromSuperview()
+                self.LabletitleCategory.removeFromSuperview()
+            }
+            if aaFilterModel.aSizedata.count <= 0 {
+                self.viewSize.removeFromSuperview()
+                self.LabletitleSize.removeFromSuperview()
+            }
+            if aaFilterModel.aColordata.count <= 0 {
+                self.viewColor.removeFromSuperview()
+                self.LabletitleColor.removeFromSuperview()
+            }
         }
     }
 }

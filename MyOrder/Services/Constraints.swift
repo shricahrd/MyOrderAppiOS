@@ -2,7 +2,7 @@
 //  Constraints.swift
 //  MyOrder
 //
-//  Created by gwl on 10/10/20.
+//  Created by sourabh on 10/10/20.
 //
 
 typealias Failed = (_ error: Error?) -> Void
@@ -27,8 +27,13 @@ enum LeftPenalType : Int {
     case invoice = 7
     case ledger = 8
     case issues = 9
-    case about = 10
-    case helpSupport = 11
+    case reward = 10
+    case redeemOrders = 11
+    case referandearn = 12
+    case rewardCart = 13
+    case wallet = 14
+    case about = 15
+    case helpSupport = 16
 }
 
 let OldUser                 = "OldUser"
@@ -38,7 +43,7 @@ let NoInternet              = "Internet connection not available."
 let Someerror               = "Some error occour."
 let OTPSend                 = "OTP is sent to your register phone number."
 
-let SelectRole              = "Please select role."
+let SelectRole              = "Please choose role first."
 let SelectUsername          = "Please enter username."
 let SelectEmail             = "Please enter email."
 let SelectVaildEmail        = "Please enter valid email."
@@ -54,12 +59,10 @@ let SelectAmount            = "Please enter amount."
 let SelectTxNumber          = "Please enter Transaction number."
 let SelectAttachment        = "Please select attachment."
 
-let SelectTitle              = "Please select title."
-let SelectDis                = "Please select discription."
-
+let SelectTitle             = "Please select title."
+let SelectDis               = "Please select discription."
 
 let SelectCouponCode        = "Please enter coupon code."
-
 
 let SelectFullName          = "Please enter fullname."
 let SelectAddress           = "Please enter address."
@@ -73,6 +76,3 @@ let SelectColor             = "Please select color."
 let SelectSize              = "Minimum quantity for product size "
 
 let SelectReason            = "Please select order cancel reason."
-
-
-

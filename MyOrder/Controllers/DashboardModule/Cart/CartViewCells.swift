@@ -2,7 +2,7 @@
 //  CartViewCells.swift
 //  MyOrder
 //
-//  Created by gwl on 29/10/20.
+//  Created by sourabh on 29/10/20.
 //
 
 import UIKit
@@ -45,7 +45,10 @@ class CartBottomCell: UITableViewCell {
 }
 class CartColorCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
     typealias SizeDelete = (_ index: Int) -> Void
+    typealias SizeUpdate = (_ index: Int, _ qty: Int) -> Void
+
     @IBOutlet weak var labelQty: UILabel!
+    @IBOutlet weak var colorViewHeight: NSLayoutConstraint!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var buttonDropDown: UIButton!
@@ -54,9 +57,12 @@ class CartColorCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var viewBorder: UIView!
     var aaColorsizelist = Colorsizelist()
     var sizeDeleteComplition : SizeDelete? = nil
-    func setCellData(aColorsizelist: Colorsizelist, aSizeDelete:@escaping  SizeDelete){
+    var sizeUpdateComplition : SizeUpdate? = nil
+
+    func setCellData(aColorsizelist: Colorsizelist, aSizeDelete:@escaping  SizeDelete, aSizeUpdate:@escaping  SizeUpdate){
         aaColorsizelist = aColorsizelist
         sizeDeleteComplition = aSizeDelete
+        sizeUpdateComplition = aSizeUpdate
         self.labelQty.text = aColorsizelist.color_size_qty.description
         self.labelName.text = aColorsizelist.color_name
         self.tableViewSize.dataSource = self
@@ -72,7 +78,6 @@ class CartColorCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
             self.viewBorder.shadowWithRadius(aBounds: bounds)
         }
-        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var sizeCount = aaColorsizelist.size_list.count
@@ -89,6 +94,8 @@ class CartColorCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource
         cell.setUpCellData(aSizes: aaColorsizelist.size_list[indexPath.row])
         cell.buttonAddRemove?.tag = indexPath.row
         cell.buttonAddRemove?.addTarget(self, action: #selector(self.actionOnAddToCart), for: UIControl.Event.touchUpInside)
+        cell.buttonUpdate?.tag = indexPath.row
+        cell.buttonUpdate?.addTarget(self, action: #selector(self.actionOnUpdateCart), for: UIControl.Event.touchUpInside)
         cell.selectionStyle = .none
         cell.layoutIfNeeded()
         return cell
@@ -97,10 +104,20 @@ class CartColorCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource
         let indexPath = IndexPath(row: sender.tag, section: 0)
         sizeDeleteComplition!(indexPath.row)
     }
+    @objc func actionOnUpdateCart(sender: UIButton) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let cell = self.tableViewSize.cellForRow(at: indexPath) as! ProductSizeCell
+        let qty = Int(cell.textFieldQty.text!) ?? 0
+        sizeUpdateComplition!(indexPath.row, qty)
+    }
 }
 class CartViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource  {
     typealias ColorSelect = (_ index: Int) -> Void
     typealias ColorSizeDelete = (_ colorIndex: Int, _ sizeIndex: Int) -> Void
+    typealias ColorSizeUpdate = (_ colorIndex: Int, _ sizeIndex: Int, _ qty: Int) -> Void
+    
+    typealias AdditionalDelete = (_ sizeIndex: Int) -> Void
+    typealias AdditionalUpdate = (_ sizeIndex: Int, _ qty: Int) -> Void
 
     @IBOutlet weak var imageViewProduct: UIImageView!
     @IBOutlet weak var labelName: UILabel!
@@ -108,16 +125,31 @@ class CartViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var labelSuplier: UILabel!
     @IBOutlet weak var buttonDelete: UIButton!
     @IBOutlet weak var tableViewColor: UITableView!
+    @IBOutlet weak var tableViewSizeColor: UITableView!
     @IBOutlet weak var constraintColorHeight: NSLayoutConstraint!
+    @IBOutlet weak var constraintSizeColorHeight: NSLayoutConstraint!
     @IBOutlet weak var buttonCancelOrder: UIButton!
+    @IBOutlet weak var textFieldQty: UITextField!
+    @IBOutlet weak var buttonUpdateQty: UIButton!
+    
     var colorSelectComplition : ColorSelect? = nil
     var colorSizeDeleteComplition : ColorSizeDelete? = nil
-
+    var colorSizeUpdateComplition : ColorSizeUpdate? = nil
+    var aAdditionalDeleteComplition : AdditionalDelete? = nil
+    var aAdditionalUpdateComplition : AdditionalUpdate? = nil
     var aaCartList = CartList()
-    func setCellData(aCartList: CartList, aColorSelect:@escaping  ColorSelect, aColorSizeDelete:@escaping  ColorSizeDelete){
+    func setCellData(aCartList: CartList,
+                     aColorSelect:@escaping  ColorSelect,
+                     aColorSizeDelete:@escaping  ColorSizeDelete,
+                     aColorSizeUpdate:@escaping  ColorSizeUpdate,
+                     aAdditionalDelete:@escaping  AdditionalDelete,
+                     aAdditionalUpdate:@escaping  AdditionalUpdate) {
         aaCartList = aCartList
         self.colorSelectComplition = aColorSelect
         self.colorSizeDeleteComplition = aColorSizeDelete
+        self.colorSizeUpdateComplition = aColorSizeUpdate
+        self.aAdditionalDeleteComplition = aAdditionalDelete
+        self.aAdditionalUpdateComplition = aAdditionalUpdate
         let url = URL(string: aCartList.default_image)
         self.imageViewProduct?.kf.indicatorType = .activity
         self.imageViewProduct?.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "placeholderCell"))
@@ -126,37 +158,129 @@ class CartViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
         self.labelSuplier.text = "Suplier: " + aCartList.fld_supplier_name
         self.tableViewColor.dataSource = self
         self.tableViewColor.delegate = self
-        var cellHeight = aaCartList.colorsizelist.count * 90
-        aaCartList.colorsizelist.forEach { colorsList in
-            var flag = false
-            if colorsList.isSizeVisible == true {
-                colorsList.size_list.forEach { sizes in
-                    flag = true
+        self.constraintColorHeight.constant = 0
+        self.constraintSizeColorHeight?.constant = 0
+        self.tableViewSizeColor?.dataSource = self
+        self.tableViewSizeColor?.delegate = self
+        self.tableViewSizeColor?.separatorColor = UIColor.clear
+       
+        self.textFieldQty?.isHidden = false
+        self.buttonUpdateQty?.isHidden = false
+        self.textFieldQty?.text = aaCartList.fld_product_qty
+        
+        if aaCartList.colorsizelist.count > 0 {
+            var cellHeight = aaCartList.colorsizelist.count * (70 + 20)
+            aaCartList.colorsizelist.forEach { colorsList in
+                var flag = false
+                if colorsList.isSizeVisible == true {
+                    colorsList.size_list.forEach { sizes in
+                        flag = true
+                        cellHeight = cellHeight + 60
+                    }
+                    if flag == true {
+                        cellHeight = cellHeight + 35
+                    }
+                }
+                self.textFieldQty?.isHidden = true
+                self.buttonUpdateQty?.isHidden = true
+            }
+            self.constraintColorHeight.constant = CGFloat(cellHeight)
+            self.tableViewColor.reloadData()
+            self.tableViewColor.separatorColor = UIColor.clear
+        }else {
+            if aaCartList.aAdditionalSize.count > 0 {
+                var cellHeight = 20 + 20
+                self.aaCartList.aAdditionalSize.forEach { additionalSize in
                     cellHeight = cellHeight + 60
                 }
-                if flag == true {
-                    cellHeight = cellHeight + 35
+                self.textFieldQty.isHidden = true
+                self.buttonUpdateQty.isHidden = true
+                self.constraintSizeColorHeight?.constant = CGFloat(cellHeight)
+            }else if aaCartList.aAdditionalColor.count > 0  {
+                var cellHeight = 20 + 20
+                self.aaCartList.aAdditionalColor.forEach { AdditionalColor in
+                    cellHeight = cellHeight + 60
                 }
+                self.textFieldQty.isHidden = true
+                self.buttonUpdateQty.isHidden = true
+                self.constraintSizeColorHeight?.constant = CGFloat(cellHeight)
             }
+            self.tableViewSizeColor?.reloadData()
         }
-        self.constraintColorHeight.constant = CGFloat(cellHeight)
-        self.tableViewColor.reloadData()
-        self.tableViewColor.separatorColor = UIColor.clear
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return aaCartList.colorsizelist.count
+        if tableView == tableViewSizeColor {
+            if aaCartList.aAdditionalSize.count > 0 || aaCartList.aAdditionalColor.count > 0 {
+                return 1
+            }
+            else {
+                return 0
+            }
+        }else {
+            return aaCartList.colorsizelist.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == tableViewSizeColor {
+            return 60
+        }else{
+            var cellHeight = aaCartList.colorsizelist.count * (70 + 20)
+            aaCartList.colorsizelist.forEach { colorsList in
+                var flag = false
+                if colorsList.isSizeVisible == true {
+                    colorsList.size_list.forEach { sizes in
+                        flag = true
+                        cellHeight = cellHeight + 60
+                    }
+                    if flag == true {
+                        cellHeight = cellHeight + 35
+                    }
+                }
+            }
+            return CGFloat(cellHeight)
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CartColorCell") as! CartColorCell
-        cell.setCellData(aColorsizelist: aaCartList.colorsizelist[indexPath.row]) { (sizeIndex) in
-            self.colorSizeDeleteComplition!(indexPath.row,sizeIndex)
+        if tableView == tableViewSizeColor {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductSizeCell") as! ProductSizeCell
+            if aaCartList.aAdditionalSize.count > 0 {
+                cell.setUpCellData(aAdditionalSize: self.aaCartList.aAdditionalSize[indexPath.row])
+            }else if aaCartList.aAdditionalColor.count > 0 {
+                cell.setUpCellData(aAdditionalColor: self.aaCartList.aAdditionalColor[indexPath.row])
+            }
+          cell.buttonAddRemove?.tag = indexPath.row
+          cell.buttonAddRemove?.addTarget(self, action: #selector(self.actionOnAddToCart), for: UIControl.Event.touchUpInside)
+          cell.buttonUpdate?.tag = indexPath.row
+          cell.buttonUpdate?.addTarget(self, action: #selector(self.actionOnUpdateCart), for: UIControl.Event.touchUpInside)
+            cell.selectionStyle = .none
+            cell.layoutIfNeeded()
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CartColorCell") as! CartColorCell
+            cell.setCellData(aColorsizelist: aaCartList.colorsizelist[indexPath.row]) { (sizeIndex) in
+                self.colorSizeDeleteComplition!(indexPath.row,sizeIndex)
+            } aSizeUpdate: { (sizeIndex, qty) in
+                self.colorSizeUpdateComplition!(indexPath.row,sizeIndex, qty)
+            }
+            cell.selectionStyle = .none
+            return cell
         }
-        cell.selectionStyle = .none
-        return cell
     }
-    
+    @objc func actionOnAddToCart(sender: UIButton) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        self.aAdditionalDeleteComplition!(indexPath.row)
+    }
+    @objc func actionOnUpdateCart(sender: UIButton) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let cell = self.tableViewSizeColor.cellForRow(at: indexPath) as! ProductSizeCell
+        let qty = Int(cell.textFieldQty.text!) ?? 0
+        self.aAdditionalUpdateComplition!(indexPath.row, qty)
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.colorSelectComplition!(indexPath.row)
+        if tableView == tableViewColor {
+            self.colorSelectComplition!(indexPath.row)
+        }
     }
 }

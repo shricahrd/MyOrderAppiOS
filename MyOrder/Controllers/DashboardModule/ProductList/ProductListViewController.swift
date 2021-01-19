@@ -2,7 +2,7 @@
 //  ProductListViewController.swift
 //  MyOrder
 //
-//  Created by gwl on 11/10/20.
+//  Created by sourabh on 11/10/20.
 //
 
 import UIKit
@@ -41,12 +41,22 @@ class ProductList: UITableViewCell {
         self.labelOldPrice.text = "₹" + aDashboardProduct.price.description
         self.buttonWishList.setImage(aDashboardProduct.isInWishlist == true ? UIImage(imageLiteralResourceName: "fav") : UIImage(imageLiteralResourceName: "unfav"), for: [])
     }
+    func setUpCellData(aRewardProduct: RewardProductListModel) {
+        let url = URL(string: aRewardProduct.images)
+        self.imageViewProduct.kf.indicatorType = .activity
+        self.imageViewProduct.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "placeholderSquare"))
+        self.labelBrand.text = ""
+        self.labelTitle.text = aRewardProduct.name
+        self.labelPrice.text = "Points: " + aRewardProduct.points.description
+        self.labelOldPrice.text = ""
+       // self.buttonWishList.setImage(aProduct.isInWishlist == true ? UIImage(imageLiteralResourceName: "fav") : UIImage(imageLiteralResourceName: "unfav"), for: [])
+    }
 }
 class ProductListViewController: BaseViewController {
     @IBOutlet weak var textFieldSearch: UITextField!
     @IBOutlet weak var tableViewProduct: UITableView!
     @IBOutlet weak var constraintFilterHeight: NSLayoutConstraint!
-    
+
     var aProductListModel = ProductListModel()
     var aProductListViewModel = ProductListViewModel()
     var aFilterModel: FilterModel? = nil
@@ -57,9 +67,9 @@ class ProductListViewController: BaseViewController {
     var sortBy = 0
     var currentPageNo = 0
     var catagoryId = 0
+    var aDcatagoryId = 0
     var brandId = 0
     var searchText = ""
-    
     var isLoading: Bool = false
 
     override func viewDidLoad() {
@@ -67,7 +77,7 @@ class ProductListViewController: BaseViewController {
         self.textFieldSearch.text = searchText
         self.addTitleImage()
         self.addLeftBarButton(imageName: "back")
-       
+        aDcatagoryId = catagoryId
         if catagoryId == 0 {
             self.constraintFilterHeight.constant = 0
         }
@@ -76,6 +86,14 @@ class ProductListViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.productListServiceCall()
         self.addRightBarButton()
+        if catagoryId == 0 {
+            self.constraintFilterHeight.constant = 0
+        }
+        self.aSearchProductViewController.aSearchComplition = { object in
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+                self.goToSearchResult(text: object)
+            }
+        }
     }
     @IBAction func actionOnFilter(_ sender: Any) {
         if let aFilterViewController = FilterViewController.getController(story: "Dashboard")  as? FilterViewController {
@@ -144,12 +162,27 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource,
     }
 }
 extension ProductListViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let result = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        if result.contains("\n") { return true}
+        if result.count > 0 {
+            if let frame = textField.superview?.convert(textField.frame, to: nil) {
+                self.showSearchList(top: frame.maxY + 20, text: result)
+            }
+        }else {
+            self.hideSearchList()
+        }
+        return true
+    }
+    func goToSearchResult(text: String){
         if self.searchText != self.textFieldSearch.text {
             self.aTableArray.removeAll()
             self.tableViewProduct.reloadData()
             self.currentPageNo = 0
             self.sortBy = 0
+            self.catagoryId = 0
+            self.constraintFilterHeight.constant = 0
         }
         self.searchText = self.textFieldSearch.text!
         self.productListServiceCall()
@@ -166,7 +199,8 @@ extension ProductListViewController {
             self.aProductListViewModel.getFilterProductServiceCall(aFilterModel: self.aFilterModel!,
                                                                    afld_search_txt: searchText,
                                                                    afld_sort_by: sortBy,
-                                                                   afld_page_no: currentPageNo) { (model) in
+                                                                   afld_page_no: currentPageNo,
+                                                                   aCatID: self.catagoryId) { (model) in
                 self.hideActivity()
                 self.updateUi(aProductListModel: model)
             }  aFailed: { (error) in
@@ -176,11 +210,18 @@ extension ProductListViewController {
         }
         else {
             if self.aProductListType == .unknown {
+                if self.searchText == "" {
+                    self.catagoryId = self.aDcatagoryId
+                }
                 self.aProductListViewModel.getProducts(afld_brand_id: brandId,
                                                        afld_cat_id: catagoryId,
                                                        afld_search_txt: searchText,
                                                        afld_page_no: currentPageNo,
                                                        afld_sort_by: sortBy) { (model) in
+                    if self.catagoryId == 0 && self.aDcatagoryId != 0 && self.searchText == "" {
+                        self.catagoryId = self.aDcatagoryId
+                        self.constraintFilterHeight.constant = 40
+                    }
                     self.hideActivity()
                     self.updateUi(aProductListModel: model)
                 }  aFailed: { (error) in

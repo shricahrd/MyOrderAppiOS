@@ -2,7 +2,7 @@
 //  InvoiceListViewController.swift
 //  MyOrder
 //
-//  Created by gwl on 31/10/20.
+//  Created by sourabh on 31/10/20.
 //
 
 import UIKit
@@ -19,17 +19,18 @@ class InvoiceListCell: UITableViewCell {
     func setCellData(aInvoiceList: InvoiceList) {
         self.viewBorder.shadowWithRadius()
         self.labelOrderNo.text = "Order No: #" + aInvoiceList.fld_order_no
-        self.labelOrderId.text = "Order ID: " + aInvoiceList.fld_invoice_no
+        self.labelOrderId.text = "Invoice No: " + aInvoiceList.fld_invoice_no
         self.labelDate.text = aInvoiceList.fld_order_date.orderListDate()
         self.labelTotalAmount.text = "₹ " + aInvoiceList.fld_order_amt
-        self.labelSuplier.text = "_"
+        self.labelSuplier.text = aInvoiceList.fld_supplier_name
         self.layoutIfNeeded()
+        self.buttonPayNow.isHidden = true
     }
 }
 
 class InvoiceListViewController: BaseViewController {
     @IBOutlet weak var tableViewInvoice: UITableView!
-
+    @IBOutlet weak var textFieldSearch: UITextField!
     var aInvoiceListViewModel = InvoiceListViewModel()
     var aInvoiceListModel = InvoiceListModel()
     var currentPageNo = 0
@@ -45,6 +46,11 @@ class InvoiceListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addRightBarButton()
+        self.aSearchProductViewController.aSearchComplition = { object in
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+                self.goToSearchResult(text: object)
+            }
+        }
     }
 }
 extension InvoiceListViewController : UITableViewDelegate, UITableViewDataSource {
@@ -99,14 +105,22 @@ extension InvoiceListViewController {
 }
 
 extension InvoiceListViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.text!.count > 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
-                if let  aProductListViewController = ProductListViewController.getController(story: "Dashboard")  as? ProductListViewController {
-                    aProductListViewController.searchText = textField.text!
-                    self.navigationController?.pushViewController(aProductListViewController, animated: true)
-                }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let result = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        if result.contains("\n") { return true}
+        if result.count > 0 {
+            if let frame = textField.superview?.convert(textField.frame, to: nil) {
+                self.showSearchList(top: frame.maxY + 20, text: result)
             }
+        }else {
+            self.hideSearchList()
+        }
+        return true
+    }
+    func goToSearchResult(text: String){
+        if let  aProductListViewController = ProductListViewController.getController(story: "Dashboard")  as? ProductListViewController {
+            aProductListViewController.searchText = text
+            self.navigationController?.pushViewController(aProductListViewController, animated: true)
         }
     }
 }

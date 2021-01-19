@@ -2,7 +2,7 @@
 //  IssuesListModel.swift
 //  MyOrder
 //
-//  Created by gwl on 31/10/20.
+//  Created by sourabh on 31/10/20.
 //
 
 import UIKit
@@ -42,8 +42,8 @@ class IssueList: NSObject {
         if let title = dictionary["title"] as? String {
             self.title = title
         }
-        if let trackId = dictionary["trackId"] as? String {
-            self.trackId = trackId
+        if let trackId = dictionary["id"] as? Int {
+            self.trackId = trackId.description
         }
         if let issue_date = dictionary["issue_date"] as? String {
             self.issue_date = issue_date

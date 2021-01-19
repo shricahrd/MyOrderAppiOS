@@ -2,7 +2,7 @@
 //  WearlistViewcontroller.swift
 //  MyOrder
 //
-//  Created by gwl on 11/10/20.
+//  Created by sourabh on 11/10/20.
 //
 
 import UIKit
@@ -18,6 +18,7 @@ class WearlistSubCell: UITableViewCell{
 }
 class WearlistViewcontroller: BaseViewController {
     @IBOutlet weak var tableViewWearList: UITableView!
+    @IBOutlet weak var textFieldSearch: UITextField!
     var tableArray : [Catagorys] = []
     var wearableId: Int = 0
     let aWearlistViewModel = WearlistViewModel()
@@ -31,6 +32,11 @@ class WearlistViewcontroller: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addRightBarButton()
+        self.aSearchProductViewController.aSearchComplition = { object in
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+                self.goToSearchResult(text: object)
+            }
+        }
     }
 }
 extension WearlistViewcontroller: UITableViewDelegate, UITableViewDataSource {
@@ -71,14 +77,22 @@ extension WearlistViewcontroller: UITableViewDelegate, UITableViewDataSource {
     }
 }
 extension WearlistViewcontroller: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.text!.count > 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
-                if let  aProductListViewController = ProductListViewController.getController(story: "Dashboard")  as? ProductListViewController {
-                    aProductListViewController.searchText = textField.text!
-                    self.navigationController?.pushViewController(aProductListViewController, animated: true)
-                }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let result = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        if result.contains("\n") { return true}
+        if result.count > 0 {
+            if let frame = textField.superview?.convert(textField.frame, to: nil) {
+                self.showSearchList(top: frame.maxY + 20, text: result)
             }
+        }else {
+            self.hideSearchList()
+        }
+        return true
+    }
+    func goToSearchResult(text: String){
+        if let  aProductListViewController = ProductListViewController.getController(story: "Dashboard")  as? ProductListViewController {
+            aProductListViewController.searchText = text
+            self.navigationController?.pushViewController(aProductListViewController, animated: true)
         }
     }
 }

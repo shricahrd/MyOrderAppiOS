@@ -2,7 +2,7 @@
 //  ProductDetailsViewModel.swift
 //  MyOrder
 //
-//  Created by gwl on 12/10/20.
+//  Created by sourabh on 12/10/20.
 //
 
 import UIKit
@@ -35,12 +35,12 @@ class ProductDetailsViewModel: NSObject {
                 if let aAttributes = object["attributes"] as? [String: Any] {
                     if let aColors = aAttributes["colors"] as? [[String: Any]] {
                         for subColors in aColors {
-                            color.append(Colors(fromDictionary: subColors))
+                           color.append(Colors(fromDictionary: subColors))
                         }
                     }
                     if let aSizes = aAttributes["sizes"] as? [[String: Any]] {
                         for subSizes in aSizes {
-                            sizes.append(Sizes(fromDictionary: subSizes))
+                           sizes.append(Sizes(fromDictionary: subSizes))
                         }
                     }
                 }

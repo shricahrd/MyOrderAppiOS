@@ -2,7 +2,7 @@
 //  AddIssueViewController.swift
 //  MyOrder
 //
-//  Created by gwl on 31/10/20.
+//  Created by sourabh on 31/10/20.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ class AddIssueViewController: BaseViewController {
     @IBOutlet weak var imageViewAttachment: UIImageView!
     var imagePicker: ImagePicker!
     var aAddIssueViewModel = AddIssueViewModel()
-    var productId = 0
+    var productId: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()

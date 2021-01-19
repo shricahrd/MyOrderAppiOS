@@ -2,7 +2,7 @@
 //  CartViewModel.swift
 //  MyOrder
 //
-//  Created by gwl on 19/10/20.
+//  Created by sourabh on 19/10/20.
 //
 
 import UIKit
@@ -50,7 +50,20 @@ class CartViewModel: NSObject {
                         }
                         aColorsizelist.append(Colorsizelist(fromDictionary: colors, sizes: aSizeList))
                     }
-                    aCartList.append(CartList(fromDictionary: aColorSizesList, aColorsizelist: aColorsizelist))
+                    let aColorOnly = aColorSizesList["colors_list"] as? [[String: Any]] ?? []
+                    var aAdditionalColorlist: [AdditionalColor] = []
+                    aColorOnly.forEach { colors in
+                        aAdditionalColorlist.append(AdditionalColor(fromDictionary: colors))
+                    }
+                    let aSizeOnly = aColorSizesList["sizes_list"] as? [[String: Any]] ?? []
+                    var aAdditionalSizelist: [AdditionalSize] = []
+                    aSizeOnly.forEach { size in
+                        aAdditionalSizelist.append(AdditionalSize(fromDictionary: size))
+                    }
+                    aCartList.append( CartList(fromDictionary: aColorSizesList,
+                                               aColorsizelist: aColorsizelist,
+                                               aAdditionalColor: aAdditionalColorlist,
+                                               aAdditionalSize: aAdditionalSizelist))
                 }
                 aCartModelSuccess(CartModel(fromDictionary: result!, aCartList: aCartList))
             }else {
@@ -98,6 +111,29 @@ class CartViewModel: NSObject {
             }
         }
     }
+    func updateCartElementsServiceCall( aProductId: String,
+                                        aColorId: Int,
+                                        aSizeId: Int,
+                                        aQty: Int,
+                                        aAddAddressSuccess:@escaping  AddAddressSuccess,
+                                        aFailed:@escaping  Failed) {
+        let jsonReq =  ["fld_user_id":UserModel.shared.fld_user_id,
+                        "fld_action_type":2,
+                        "fld_product_id":aProductId,
+                        "fld_size_id":aSizeId,
+                        "fld_color_id":aColorId,
+                        "fld_product_qty":aQty,
+                        "panel_type": UserModel.shared.aSelectedUserType.rawValue] as [String : Any]
+        ApiService.shared.callServiceWith(apiName: kCartAddUpdate, parameter: jsonReq, methods:  .post) { (result, error) in
+            if error == nil {
+                let aMessage = result?["message"] as? String ?? ""
+                UserModel.shared.aCartTotalCount =  result?["cart_total_count"] as? Int ?? 0
+                aAddAddressSuccess(aMessage)
+            }else {
+                aFailed(error)
+            }
+        }
+    }
     func getCouponDiscountServiceCall( aCode: String,
                                        aCouponSuccess:@escaping  CouponSuccess,
                                        aFailed:@escaping  Failed) {
@@ -112,7 +148,4 @@ class CartViewModel: NSObject {
             }
         }
     }
-    
-    
-    
 }

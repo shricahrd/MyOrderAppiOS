@@ -2,7 +2,7 @@
 //  ProductDetailsVCEX.swift
 //  MyOrder
 //
-//  Created by gwl on 24/10/20.
+//  Created by sourabh on 24/10/20.
 //
 
 import UIKit
@@ -12,15 +12,23 @@ extension ProductDetailsViewController: TagListViewDelegate {
             tagViewColor.tagViews.forEach { tags in
                 tags.isSelected = false
                 tags.borderWidth = 0
+                if self.aProductType == .unconfigurable && tags == tagView {
+                    tags.isSelected = true
+                    tags.borderWidth = 1
+                }
             }
-            self.getDependentSizes(tagView: tagView)
+            if self.aProductType != .unconfigurable {
+                self.getDependentSizes(tagView: tagView)
+            }
         } else {
             tagView.isSelected = !tagView.isSelected
         }
     }
     func getDependentSizes(tagView: TagView) {
         self.refreshQty = true
-        self.tableViewSize.reloadData()
+        if self.aProductDetail.size_chart.count > 0 {
+            self.tableViewSize.reloadData()
+        }
         let colorId = self.aProductDetail.attribute.aColors[tagView.tag].fld_color_id
         self.getDependentSize(aProductId: aProductDetail.fld_product_id, aColorId: colorId, tagView: tagView)
     }
@@ -45,11 +53,11 @@ extension ProductDetailsViewController {
             self.aProductDetailModel = model
             self.aProductDetail = self.aProductDetailModel.productDetail
             self.updateUi()
-            if self.aProductDetail.attribute.aColors.isEmpty == true {
+            if self.aProductType == .unconfigurable || self.aProductDetail.attribute.aColors.isEmpty == true {
                 self.labelColor.text = ""
                 self.tagViewColor.removeFromSuperview()
             }
-            if self.aProductDetail.attribute.aSizes.isEmpty == true {
+            if self.aProductDetail.attribute.aSizes.isEmpty == true && self.aProductType != .unconfigurable{
                 self.tableViewSize.removeFromSuperview()
             }
         } aFailed: { (error) in
@@ -79,14 +87,14 @@ extension ProductDetailsViewController {
             self.aProductDetail.attribute.aSizes = sizes
             self.tableViewSize.reloadData()
             tagView.isSelected = true
-            tagView.borderWidth = 3
+            tagView.borderWidth = 1
         } aFailed: { (error) in
             self.refreshQty = false
             self.hideActivity()
             self.showAlartWith(message: error!.localizedDescription)
         }
     }
-    func addToCartServiceCall(aProductId: Int, aManufactureId: Int, aQty: Int ,asizeId: Int? = nil, aColorId: Int? = nil){
+    func addToCartServiceCall(aProductId: Int, aManufactureId: Int, aQty: Int ,asizeId: Int? = 0, aColorId: Int? = 0){
         self.showActivity()
         let addcart = AddCart(aProductId: aProductId,
                               aManufactureId: aManufactureId,
@@ -115,7 +123,21 @@ extension ProductDetailsViewController {
         self.labelOldPrice.text = "₹" + self.aProductDetail.fld_product_price.description
         self.labelMinOrder.text = "*Min Order Quantity: " + self.aProductDetail.fld_product_moq.description
         self.labelSupplierName.text =  self.aProductDetail.fld_seller_info.fld_seller_name
-        self.labelDiscription.text = self.aProductDetail.fld_product_long_description
+        if let url = URL(string: self.aProductDetail.fld_product_long_description) {
+            do {
+                var contents = try String(contentsOf: url)
+                if contents.contains("</script>") == true {
+                    contents = ""
+                }
+                contents = contents.replacingOccurrences(of: "<p>", with: "")
+                self.labelDiscription.text = contents.replacingOccurrences(of: "</p>", with: "")
+            } catch {
+                // contents could not be loaded
+            }
+        } else {
+            // the URL was bad!
+        }
+        
         var colors: [UIColor] = []
         tagViewColor?.removeAllTags()
         for aColor in self.aProductDetail.attribute.aColors {
@@ -124,22 +146,33 @@ extension ProductDetailsViewController {
             }
         }
         tagViewColor?.addTagsColors(colors)
-        self.collectionViewProduct.reloadData()
-        self.tableViewSize?.reloadData()
+       
         if self.aProductDetail.attribute.aColors.isEmpty == true && self.aProductDetail.attribute.aSizes.isEmpty == true  {
             aProductType = .normal
+            self.labelMinOrder.isHidden = true
+            self.buttonAddUpdateCart.setTitle("ADD TO CART", for: .normal)
+            self.labelSingleQty.isHidden = false
+            self.textFieldQtySingle.isHidden = false
         } else if self.aProductDetail.attribute.aColors.isEmpty == true || self.aProductDetail.attribute.aSizes.isEmpty == true {
             aProductType = .unconfigurable
-        }else {
-            aProductType = .configurable
-        }
-        if aProductType == .configurable {
+            self.labelSingleQty.isHidden = true
+            self.textFieldQtySingle.isHidden = true
             self.buttonAddUpdateCart.setTitle("GO TO CART", for: .normal)
         }else {
-            self.buttonAddUpdateCart.setTitle("ADD TO CART", for: .normal)
+            aProductType = .configurable
+            self.labelSingleQty.isHidden = true
+            self.textFieldQtySingle.isHidden = true
+            self.buttonAddUpdateCart.setTitle("GO TO CART", for: .normal)
         }
+        self.labelMinOrder.isHidden = false
         if self.aProductDetail.isInCart == true {
             self.buttonAddUpdateCart.setTitle("GO TO CART", for: .normal)
         }
+        if UserModel.shared.aSelectedUserType == .manufacture {
+            self.buttonAddUpdateCart.isHidden = true
+        }
+        
+        self.collectionViewProduct.reloadData()
+        self.tableViewSize?.reloadData()
     }
 }

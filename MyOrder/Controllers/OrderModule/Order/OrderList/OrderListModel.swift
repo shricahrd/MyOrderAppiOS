@@ -2,7 +2,7 @@
 //  OrderListModel.swift
 //  MyOrder
 //
-//  Created by gwl on 29/10/20.
+//  Created by sourabh on 29/10/20.
 //
 
 import Foundation
@@ -21,7 +21,7 @@ class OrderListModel: NSObject {
 }
 
 class MyOrders: NSObject {
-   
+    
     var fld_coupon_amt: String = ""
     var fld_order_id: Int = 0
     var fld_order_qty: String = ""
@@ -41,6 +41,8 @@ class MyOrders: NSObject {
     var fld_order_shipping_area_name: String = ""
     var fld_order_shipping_city_name: String = ""
     var fld_order_shipping_state_name: String = ""
+    var fld_zoneassign_order_id: String = ""
+    var fld_supplier_name: String = ""
     var aCartLists : [CartList] = []
     override init(){
     }
@@ -66,6 +68,12 @@ class MyOrders: NSObject {
         }
         if let fld_order_qty = dictionary["fld_order_qty"] as? String {
             self.fld_order_qty = fld_order_qty
+        }
+        if let fld_zoneassign_order_id = dictionary["fld_zoneassign_order_id"] as? String {
+            self.fld_zoneassign_order_id = fld_zoneassign_order_id
+        }
+        if let fld_supplier_name = dictionary["fld_supplier_name"] as? String {
+            self.fld_supplier_name = fld_supplier_name
         }
         if let fld_order_status = dictionary["fld_order_status"] as? Int {
             self.fld_order_status = fld_order_status

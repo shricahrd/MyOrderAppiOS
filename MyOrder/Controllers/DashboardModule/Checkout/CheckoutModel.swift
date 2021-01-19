@@ -2,7 +2,7 @@
 //  CheckoutModel.swift
 //  MyOrder
 //
-//  Created by gwl on 29/10/20.
+//  Created by sourabh on 29/10/20.
 //
 
 import UIKit
@@ -41,12 +41,16 @@ class CartReviewList: NSObject {
     var fld_product_qty: Int = 0
     var fld_product_size: Int = 0
     var fld_shipping_charges: Int = 0
+    var fld_product_points: Int = 0
     var fld_spcl_price: Int = 0
     override init(){
     }
     init(fromDictionary dictionary: [String: Any]) {
         if let fld_product_color = dictionary["fld_product_color"] as? Int {
             self.fld_product_color = fld_product_color
+        }
+        if let fld_product_points = dictionary["fld_product_points"] as? Int {
+            self.fld_product_points = fld_product_points
         }
         if let fld_product_id = dictionary["fld_product_id"] as? String {
             self.fld_product_id = fld_product_id
@@ -59,6 +63,9 @@ class CartReviewList: NSObject {
         }
         if let fld_product_qty = dictionary["fld_product_qty"] as? Int {
             self.fld_product_qty = fld_product_qty
+        }
+        if let fld_product_qty = dictionary["fld_product_qty"] as? String {
+            self.fld_product_qty = Int(fld_product_qty) ?? 0
         }
         if let fld_product_size = dictionary["fld_product_size"] as? Int {
             self.fld_product_size = fld_product_size

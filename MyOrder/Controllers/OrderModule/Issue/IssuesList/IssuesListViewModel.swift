@@ -2,19 +2,19 @@
 //  IssuesListViewModel.swift
 //  MyOrder
 //
-//  Created by gwl on 31/10/20.
+//  Created by sourabh on 31/10/20.
 //
 
 import Foundation
 typealias IssuesListModelSuccess = (_ model: IssuesListModel) -> Void
 
 class IssuesListViewModel: NSObject {
-    func getIssueListServiceCall(aOrder_id: Int,
+    func getIssueListServiceCall(aOrder_id: String,
                                     aIssuesListModelSuccess:@escaping  IssuesListModelSuccess,
                                    aFailed:@escaping  Failed) {
         
         var jsonReq: [String : Any] = [:]
-        if aOrder_id == 0 {
+        if aOrder_id == "" {
             jsonReq = ["user_id":UserModel.shared.fld_user_id,
                           "panel_type":UserModel.shared.aSelectedUserType.rawValue] as [String : Any]
         }else {
@@ -22,7 +22,7 @@ class IssuesListViewModel: NSObject {
                           "order_id": aOrder_id,
                           "panel_type":UserModel.shared.aSelectedUserType.rawValue] as [String : Any]
         }
-        ApiService.shared.callServiceWith(apiName: aOrder_id == 0 ? kTicketList : kIssuesList, parameter: jsonReq, methods:  .post) { (result, error) in
+        ApiService.shared.callServiceWith(apiName: aOrder_id == "" ? kTicketList : kIssuesList, parameter: jsonReq, methods:  .post) { (result, error) in
             if error == nil {
                 let object = result?["data"] as? [[String: Any]] ?? []
                 var aIssueList: [IssueList] = []
